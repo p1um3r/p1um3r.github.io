@@ -30,7 +30,7 @@ force-https: True
 
 lang: "en"
 author: "plum"
-title: "{ plum }"
+title: " plum "
 description: "plum的博客，记录一些刷题日记以及学习日常."
 keywords: "plum, personal, blog"
 favicon: "/img/favicon.ico"
@@ -40,7 +40,7 @@ favicon: "/img/favicon.ico"
 ################
 
 black-favicon: "/img/black-lab-glass.ico"
-logo: "/img/author.png" # leave blank if you don't want a logo
+# logo: "https://github.com/p1um3r.png?size=500" # leave blank if you don't want a logo
 
 background-img: "../img/intro-bg.jpg"
 
