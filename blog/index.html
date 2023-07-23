@@ -120,14 +120,40 @@
       
         <article>
           <div class="blog-card">
-              <h3><a href="/blog/hello-world/">Hello World</a></h3>
+              <h3><a href="/blog/rsa%E8%A7%A3%E9%A2%98%E6%80%BB%E7%BB%93/">RSA解题总结</a></h3>
               <p>
   <small>
-    2023年7月23日&nbsp;· 3 字&nbsp;· 1 分钟</small>
+    2023年7月11日&nbsp;· 1635 字&nbsp;· 8 分钟</small>
 
   
 <p>
-              Hello World! crhdbd!
+              RSA解题总结 一般情况 加密 解密 p = 1325465431q = 152317153e = 65537 方法一：
+          </div>
+        </article>
+      
+        <article>
+          <div class="blog-card">
+              <h3><a href="/blog/rsa%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/">RSA学习笔记（1）</a></h3>
+              <p>
+  <small>
+    2023年4月18日&nbsp;· 357 字&nbsp;· 2 分钟</small>
+
+  
+<p>
+              RSA学习笔记（1） （参考：cryptanalysis of RSA and its variants)
+          </div>
+        </article>
+      
+        <article>
+          <div class="blog-card">
+              <h3><a href="/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/">常见密码和编码总结</a></h3>
+              <p>
+  <small>
+    2023年4月13日&nbsp;· 2084 字&nbsp;· 10 分钟</small>
+
+  
+<p>
+              常见密码和编码总结 前言 对常见的编码和密码做个归纳 并记录一些可用的网站和工具 可以当做手册使用
           </div>
         </article>
       
@@ -136,29 +162,11 @@
               <h3><a href="/blog/typora-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">Typora 使用说明</a></h3>
               <p>
   <small>
-    2023年7月23日&nbsp;· 166 字&nbsp;· 1 分钟</small>
+    2023年4月11日&nbsp;· 166 字&nbsp;· 1 分钟</small>
 
   
 <p>
-              <h1 id="typora-使用说明">Typora 使用说明</h1>
-<h3 id="标题">标题</h3>
-<p>标题语法了解html都不陌生，有点儿类似，h1~h6类似这边的#号。数字越小（#号越少）标题越大，分六个等级。
-定义标题有以下几种方式。</p>
-          </div>
-        </article>
-      
-        <article>
-          <div class="blog-card">
-              <h3><a href="/blog/rsa%E8%A7%A3%E9%A2%98%E6%80%BB%E7%BB%93/">RSA解题总结</a></h3>
-              <p>
-  <small>
-    2023年7月23日&nbsp;· 1635 字&nbsp;· 8 分钟</small>
-
-  
-<p>
-              RSA解题总结 一般情况 加密 解密 p = 1325465431q = 152317153e = 65537 方法一：
-import libnum n = p * q phi = (p - 1) * (q - 1) d = pow(e, -1, phi) m = pow(c, d, n) print(libnum.n2s(int(m))) 方法二：
-from Crypto.PublicKey import RSA from Crypto.Cipher import PKCS1_OAEP import gmpy2 import binascii phi = (p - 1) * (q - 1) d = pow(e, -1, phi) rsa_components = (n, e, int(d), p, q) arsa = RSA.
+              Typora 使用说明 标题 标题语法了解html都不陌生，有点儿类似，h1~h6类似这边的#号。数字越小（#号越少）标题越大，分六个等级。 定义标题有以下几种方式。
           </div>
         </article>
       </div>

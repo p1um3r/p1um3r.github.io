@@ -6,11 +6,11 @@
     <description>Recent content in RSA on p1um&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 23 Jul 2023 22:00:00 +0800</lastBuildDate><atom:link href="https://p1um3r.github.io/series/rsa/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 11 Jul 2023 08:00:00 +0800</lastBuildDate><atom:link href="https://p1um3r.github.io/series/rsa/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>RSA解题总结</title>
       <link>https://p1um3r.github.io/blog/rsa%E8%A7%A3%E9%A2%98%E6%80%BB%E7%BB%93/</link>
-      <pubDate>Sun, 23 Jul 2023 22:00:00 +0800</pubDate>
+      <pubDate>Tue, 11 Jul 2023 08:00:00 +0800</pubDate>
       
       <guid>https://p1um3r.github.io/blog/rsa%E8%A7%A3%E9%A2%98%E6%80%BB%E7%BB%93/</guid>
       <description>&lt;h1 id=&#34;rsa解题总结&#34;&gt;RSA解题总结&lt;/h1&gt;
@@ -472,6 +472,289 @@ $$
 &lt;p&gt;可以使用 &lt;code&gt;yafu&lt;/code&gt; 分解 $\frac{N-1}{2}$，其中当 $\gamma$ 值约为 0.10 左右时分解迅速。&lt;/p&gt;
 &lt;h2 id=&#34;coppersmith定理攻击&#34;&gt;coppersmith定理攻击&lt;/h2&gt;
 &lt;h3 id=&#34;基本原理&#34;&gt;基本原理&lt;/h3&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>RSA学习笔记（1）</title>
+      <link>https://p1um3r.github.io/blog/rsa%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/</link>
+      <pubDate>Tue, 18 Apr 2023 08:00:00 +0800</pubDate>
+      
+      <guid>https://p1um3r.github.io/blog/rsa%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/</guid>
+      <description>&lt;h1 id=&#34;rsa学习笔记1&#34;&gt;RSA学习笔记（1）&lt;/h1&gt;
+&lt;p&gt;（参考：cryptanalysis of RSA and its variants)&lt;/p&gt;
+&lt;h2 id=&#34;一rsa算法系统&#34;&gt;一、RSA算法系统&lt;/h2&gt;
+&lt;h3 id=&#34;11-公钥密码学&#34;&gt;1.1 公钥密码学&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;公钥密码学的概念最早是在20世纪70年代中期由Diffie、Hellman和Merkle提出的。基于Stinson对于密码学的定义，我们对公钥密码系统使用了以下几个定义：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;1、$\mathcal{P}$是有限个可能的明文的集合&lt;/p&gt;
+&lt;p&gt;2、$\mathcal{C}$ 是有限个可能的密文的集合&lt;/p&gt;
+&lt;p&gt;3、$\mathcal{K}$ 是有限个可能的密钥的集合，$\mathcal{K}$  被称作密钥空间&lt;/p&gt;
+&lt;p&gt;4、&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;对于密钥空间中的任意一个密钥$K\in \mathcal{K}$，总存在一个加密方法
+$$
+enc_K：\mathcal{P} \to \mathcal{C}
+$$
+和一个解密方法
+$$
+dec_K:\mathcal{C}\to\mathcal{P}
+$$
+使得对于每个$m\in\mathcal{P}$，总有
+$$
+dec_K(enc_K(m))=m
+$$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;5、对于任意密钥$K\in\mathcal{K}$ 和明文$m\in \mathcal{P}$，都很容易计算出$enc_K(m)$ 和$dec_K(enc_K(m))$&lt;/p&gt;
+&lt;p&gt;6、对于几乎所有的密钥$K\in \mathcal{K}$，每一个易于计算的$dec_K$，都几乎不可能从$enc_K$中得出，也就是说，如果没有$dec_K$就很难进行解密。&lt;/p&gt;
+&lt;p&gt;7、加密规则$enc_K$是公有的，解密规则$dec_K$是保密的。&lt;/p&gt;
+&lt;p&gt;或者，我们可以把公钥密码学分为三个部分：&lt;strong&gt;密钥生成算法&lt;/strong&gt;、&lt;strong&gt;加密算法&lt;/strong&gt;和&lt;strong&gt;解密算法&lt;/strong&gt;。其中，我们用密钥生成算法定义密钥空间$\mathcal{K}$，用加密算法和解密算法定义明文空间 $\mathcal{P}$ 和密文空间 $\mathcal{C}$&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://assets.cdn.prod.twilio.com/original_images/19DfiKodi3T25Xz7g9EDTyvF9di2SzvJo6JebRJaCN-1P_c1fMqGtrAyZzxGGucG0bcmR8UwNes-gS&#34; alt=&#34;What is Public Key Cryptography?&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;12-rsa密码系统&#34;&gt;1.2 RSA密码系统&lt;/h3&gt;
+&lt;h4 id=&#34;121-rsa密码系统的结构&#34;&gt;1.2.1 RSA密码系统的结构&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;RSA密码系统是已知的公开的第一个公钥密码系统。&lt;/p&gt;
+&lt;p&gt;1977年，Gardner在《科学美国人》的一篇文章中介绍了这个密码系统，一年后，RSA密码系统的发明者罗纳德·李维斯特（Ron Rivest）、阿迪·萨莫尔（Adi Shamir）和伦纳德·阿德曼（Leonard Adleman）共同发布了完整的研究论文。RSA就是他们三人姓氏开头字母拼在一起组成的。&lt;/p&gt;
+&lt;p&gt;由于作者们都在麻省理工工作，这个密码系统最初被称作MIT公钥密码系统。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy93QWtBSUZzMTFxYXhTbkpBZ3FpY2ppYXZTMU5BNll0ZndWYk9pY3ZwMW9iM1hvbERFVm9YQ2xNNEFZRTh2MlprSWljUjgxNkd5OWdTVFByT1VGOTZxY0tpY0VnLzY0MA?x-oss-process=image/format,png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;根据上述对公钥密码系统的定义，我们可以给出RSA最初的的版本，也叫做textbook RSA&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;RSA密码系统&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;1、令$N=pq$，其中，$p$和$q$为两个大素数&lt;/p&gt;
+&lt;p&gt;2、令$\mathcal{P}=\mathcal{C}=\mathbb{Z}_N$(模N后的整数)&lt;/p&gt;
+&lt;p&gt;3、将密钥空间定义为
+$$
+\mathcal{K}={(N,p,q,e,d):ed\equiv1(\mod\phi(N))}
+$$
+其中$\phi(N)$是欧拉函数，$\phi(N)=(p-1)(q-1)$&lt;/p&gt;
+&lt;p&gt;4、对于每个密钥$K\in \mathcal{K}$，因为$K=(N,p,q,e,d)$，加密方法$enc_K:\mathbb{Z}_N\to{\mathbb{Z}_N}$可以定义为
+$$
+enc_K(x)=x^e\mod(N)
+$$
+5、解密方法$dec_K:\mathbb{Z}_N\to\mathbb{Z}_N$可以定义为
+$$
+dec_K(y)=y^d\mod N
+$$
+6、对于任意$x,y\in\mathbb{Z}_N$，数对$(e,N)$是RSA的公钥，三元元组$(d,p,q)$是RSA的私钥&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/c073bf987d384bd3b8ed67521c8238e6.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Luj56CB5pS55Y-Y5LiW55WMY3R3,size_20,color_FFFFFF,t_70,g_se,x_16&#34; alt=&#34;05-密码学基础-RSA的介绍_密码学rsa_代码改变世界ctw的博客-CSDN博客&#34;&gt;&lt;/p&gt;
+&lt;p&gt;加密函数$enc_K(x)=x^e\mod(N)$，其中N我们不知道该如何分解，并且$gcd(e,\phi(N))=1$，此时这个加密函数叫做&lt;strong&gt;RSA函数&lt;/strong&gt;，又叫做&lt;strong&gt;RSA原语(RSA primitive)&lt;/strong&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$N$被称为&lt;strong&gt;RSA模数&lt;/strong&gt;，或简称&lt;strong&gt;模&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;素数$p$和$q$被称作&lt;strong&gt;RSA素数&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;$e$被称作&lt;strong&gt;公共指数&lt;/strong&gt;或&lt;strong&gt;加密指数&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;$d$被称作&lt;strong&gt;私有指数&lt;/strong&gt;或&lt;strong&gt;解密指数&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其中加密指数和解密指数必须满足以下条件：
+$$
+ed=1\mod(\phi(N))
+$$
+即
+$$
+ed=1+k\phi(N)
+$$
+其中k为整数。&lt;/p&gt;
+&lt;p&gt;这个方程被称为&lt;strong&gt;RSA密钥方程&lt;/strong&gt;，简称&lt;strong&gt;密钥方程&lt;/strong&gt;。&lt;/p&gt;
+&lt;h4 id=&#34;122-rsa密码加解密的原理&#34;&gt;1.2.2 RSA密码加解密的原理&lt;/h4&gt;
+&lt;p&gt;当明文与模数互素时，解密的正确性是基于欧拉函数。&lt;/p&gt;
+&lt;p&gt;我们回顾一下这个定理
+$$
+a^{\phi(N)}\equiv 1(\bmod N)
+$$
+其中$a$和$N$互素。&lt;/p&gt;
+&lt;p&gt;根据公钥$(e,N)$和明文$m\in\mathbb{Z}_N^*$($i.e.,m\in \mathbb{Z}_N$ and$gcd(m,N)=1)$，可以利用加密方法计算出密文
+$$
+c=m^e\mod N
+$$
+根据解密算法和RSA密钥方程，可以计算出明文。&lt;/p&gt;
+&lt;p&gt;$$
+\begin{equation} \label{eq1}
+\begin{split}
+c^d\mod N &amp;amp;\equiv(m^e)^d (\bmod N)\
+&amp;amp;\equiv m^{ed}(\bmod N)\
+&amp;amp;\equiv m^{1+k\phi(N)}(\bmod N)\
+&amp;amp;\equiv m(m^{\phi(N)})^k(\bmod N)\
+&amp;amp;\equiv m (\bmod N)
+\end{split}
+\end{equation}
+$$
+由于$m\in\mathbb{Z}_N$且$c^d\bmod N=m$，当明文与模互素时，我们可以用中国剩余定理很轻易地证得解密方法的正确性。我们要避免明文与模不互素的情况$(i.e.,gcd(m,N)&amp;gt;1)$，因为密文$c=m^e\bmod N$会泄露模数的分解方法，例如，通过计算$gcd(c,N)$可以得到RSA中其中一个素数p或q的值&lt;/p&gt;
+&lt;p&gt;在PSA中，我们一开始就将公共指数和私密指数定义为模$\phi(N)$下互逆的两个数，这为将密文解密得到明文提供了足够的（但不一定必要的）前提条件。必要条件是公共指数和私密指数在模&lt;strong&gt;卡米歇尔函数（Carmichael&amp;rsquo;s lambda function)&lt;/strong&gt;$\lambda(N)$的条件下互逆。也就是说，对任意$a$与$N$互质时，存在最小m使得以下式子成立：
+$$
+a^m\equiv1(\bmod N)
+$$
+在RSA中，对于模数$N=pq$卡米歇尔函数的值为$\lambda(N)=lcm(p-1,q-1)$。&lt;/p&gt;
+&lt;p&gt;根据推导：
+$$
+\begin{equation}
+\begin{split}
+\phi(N)&amp;amp;=(p-1)(q-1)\
+&amp;amp;=\gcd(p-1,q-1)lcm(p-1,q-1)\
+&amp;amp;=\gcd(p-1,q-1)\lambda(N)\
+\end{split}
+\end{equation}
+$$
+$\phi(N)$是$\lambda(N)$的倍数。&lt;/p&gt;
+&lt;p&gt;这意味着我们在生成密钥时可以使用$\phi(N)$&lt;/p&gt;
+&lt;p&gt;在这个过程中，我们可以联想到实际中RSA的公共指数和加密指数有时候定义为模$\lambda(N)$的逆，有时候定义为模$\phi(N)$的逆。&lt;/p&gt;
+&lt;p&gt;另外，我们在RSA的例子中只考虑&lt;strong&gt;平衡素数&lt;/strong&gt;的情况，即RSA中的两个素数位数几乎相等。&lt;/p&gt;
+&lt;p&gt;对于RSA中$N=pq$，我们可以得到：
+$$
+4&amp;lt;\frac{1}{2}N^{\frac{1}{2}}&amp;lt;p&amp;lt;N^{\frac{1}{2}}&amp;lt;q&amp;lt;2N^{\frac{1}{2}}
+$$
+相应的，在RSA的素数平衡时，满足$p&amp;lt;q&amp;lt;2p$
+$$
+\begin{equation}
+\begin{split}
+\abs{N-\phi(N)} &amp;amp;=\abs{N-(p-1)(q-1)}\
+&amp;amp;=\abs{N-(N-p-q-1)}\
+&amp;amp;=\abs{p+q-1}\
+&amp;amp;&amp;lt;3N^{\frac{1}{2}}
+\end{split}
+\end{equation}
+$$
+因此，模数$N$和欧拉函数$\phi(N)$有几乎$\frac{1}{2}$的重要位数是相同的，结果导致$\phi(N)&amp;lt;N&amp;lt;2\phi(N)$。由于我们在计算中经常用到$N-\phi(N)$这个数值，所以我们用$s$来代替它，也就是说，可以得到：
+$$
+s=N-\phi(N)=p+q-1&amp;lt;3N^{\frac{1}{2}}
+$$&lt;/p&gt;
+&lt;p&gt;通过使用不正式的算法来描述公钥密码系统，我们可以定义我们在这个过程中使用的RSA加密算法。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;密钥生成&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;对于一个参数n，密钥生成算法包括随机生成两个平衡素数$p$和$q$，他们的乘积$N=pq$即为一个n位的模数。&lt;/li&gt;
+&lt;li&gt;选择一个公共加密指数$e$，使得它与$p-1$和$q-1$都互素，然后计算公共加密指数模$\lambda(N)$(或模$\phi(N)$)下的逆作为私密指数d。&lt;/li&gt;
+&lt;li&gt;最终这个算法输出了公钥$(e,N)$和私钥$(d,p,q)$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这个算法可以选择使用更多的参数来确定公共指数和私密指数的大小。在这种情况下，一旦找到了对应的素数，有特定大小的指数可以随机选取，另一个指数可以通过求模$\lambda(N)$($\phi(N)$)下的逆得到。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;加密&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;加密算法需要输入公钥$(e,N)$和一个明文$m\in\mathbb{Z}_N$&lt;/li&gt;
+&lt;li&gt;然后输出密文$c=m^e\bmod N$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;解密&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;解密算法需要输入私钥$(d,p,q)$和一个密文$c\in\mathbb{Z}_N$&lt;/li&gt;
+&lt;li&gt;因为对于一些$m\in\mathbb{Z}_N$来说，$c=m^e$，所以输出明文$m=c^d\bmod N$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;密钥生成算法可以轻松地修改，来使它可以满足一些特定的公共指数的需求。当一个公共指数是定值时，例如$e=2^{16}+1$，那么这个随机选取的素数应该满足$\gcd(e,lcm(p-1,q-1))=1$，另一个指数可以通过求模$\lambda(N)$($\phi(N)$)下的逆得到。&lt;/p&gt;
+&lt;p&gt;==必须强调的是，我们正在讨论的这个版本的RSA事实上和现实中使用的RSA是不一样的。当RSA被应用时，需要遵守的一个标准是PKCS，同时还会使用随机填充方案。这对于防止攻击和构建一个理论上安全的RSA非常重要==&lt;/p&gt;
+&lt;h3 id=&#34;13-rsa的安全性&#34;&gt;1.3 RSA的安全性&lt;/h3&gt;
+&lt;p&gt;RSA的安全性取决于解决那些所谓的RSA的问题的难度。&lt;/p&gt;
+&lt;p&gt;RSA问题就是提供RSA的公钥$(e,N)$和一个密文$c=m^e\bmod N$，计算出明文$m$。也就是说，计算模$N$的$e$次方根，或者是倒解RSA方程。由于RSA的问题事实上是一个开放性的问题，我们的判断一般都依赖于RSA的一些假设，特别的，我们提出了&lt;strong&gt;RSA假设&lt;/strong&gt;，在这个假设中，要想让RSA问题难以被解决，我们需要使明文$m\in\mathbb{Z}_N$是随机选取的，同时模数是由随机生成的素数构成的足够大的数字。&lt;/p&gt;
+&lt;p&gt;自RSA诞生以来，还没有明确的证据证明这个假设是错误的。如果你想知道更多相关的信息，可以去看看&lt;strong&gt;Rivest and Kaliski&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;131-整数因子分解&#34;&gt;1.3.1 整数因子分解&lt;/h4&gt;
+&lt;p&gt;另一个经常与RSA的安全性相关联的问题就是著名的整数因子分解问题。简单来说，就是找到给定整数的&lt;strong&gt;非平凡因子&lt;/strong&gt;（除1和自身之外的因子）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;需要注意的是，如果RSA的模数可以被分解，那么对于任何有效的公共指数e，都可以轻易地计算出私密指数d，因此，我们可以破解出加密所需使用的所有公钥$(e,N)$。也就是说，我们可以轻易的解决RSA中关于用公钥加密的问题，并获得任意可用的明文。因此，解决了整数因子分解的问题后，RSA的问题就不难解决了。&lt;/li&gt;
+&lt;li&gt;但是，我们并不知道反过来是不是正确的，也就是说，我们不知道解决RSA的问题能不能有效的帮助解决整数因子分解的问题。有一些证据表明，对于一些特定的公共指数来说，解决RSA问题比解决分解的问题更加容易。但这并不能起到决定性的证明作用。&lt;/li&gt;
+&lt;li&gt;这个问题现在正在被Boneh、Venkatesa、Brown、Joux、Naccache、Thome、Aggarwal和Maurer等人研究。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;尽管RSA的问题被认为比分解的问题更容易解决，在实际中我们假设它们是等同的。RSA的安全级别基于估计下的分解模数的难度。例如，我们可以使用最著名的通用分解算法——&lt;strong&gt;普通数域筛选法（GNFS）&lt;/strong&gt;，这是已知效率最高的分解整数的算法。在这个算法中，我们预计可以通过大约$2^{80}$次操作来分解一个1024位的数字。因此，我们可以认为一个1024位的RSA的安全性和一个80位的一次性密码本（一次一密）的安全性是一样的。目前，我们推荐在非关键加密中使用1024位的模。&lt;/p&gt;
+&lt;h4 id=&#34;132-破解rsa&#34;&gt;1.3.2 破解RSA&lt;/h4&gt;
+&lt;p&gt;由于整数分解的问题与RSA问题霞凝管，所以我们可以通过分解模数来&lt;strong&gt;破解RSA&lt;/strong&gt;。破解密码系统中有几个概念，同时，这种破解方式和完全破解的概念相符合。如果我们可以分解$N=pq$，我们就可以计算出关于任何公钥$(e,N)$的私钥$(d,p,q)$。因此，我们可以解决任何带有公钥和模数的RSA问题。在第三章和第四章的一些攻击方式只能做到部分破解，也就是说，这种破解方式只能恢复给定的密文中的部分明文，同时，他们也无法做到分解模数。不过，一般来说我们攻击的目的是为了分解给定实例中的RSA的模数&lt;/p&gt;
+&lt;p&gt;分解RSA的模数的方法有好几种，其中最显而易见的方法是用一个已知的分解方法去分解这个模数。其他的方法包括计算私密指数$d$或者计算出欧拉函数$\phi(N)$，因为计算这些和分解RSA的模实际上是一样的&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;我们去思考欧拉的$\phi$函数$\phi(N)=(p-1)(q-1)$，当对于RSA的模数N来说$\phi(N)$是已知的时，我们可以通过计算下面的方程来有效的分解模数：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$
+\begin{equation}
+\begin{split}
+N &amp;amp;=pq\
+\phi(N) &amp;amp;=(p-1)(q-1)\
+\end{split}
+\end{equation}
+$$&lt;/p&gt;
+&lt;p&gt;​		我们也容易发现$p$和$q$其实就是下面的方程的两个解：&lt;/p&gt;
+&lt;p&gt;$$
+x^2-(N-\phi(N)+1)x+N=0
+$$
+​		因此，只要给定了$\phi(N)$，我们就可以有效的分解模数。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当已知$\lambda(N)$时，我们同样可以分解模数。根据Simmons，我们可以知道$\gcd(p-1,q-1)$是唯一一个满足下面的式子的数字：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$
+\frac{N}{\lambda(N)}-2 &amp;lt;\gcd(p-1)(q-1)&amp;lt;\frac{N}{\lambda(N)}
+$$&lt;/p&gt;
+&lt;p&gt;​		因此，当我们得到$\lambda(N)$和$\gcd(p-1,q-1)$时，我们可以简单的计算出：
+$$
+\phi(N)=\gcd(p-1,q-1)\lambda(p-1,q-1)
+$$
+​		然后我们继续用上面提到的方法来分解模数。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;另一个更加常用的分解模数的方法是：对于一些奇整数$N$，$N=p_1^{v_1}\cdot\cdot\cdot p_r^{v_r}$是他的素数分解方法。我们应当考虑以下三个公式：
+$$
+\begin{equation}
+\begin{split}
+\phi(N) &amp;amp;=p_1^{v_1-1}\cdot\cdot\cdot p_r^{v_r-1}(p_1-1)\cdot\cdot\cdot(p_r-1)\
+\lambda(N)&amp;amp;=p_1^{v_1-1}\cdot\cdot\cdot p_r^{v_r-1}lcm(p_1-1,\cdot\cdot\cdot, p_r-1)\
+\lambda&amp;rsquo;(N)&amp;amp;=lcm(p_1-1,\cdot\cdot\cdot, p_r-1)\
+\end{split}
+\end{equation}
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;其中$\phi(N)$是欧拉函数，$\lambda(N)$是卡米歇尔函数。我们使用&lt;strong&gt;米勒(Miller)&lt;strong&gt;得出的结论：当我们在多项式时间内可以分解N并且得到一组$\lambda&amp;rsquo;(N)$时，我们可以构建一个&lt;/strong&gt;Las Vegas 算法&lt;/strong&gt;。由于$\phi(N)$和$\lambda(N)$都是$\lambda&amp;rsquo;(N)$的倍数，也就是说只要我们被给定了上述任意一个方程式，我们就可以分解N。因此，知道很多组$\phi(N)$和$\lambda(N)$就能够分解RSA的模数。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;现在我们考虑我们知道私钥的情况。根据密钥方程：
+$$
+ed=1+k\varphi(N)
+$$
+其中$\varphi(N)$等于$\phi(N)$或$\lambda(N)$（取决于公共和私密指数是如何定义的），当我们知道d时，我们就可以计算出
+$$
+ed-1=k\varphi(N)
+$$
+由于$\varphi(N)$是$\lambda&amp;rsquo;(N)$的倍数，我们可以使用米勒的结论来尝试分解模数。这样，拥有了私密指数，我们就有可能破解RSA&lt;/p&gt;
+&lt;p&gt;由于公共指数和私密指数被定义为模$\phi(N)$下互逆，我们知道如果被告知了私密指数$d$，模数肯定会在指数时间内被分解（公共指数和私密指数满足条件$ed&amp;lt;N^2$）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;133-rsa的密码分析&#34;&gt;1.3.3 RSA的密码分析&lt;/h4&gt;
+&lt;p&gt;RSA攻击有很多类型，例如，有很多种&lt;strong&gt;侧信道攻击&lt;/strong&gt;的方式，他们利用实现RSA的设备的一些物理性质来进行攻击。其中包括&lt;strong&gt;故障注入（fault injection attacks)&lt;/strong&gt;、&lt;strong&gt;计时攻击(timing attacks)&lt;/strong&gt;、&lt;strong&gt;功耗攻击(power analysis attacks)&lt;/strong&gt;、&lt;strong&gt;分支预测攻击(branch analysis attacks)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://cn-sec.com/wp-content/uploads/2022/01/8-1642150089.png&#34; alt=&#34;侧信道攻击与电子数据取证&#34;&gt;&lt;/p&gt;
+&lt;p&gt;其他的攻击方式主要关注于密码安全性中的人为干预因素。&lt;strong&gt;社会工程攻击&lt;/strong&gt;可以用来预测一个人的行为。这种方法通过某些方式来获取用户的一些信息。例如，如果你在半夜疯狂的向一个人打电话并告诉他工作上有紧急情况，需要密码短语，你就有可能获取到用于确保RSA私钥的安全性的密码短语。在所谓的**软磨硬泡攻击(rubber-hose attacks)**中，您可以通过武力或者威胁来获取一些信息。&lt;/p&gt;
+&lt;p&gt;我们所考虑的攻击方式是排除掉RSA被使用的物理环境的。这些攻击方式是基于RSA密码学的数学结构（模或者密钥方程的形式），并且利用一些特定参数的选择（例如使用较小的公共指数或者私密指数）。我们也会包括一些使用有关私钥的相关知识的攻击方式，但是并不关心这些信息是如何获得的。&lt;/p&gt;
+&lt;h4 id=&#34;134-rsa的同态性质&#34;&gt;1.3.4 RSA的同态性质&lt;/h4&gt;
+&lt;p&gt;RSA具有乘法的性质——两个明文信息乘积的加密等于两个明文信息加密的乘积（在模N的前提下），这个性质通常被称为&lt;strong&gt;RSA的同态性质&lt;/strong&gt;，并遵循模的乘法的基本性质。利用这个RSA的同态性质，Davida证明了教科书上的RSA面对&lt;strong&gt;选择密文攻击&lt;/strong&gt;是不安全的。如下是Judy Moore对攻击的简化：&lt;/p&gt;
+&lt;p&gt;假设对方得到了一个密文$c=m^e \bmod N$并且想要计算出明文$m$，选择一个随机数$x \in \mathbb{Z}_N$，对方索要密文$c_0=cx^e$的明文。由于所需的明文$m_0$满足
+$$
+m_0=c_0^d \bmod N=(cx^e)^d \bmod N=c^dx^{ed}\bmod N=mx \bmod N
+$$
+那么对方（已知m0）可以通过简单的计算$m=m_0x^{-1} \bmod N$来获得目标明文。&lt;/p&gt;
+&lt;p&gt;另一种使用了RSA的同态性质的攻击方式来自于Bonrh,Joux和Nguyen。他们利用过了这样一个事实：在实际中，RSA通常用于加密一些短信息（通常是用于对称密钥加密系统的一个会话密钥）。本质上，他们的攻击方式是一种&lt;strong&gt;中间相遇攻击(Meet-in-the-middle attack)&lt;/strong&gt;，其中$l$位的目标明文可以被分解为两个$\frac{l}{2}$位的因子$m_1$和$m_2$ $(i.e.,m=m_1m_2)$。首先，这种攻击方式需要共建一个表格，表格里有所有$\frac{l}{2}$位的数字$m_1&amp;rsquo;$和它们的加密结果$(m_1&amp;rsquo;)^e \bmod N$。然后，对于每个可能的$\frac{l}{2}$位的数字$m_2&amp;rsquo;$，计算$c(m_2&amp;rsquo;)^{-e}\bmod N$的值来和表格中的加密结果作比较，当$m_2&amp;rsquo;=m_2$时，满足
+$$
+c(m_2)^{-e}\bmod N=(m_1m_2)^e(m_2)^{-e}\bmod N=(m_1)^e\bmod N
+$$
+所以，当找到这种配对方式时，明文$m$的分解方式和他自身就被找到了。这种攻击方式需要计算$2^{\frac{l}{2}+1}$次模幂运算，需要在表格中储存$2^{\frac{l}{2}}l$对数字，并且成功的概率约为18%（超过明文m的选择）&lt;/p&gt;
+&lt;p&gt;只要在明文中添加一些结构，这些攻击方式就可以很轻易地被避免，特别是使用适当的填充方案就足够了，例如OAEP。&lt;/p&gt;
+&lt;h4 id=&#34;135-语义安全&#34;&gt;1.3.5 语义安全&lt;/h4&gt;
+&lt;p&gt;我们回忆一下，一个语义安全的加密系统就是你没有办法从给定的密文（包括已知公钥）中得到任何有关明文的信息。&lt;/p&gt;
+&lt;p&gt;我们上面定义的RSA加密系统显然不是一个语义安全的加密系统。尤其是，任何&lt;strong&gt;确定性的加密系统&lt;/strong&gt;都不能说是语义安全的。给定两个明文和其中一个的密文，任何攻击者都可以判断出密文对应的是哪段明文（通过简单的加密明文并进行比较）。因此，所有语义安全的加密系统都应该是&lt;strong&gt;概率性的系统&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;另外，可以很容易发现，明文的雅克比符号（和模数）可以很轻易地通过密文的雅可比符号（和模数）泄露出来。特别的，我们可以发现对于任意明文$m$和它对应的密文$c$，满足
+$$
+(\frac{c}{N})=(\frac{m}{N})
+$$
+因此，仅仅知道密文和公钥，就泄露了一些明文的信息。&lt;/p&gt;
+&lt;p&gt;但是，当RSA是通过OAEP实现的时，我们可以证明只要RSA的假设成立，它就是语义安全的。在公钥$e=3$时的情况已经被证实了。所有这些证明都是基于随机语言模型的。我们也可以用其他填充方式来确保RSA安全&lt;/p&gt;
+&lt;h3 id=&#34;14-rsa的效率&#34;&gt;1.4 RSA的效率&lt;/h3&gt;
+&lt;p&gt;我们简单的考虑一下RSA的效率。特别的，我们考虑素数生成和模幂运算所需要花费的时间，它们分别是密钥生成算法和加密解密算法中最重要的部分。&lt;/p&gt;
+&lt;h4 id=&#34;141-素数的生成&#34;&gt;1.4.1 素数的生成&lt;/h4&gt;
+&lt;p&gt;RSA中的密钥生成算法需要生成两个大小几乎相同的素数。我们使用Miller-Rabin质数检验和试除法，可以在预计运行时间为$O(\frac{n^4}{\log(n)}+tn^3)$的时间内，生成一个n位的随机（也许）素数。这种方法有最多$t^{-4}$的概率会输出一个复合数，而非素数。这个复杂方法被认为是简单二次运算，可以通过快速乘法来进行改进。但是即使是已知最快的方法，它的复杂度至少也有$O(n^2)$。对于一个大模数来说，这是一个很耗时的操作，尤其是如果需要生成大量素数的情况。&lt;/p&gt;
+&lt;p&gt;有很多快速生成素数的方法，但是没有一个能在这方面有显著的突破。&lt;/p&gt;
+&lt;h4 id=&#34;142-模幂运算未完&#34;&gt;1.4.2 模幂运算（未完）&lt;/h4&gt;
+&lt;p&gt;RSA中的加密和解密都包含模幂运算，当加密指数和模数非常大时，这些操作可能会非常耗时。有一个$b$位的加密指数$B$和一个$n$位的模数$N$，对一些$X \in \mathbb{Z}_N$，有模幂运算
+$$
+X^B\bmod N
+$$
+有很多不同的模幂运算算法，但是本质上，这种计算的复杂度可以转化为计算模幂运算的数量。例如，&lt;/p&gt;
+&lt;h3 id=&#34;15-rsa签名方案&#34;&gt;1.5 RSA签名方案&lt;/h3&gt;
+&lt;p&gt;在RSA被提出时，RSA最初是用于&lt;strong&gt;构造加密方案&lt;/strong&gt;和&lt;strong&gt;数字签名方案&lt;/strong&gt;的。最初，解密操作可以用于为一个文件签名，加密操作可以用于验证签名。在本文中，我们只考虑RSA（及其变种）作为加密方案的情况&lt;/p&gt;
+&lt;h3 id=&#34;16-rsa的变种具体见第三章&#34;&gt;1.6 RSA的变种（具体见第三章）&lt;/h3&gt;
+&lt;p&gt;略&lt;/p&gt;
+&lt;h3 id=&#34;17-一些额外的笔记&#34;&gt;1.7 一些额外的笔记&lt;/h3&gt;
 </description>
     </item>
     

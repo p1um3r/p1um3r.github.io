@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSA学习笔记（1）</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Ladder@RSA学习笔记（1） （参考：cryptanalysis of RSA and its variants)">
+    <meta name="author" content="p1um">
+    <link rel="canonical" href="https://p1um3r.github.io/blog/rsa%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/">
+
+    <link rel="alternate" type="application/rss+xml" href="https://p1um3r.github.io/index.xml" title="p1um&#39;s blog">
+
+    
+
+
+    <meta property="og:title" content="RSA学习笔记（1）" />
+<meta property="og:description" content="RSA学习笔记（1） （参考：cryptanalysis of RSA and its variants)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://p1um3r.github.io/blog/rsa%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2023-04-18T08:00:00+08:00" />
+<meta property="article:modified_time" content="2023-04-18T08:00:00+08:00" />
+<meta property="og:see_also" content="https://p1um3r.github.io/blog/rsa%E8%A7%A3%E9%A2%98%E6%80%BB%E7%BB%93/" />
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="RSA学习笔记（1）"/>
+<meta name="twitter:description" content="RSA学习笔记（1） （参考：cryptanalysis of RSA and its variants)"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Blogs",
+      "item": "https://p1um3r.github.io/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "RSA学习笔记（1）",
+      "item": "https://p1um3r.github.io/blog/rsa%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "RSA学习笔记（1）",
+  "name": "RSA学习笔记（1）",
+  "description": "RSA学习笔记（1） （参考：cryptanalysis of RSA and its variants)",
+  "keywords": [
+    
+  ],
+  "articleBody": "RSA学习笔记（1） （参考：cryptanalysis of RSA and its variants)\n一、RSA算法系统 1.1 公钥密码学 公钥密码学的概念最早是在20世纪70年代中期由Diffie、Hellman和Merkle提出的。基于Stinson对于密码学的定义，我们对公钥密码系统使用了以下几个定义：\n1、$\\mathcal{P}$是有限个可能的明文的集合\n2、$\\mathcal{C}$ 是有限个可能的密文的集合\n3、$\\mathcal{K}$ 是有限个可能的密钥的集合，$\\mathcal{K}$ 被称作密钥空间\n4、\n对于密钥空间中的任意一个密钥$K\\in \\mathcal{K}$，总存在一个加密方法 $$ enc_K：\\mathcal{P} \\to \\mathcal{C} $$ 和一个解密方法 $$ dec_K:\\mathcal{C}\\to\\mathcal{P} $$ 使得对于每个$m\\in\\mathcal{P}$，总有 $$ dec_K(enc_K(m))=m $$\n5、对于任意密钥$K\\in\\mathcal{K}$ 和明文$m\\in \\mathcal{P}$，都很容易计算出$enc_K(m)$ 和$dec_K(enc_K(m))$\n6、对于几乎所有的密钥$K\\in \\mathcal{K}$，每一个易于计算的$dec_K$，都几乎不可能从$enc_K$中得出，也就是说，如果没有$dec_K$就很难进行解密。\n7、加密规则$enc_K$是公有的，解密规则$dec_K$是保密的。\n或者，我们可以把公钥密码学分为三个部分：密钥生成算法、加密算法和解密算法。其中，我们用密钥生成算法定义密钥空间$\\mathcal{K}$，用加密算法和解密算法定义明文空间 $\\mathcal{P}$ 和密文空间 $\\mathcal{C}$\n1.2 RSA密码系统 1.2.1 RSA密码系统的结构 RSA密码系统是已知的公开的第一个公钥密码系统。\n1977年，Gardner在《科学美国人》的一篇文章中介绍了这个密码系统，一年后，RSA密码系统的发明者罗纳德·李维斯特（Ron Rivest）、阿迪·萨莫尔（Adi Shamir）和伦纳德·阿德曼（Leonard Adleman）共同发布了完整的研究论文。RSA就是他们三人姓氏开头字母拼在一起组成的。\n由于作者们都在麻省理工工作，这个密码系统最初被称作MIT公钥密码系统。\n根据上述对公钥密码系统的定义，我们可以给出RSA最初的的版本，也叫做textbook RSA RSA密码系统：\n1、令$N=pq$，其中，$p$和$q$为两个大素数\n2、令$\\mathcal{P}=\\mathcal{C}=\\mathbb{Z}_N$(模N后的整数)\n3、将密钥空间定义为 $$ \\mathcal{K}={(N,p,q,e,d):ed\\equiv1(\\mod\\phi(N))} $$ 其中$\\phi(N)$是欧拉函数，$\\phi(N)=(p-1)(q-1)$\n4、对于每个密钥$K\\in \\mathcal{K}$，因为$K=(N,p,q,e,d)$，加密方法$enc_K:\\mathbb{Z}_N\\to{\\mathbb{Z}_N}$可以定义为 $$ enc_K(x)=x^e\\mod(N) $$ 5、解密方法$dec_K:\\mathbb{Z}_N\\to\\mathbb{Z}_N$可以定义为 $$ dec_K(y)=y^d\\mod N $$ 6、对于任意$x,y\\in\\mathbb{Z}_N$，数对$(e,N)$是RSA的公钥，三元元组$(d,p,q)$是RSA的私钥\n加密函数$enc_K(x)=x^e\\mod(N)$，其中N我们不知道该如何分解，并且$gcd(e,\\phi(N))=1$，此时这个加密函数叫做RSA函数，又叫做RSA原语(RSA primitive)。\n$N$被称为RSA模数，或简称模。 素数$p$和$q$被称作RSA素数 $e$被称作公共指数或加密指数 $d$被称作私有指数或解密指数 其中加密指数和解密指数必须满足以下条件： $$ ed=1\\mod(\\phi(N)) $$ 即 $$ ed=1+k\\phi(N) $$ 其中k为整数。\n这个方程被称为RSA密钥方程，简称密钥方程。\n1.2.2 RSA密码加解密的原理 当明文与模数互素时，解密的正确性是基于欧拉函数。\n我们回顾一下这个定理 $$ a^{\\phi(N)}\\equiv 1(\\bmod N) $$ 其中$a$和$N$互素。\n根据公钥$(e,N)$和明文$m\\in\\mathbb{Z}_N^*$($i.e.,m\\in \\mathbb{Z}_N$ and$gcd(m,N)=1)$，可以利用加密方法计算出密文 $$ c=m^e\\mod N $$ 根据解密算法和RSA密钥方程，可以计算出明文。\n$$ \\begin{equation} \\label{eq1} \\begin{split} c^d\\mod N \u0026\\equiv(m^e)^d (\\bmod N)\\ \u0026\\equiv m^{ed}(\\bmod N)\\ \u0026\\equiv m^{1+k\\phi(N)}(\\bmod N)\\ \u0026\\equiv m(m^{\\phi(N)})^k(\\bmod N)\\ \u0026\\equiv m (\\bmod N) \\end{split} \\end{equation} $$ 由于$m\\in\\mathbb{Z}_N$且$c^d\\bmod N=m$，当明文与模互素时，我们可以用中国剩余定理很轻易地证得解密方法的正确性。我们要避免明文与模不互素的情况$(i.e.,gcd(m,N)\u003e1)$，因为密文$c=m^e\\bmod N$会泄露模数的分解方法，例如，通过计算$gcd(c,N)$可以得到RSA中其中一个素数p或q的值\n在PSA中，我们一开始就将公共指数和私密指数定义为模$\\phi(N)$下互逆的两个数，这为将密文解密得到明文提供了足够的（但不一定必要的）前提条件。必要条件是公共指数和私密指数在模卡米歇尔函数（Carmichael’s lambda function)$\\lambda(N)$的条件下互逆。也就是说，对任意$a$与$N$互质时，存在最小m使得以下式子成立： $$ a^m\\equiv1(\\bmod N) $$ 在RSA中，对于模数$N=pq$卡米歇尔函数的值为$\\lambda(N)=lcm(p-1,q-1)$。\n根据推导： $$ \\begin{equation} \\begin{split} \\phi(N)\u0026=(p-1)(q-1)\\ \u0026=\\gcd(p-1,q-1)lcm(p-1,q-1)\\ \u0026=\\gcd(p-1,q-1)\\lambda(N)\\ \\end{split} \\end{equation} $$ $\\phi(N)$是$\\lambda(N)$的倍数。\n这意味着我们在生成密钥时可以使用$\\phi(N)$\n在这个过程中，我们可以联想到实际中RSA的公共指数和加密指数有时候定义为模$\\lambda(N)$的逆，有时候定义为模$\\phi(N)$的逆。\n另外，我们在RSA的例子中只考虑平衡素数的情况，即RSA中的两个素数位数几乎相等。\n对于RSA中$N=pq$，我们可以得到： $$ 4\u003c\\frac{1}{2}N^{\\frac{1}{2}}",
+  "wordCount" : "357",
+  "inLanguage": "zh",
+  "datePublished": "2023-04-18T08:00:00+08:00",
+  "dateModified": "2023-04-18T08:00:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "p1um"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://p1um3r.github.io/blog/rsa%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "p1um's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://p1um3r.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+    <link rel="icon" href="/images/avatar.jpg" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/avatar.jpg">
+
+<link rel="manifest" href="/images/avatar.jpg">
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/lxgw-wenkai-webfont/1.6.0/style.css" />
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/main.min.e6ec12edc0d8c93b5db5cd08dc408bf68bf4dd526cd28d8b3807af3aeedbad00.css" integrity="sha256-5uwS7cDYyTtdtc0I3ECL9ov03VJs0o2LOAevOu7brQA=" crossorigin="anonymous" media="screen" />
+    
+
+
+    
+    <link rel="stylesheet" href="/scss/highlight/github-dark.min.min.66034289ee9a113219a2c4aae0a8bd2095ab255c832a42efcf5863f10814e7a1.css" />
+
+    
+    <script src="/js/highlight.min.min.872dfd2cd00064018a833a6e8e77a0fbf8fbac159546f2f205d4dad79a5d8e15.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script>(()=>{var t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,e=localStorage.getItem("theme");t&&e===null&&(localStorage.setItem("theme","dark"),document.documentElement.setAttribute("data-dark-mode","")),t&&e==="dark"&&document.documentElement.setAttribute("data-dark-mode",""),e==="dark"&&document.documentElement.setAttribute("data-dark-mode","")})()</script>
+    </head>
+<body>
+      <main class="wrapper"><nav class="navigation">
+    <section class="container">
+        <a class="navigation-brand" href="/">
+            主页
+        </a>
+        <input type="checkbox" id="menu-toggle" />
+        <label class="menu-button float-right" for="menu-toggle">
+            <span></span><span></span><span></span>
+        </label>
+        
+        <ul class="navigation-list" id="navigation-list">
+            
+            
+            <li class="navigation-item navigation-menu">
+                <a class="navigation-link" href="/blog/">文章</a>
+            </li>
+            
+            <li class="navigation-item navigation-menu">
+                <a class="navigation-link" href="/tags/">分类</a>
+            </li>
+            
+            <li class="navigation-item navigation-menu">
+                <a class="navigation-link" href="/archives/">历史文章</a>
+            </li>
+            
+            
+
+            <li class="navigation-item menu-separator">
+                <span>|</span>
+            </li>
+
+            
+            
+            <li class="navigation-item navigation-social">
+                <a class="navigation-link" href="https://github.com/p1um3r"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+            </li>
+            
+            
+
+            <li class="navigation-item navigation-dark">
+                <button id="mode" type="button" aria-label="toggle user light or dark theme">
+                    <span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                    <span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+                </button>
+            </li>
+
+            
+        </ul>
+        
+    </section>
+</nav>
+<div id="content">
+<article class="blog-single">
+  <header class="blog-title">
+    <h1>RSA学习笔记（1）</h1>
+  </header>
+
+  <p>
+  <small>
+    2023年4月18日&nbsp;· 357 字&nbsp;· 2 分钟</small>
+
+  
+<p>
+
+  <div class="blog-toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一rsa算法系统">一、RSA算法系统</a>
+      <ul>
+        <li><a href="#11-公钥密码学">1.1 公钥密码学</a></li>
+        <li><a href="#12-rsa密码系统">1.2 RSA密码系统</a></li>
+        <li><a href="#13-rsa的安全性">1.3 RSA的安全性</a></li>
+        <li><a href="#14-rsa的效率">1.4 RSA的效率</a></li>
+        <li><a href="#15-rsa签名方案">1.5 RSA签名方案</a></li>
+        <li><a href="#16-rsa的变种具体见第三章">1.6 RSA的变种（具体见第三章）</a></li>
+        <li><a href="#17-一些额外的笔记">1.7 一些额外的笔记</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+
+  <section class="blog-content"><h1 id="rsa学习笔记1">RSA学习笔记（1）</h1>
+<p>（参考：cryptanalysis of RSA and its variants)</p>
+<h2 id="一rsa算法系统">一、RSA算法系统</h2>
+<h3 id="11-公钥密码学">1.1 公钥密码学</h3>
+<p><strong>公钥密码学的概念最早是在20世纪70年代中期由Diffie、Hellman和Merkle提出的。基于Stinson对于密码学的定义，我们对公钥密码系统使用了以下几个定义：</strong></p>
+<p>1、$\mathcal{P}$是有限个可能的明文的集合</p>
+<p>2、$\mathcal{C}$ 是有限个可能的密文的集合</p>
+<p>3、$\mathcal{K}$ 是有限个可能的密钥的集合，$\mathcal{K}$  被称作密钥空间</p>
+<p>4、</p>
+<blockquote>
+<p>对于密钥空间中的任意一个密钥$K\in \mathcal{K}$，总存在一个加密方法
+$$
+enc_K：\mathcal{P} \to \mathcal{C}
+$$
+和一个解密方法
+$$
+dec_K:\mathcal{C}\to\mathcal{P}
+$$
+使得对于每个$m\in\mathcal{P}$，总有
+$$
+dec_K(enc_K(m))=m
+$$</p>
+</blockquote>
+<p>5、对于任意密钥$K\in\mathcal{K}$ 和明文$m\in \mathcal{P}$，都很容易计算出$enc_K(m)$ 和$dec_K(enc_K(m))$</p>
+<p>6、对于几乎所有的密钥$K\in \mathcal{K}$，每一个易于计算的$dec_K$，都几乎不可能从$enc_K$中得出，也就是说，如果没有$dec_K$就很难进行解密。</p>
+<p>7、加密规则$enc_K$是公有的，解密规则$dec_K$是保密的。</p>
+<p>或者，我们可以把公钥密码学分为三个部分：<strong>密钥生成算法</strong>、<strong>加密算法</strong>和<strong>解密算法</strong>。其中，我们用密钥生成算法定义密钥空间$\mathcal{K}$，用加密算法和解密算法定义明文空间 $\mathcal{P}$ 和密文空间 $\mathcal{C}$</p>
+<p><img src="https://assets.cdn.prod.twilio.com/original_images/19DfiKodi3T25Xz7g9EDTyvF9di2SzvJo6JebRJaCN-1P_c1fMqGtrAyZzxGGucG0bcmR8UwNes-gS" alt="What is Public Key Cryptography?"></p>
+<h3 id="12-rsa密码系统">1.2 RSA密码系统</h3>
+<h4 id="121-rsa密码系统的结构">1.2.1 RSA密码系统的结构</h4>
+<ul>
+<li>
+<p>RSA密码系统是已知的公开的第一个公钥密码系统。</p>
+<p>1977年，Gardner在《科学美国人》的一篇文章中介绍了这个密码系统，一年后，RSA密码系统的发明者罗纳德·李维斯特（Ron Rivest）、阿迪·萨莫尔（Adi Shamir）和伦纳德·阿德曼（Leonard Adleman）共同发布了完整的研究论文。RSA就是他们三人姓氏开头字母拼在一起组成的。</p>
+<p>由于作者们都在麻省理工工作，这个密码系统最初被称作MIT公钥密码系统。</p>
+</li>
+</ul>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy93QWtBSUZzMTFxYXhTbkpBZ3FpY2ppYXZTMU5BNll0ZndWYk9pY3ZwMW9iM1hvbERFVm9YQ2xNNEFZRTh2MlprSWljUjgxNkd5OWdTVFByT1VGOTZxY0tpY0VnLzY0MA?x-oss-process=image/format,png" alt="img"></p>
+<ul>
+<li>根据上述对公钥密码系统的定义，我们可以给出RSA最初的的版本，也叫做textbook RSA</li>
+</ul>
+<blockquote>
+<p><strong>RSA密码系统</strong>：</p>
+<p>1、令$N=pq$，其中，$p$和$q$为两个大素数</p>
+<p>2、令$\mathcal{P}=\mathcal{C}=\mathbb{Z}_N$(模N后的整数)</p>
+<p>3、将密钥空间定义为
+$$
+\mathcal{K}={(N,p,q,e,d):ed\equiv1(\mod\phi(N))}
+$$
+其中$\phi(N)$是欧拉函数，$\phi(N)=(p-1)(q-1)$</p>
+<p>4、对于每个密钥$K\in \mathcal{K}$，因为$K=(N,p,q,e,d)$，加密方法$enc_K:\mathbb{Z}_N\to{\mathbb{Z}_N}$可以定义为
+$$
+enc_K(x)=x^e\mod(N)
+$$
+5、解密方法$dec_K:\mathbb{Z}_N\to\mathbb{Z}_N$可以定义为
+$$
+dec_K(y)=y^d\mod N
+$$
+6、对于任意$x,y\in\mathbb{Z}_N$，数对$(e,N)$是RSA的公钥，三元元组$(d,p,q)$是RSA的私钥</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/c073bf987d384bd3b8ed67521c8238e6.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Luj56CB5pS55Y-Y5LiW55WMY3R3,size_20,color_FFFFFF,t_70,g_se,x_16" alt="05-密码学基础-RSA的介绍_密码学rsa_代码改变世界ctw的博客-CSDN博客"></p>
+<p>加密函数$enc_K(x)=x^e\mod(N)$，其中N我们不知道该如何分解，并且$gcd(e,\phi(N))=1$，此时这个加密函数叫做<strong>RSA函数</strong>，又叫做<strong>RSA原语(RSA primitive)</strong>。</p>
+<ul>
+<li>$N$被称为<strong>RSA模数</strong>，或简称<strong>模</strong>。</li>
+<li>素数$p$和$q$被称作<strong>RSA素数</strong></li>
+<li>$e$被称作<strong>公共指数</strong>或<strong>加密指数</strong></li>
+<li>$d$被称作<strong>私有指数</strong>或<strong>解密指数</strong></li>
+</ul>
+<p>其中加密指数和解密指数必须满足以下条件：
+$$
+ed=1\mod(\phi(N))
+$$
+即
+$$
+ed=1+k\phi(N)
+$$
+其中k为整数。</p>
+<p>这个方程被称为<strong>RSA密钥方程</strong>，简称<strong>密钥方程</strong>。</p>
+<h4 id="122-rsa密码加解密的原理">1.2.2 RSA密码加解密的原理</h4>
+<p>当明文与模数互素时，解密的正确性是基于欧拉函数。</p>
+<p>我们回顾一下这个定理
+$$
+a^{\phi(N)}\equiv 1(\bmod N)
+$$
+其中$a$和$N$互素。</p>
+<p>根据公钥$(e,N)$和明文$m\in\mathbb{Z}_N^*$($i.e.,m\in \mathbb{Z}_N$ and$gcd(m,N)=1)$，可以利用加密方法计算出密文
+$$
+c=m^e\mod N
+$$
+根据解密算法和RSA密钥方程，可以计算出明文。</p>
+<p>$$
+\begin{equation} \label{eq1}
+\begin{split}
+c^d\mod N &amp;\equiv(m^e)^d (\bmod N)\
+&amp;\equiv m^{ed}(\bmod N)\
+&amp;\equiv m^{1+k\phi(N)}(\bmod N)\
+&amp;\equiv m(m^{\phi(N)})^k(\bmod N)\
+&amp;\equiv m (\bmod N)
+\end{split}
+\end{equation}
+$$
+由于$m\in\mathbb{Z}_N$且$c^d\bmod N=m$，当明文与模互素时，我们可以用中国剩余定理很轻易地证得解密方法的正确性。我们要避免明文与模不互素的情况$(i.e.,gcd(m,N)&gt;1)$，因为密文$c=m^e\bmod N$会泄露模数的分解方法，例如，通过计算$gcd(c,N)$可以得到RSA中其中一个素数p或q的值</p>
+<p>在PSA中，我们一开始就将公共指数和私密指数定义为模$\phi(N)$下互逆的两个数，这为将密文解密得到明文提供了足够的（但不一定必要的）前提条件。必要条件是公共指数和私密指数在模<strong>卡米歇尔函数（Carmichael&rsquo;s lambda function)</strong>$\lambda(N)$的条件下互逆。也就是说，对任意$a$与$N$互质时，存在最小m使得以下式子成立：
+$$
+a^m\equiv1(\bmod N)
+$$
+在RSA中，对于模数$N=pq$卡米歇尔函数的值为$\lambda(N)=lcm(p-1,q-1)$。</p>
+<p>根据推导：
+$$
+\begin{equation}
+\begin{split}
+\phi(N)&amp;=(p-1)(q-1)\
+&amp;=\gcd(p-1,q-1)lcm(p-1,q-1)\
+&amp;=\gcd(p-1,q-1)\lambda(N)\
+\end{split}
+\end{equation}
+$$
+$\phi(N)$是$\lambda(N)$的倍数。</p>
+<p>这意味着我们在生成密钥时可以使用$\phi(N)$</p>
+<p>在这个过程中，我们可以联想到实际中RSA的公共指数和加密指数有时候定义为模$\lambda(N)$的逆，有时候定义为模$\phi(N)$的逆。</p>
+<p>另外，我们在RSA的例子中只考虑<strong>平衡素数</strong>的情况，即RSA中的两个素数位数几乎相等。</p>
+<p>对于RSA中$N=pq$，我们可以得到：
+$$
+4&lt;\frac{1}{2}N^{\frac{1}{2}}&lt;p&lt;N^{\frac{1}{2}}&lt;q&lt;2N^{\frac{1}{2}}
+$$
+相应的，在RSA的素数平衡时，满足$p&lt;q&lt;2p$
+$$
+\begin{equation}
+\begin{split}
+\abs{N-\phi(N)} &amp;=\abs{N-(p-1)(q-1)}\
+&amp;=\abs{N-(N-p-q-1)}\
+&amp;=\abs{p+q-1}\
+&amp;&lt;3N^{\frac{1}{2}}
+\end{split}
+\end{equation}
+$$
+因此，模数$N$和欧拉函数$\phi(N)$有几乎$\frac{1}{2}$的重要位数是相同的，结果导致$\phi(N)&lt;N&lt;2\phi(N)$。由于我们在计算中经常用到$N-\phi(N)$这个数值，所以我们用$s$来代替它，也就是说，可以得到：
+$$
+s=N-\phi(N)=p+q-1&lt;3N^{\frac{1}{2}}
+$$</p>
+<p>通过使用不正式的算法来描述公钥密码系统，我们可以定义我们在这个过程中使用的RSA加密算法。</p>
+<p><strong>密钥生成</strong></p>
+<ul>
+<li>对于一个参数n，密钥生成算法包括随机生成两个平衡素数$p$和$q$，他们的乘积$N=pq$即为一个n位的模数。</li>
+<li>选择一个公共加密指数$e$，使得它与$p-1$和$q-1$都互素，然后计算公共加密指数模$\lambda(N)$(或模$\phi(N)$)下的逆作为私密指数d。</li>
+<li>最终这个算法输出了公钥$(e,N)$和私钥$(d,p,q)$</li>
+</ul>
+<p>这个算法可以选择使用更多的参数来确定公共指数和私密指数的大小。在这种情况下，一旦找到了对应的素数，有特定大小的指数可以随机选取，另一个指数可以通过求模$\lambda(N)$($\phi(N)$)下的逆得到。</p>
+<p><strong>加密</strong></p>
+<ul>
+<li>加密算法需要输入公钥$(e,N)$和一个明文$m\in\mathbb{Z}_N$</li>
+<li>然后输出密文$c=m^e\bmod N$</li>
+</ul>
+<p><strong>解密</strong></p>
+<ul>
+<li>解密算法需要输入私钥$(d,p,q)$和一个密文$c\in\mathbb{Z}_N$</li>
+<li>因为对于一些$m\in\mathbb{Z}_N$来说，$c=m^e$，所以输出明文$m=c^d\bmod N$</li>
+</ul>
+<p>密钥生成算法可以轻松地修改，来使它可以满足一些特定的公共指数的需求。当一个公共指数是定值时，例如$e=2^{16}+1$，那么这个随机选取的素数应该满足$\gcd(e,lcm(p-1,q-1))=1$，另一个指数可以通过求模$\lambda(N)$($\phi(N)$)下的逆得到。</p>
+<p>==必须强调的是，我们正在讨论的这个版本的RSA事实上和现实中使用的RSA是不一样的。当RSA被应用时，需要遵守的一个标准是PKCS，同时还会使用随机填充方案。这对于防止攻击和构建一个理论上安全的RSA非常重要==</p>
+<h3 id="13-rsa的安全性">1.3 RSA的安全性</h3>
+<p>RSA的安全性取决于解决那些所谓的RSA的问题的难度。</p>
+<p>RSA问题就是提供RSA的公钥$(e,N)$和一个密文$c=m^e\bmod N$，计算出明文$m$。也就是说，计算模$N$的$e$次方根，或者是倒解RSA方程。由于RSA的问题事实上是一个开放性的问题，我们的判断一般都依赖于RSA的一些假设，特别的，我们提出了<strong>RSA假设</strong>，在这个假设中，要想让RSA问题难以被解决，我们需要使明文$m\in\mathbb{Z}_N$是随机选取的，同时模数是由随机生成的素数构成的足够大的数字。</p>
+<p>自RSA诞生以来，还没有明确的证据证明这个假设是错误的。如果你想知道更多相关的信息，可以去看看<strong>Rivest and Kaliski</strong></p>
+<h4 id="131-整数因子分解">1.3.1 整数因子分解</h4>
+<p>另一个经常与RSA的安全性相关联的问题就是著名的整数因子分解问题。简单来说，就是找到给定整数的<strong>非平凡因子</strong>（除1和自身之外的因子）</p>
+<ul>
+<li>需要注意的是，如果RSA的模数可以被分解，那么对于任何有效的公共指数e，都可以轻易地计算出私密指数d，因此，我们可以破解出加密所需使用的所有公钥$(e,N)$。也就是说，我们可以轻易的解决RSA中关于用公钥加密的问题，并获得任意可用的明文。因此，解决了整数因子分解的问题后，RSA的问题就不难解决了。</li>
+<li>但是，我们并不知道反过来是不是正确的，也就是说，我们不知道解决RSA的问题能不能有效的帮助解决整数因子分解的问题。有一些证据表明，对于一些特定的公共指数来说，解决RSA问题比解决分解的问题更加容易。但这并不能起到决定性的证明作用。</li>
+<li>这个问题现在正在被Boneh、Venkatesa、Brown、Joux、Naccache、Thome、Aggarwal和Maurer等人研究。</li>
+</ul>
+<p>尽管RSA的问题被认为比分解的问题更容易解决，在实际中我们假设它们是等同的。RSA的安全级别基于估计下的分解模数的难度。例如，我们可以使用最著名的通用分解算法——<strong>普通数域筛选法（GNFS）</strong>，这是已知效率最高的分解整数的算法。在这个算法中，我们预计可以通过大约$2^{80}$次操作来分解一个1024位的数字。因此，我们可以认为一个1024位的RSA的安全性和一个80位的一次性密码本（一次一密）的安全性是一样的。目前，我们推荐在非关键加密中使用1024位的模。</p>
+<h4 id="132-破解rsa">1.3.2 破解RSA</h4>
+<p>由于整数分解的问题与RSA问题霞凝管，所以我们可以通过分解模数来<strong>破解RSA</strong>。破解密码系统中有几个概念，同时，这种破解方式和完全破解的概念相符合。如果我们可以分解$N=pq$，我们就可以计算出关于任何公钥$(e,N)$的私钥$(d,p,q)$。因此，我们可以解决任何带有公钥和模数的RSA问题。在第三章和第四章的一些攻击方式只能做到部分破解，也就是说，这种破解方式只能恢复给定的密文中的部分明文，同时，他们也无法做到分解模数。不过，一般来说我们攻击的目的是为了分解给定实例中的RSA的模数</p>
+<p>分解RSA的模数的方法有好几种，其中最显而易见的方法是用一个已知的分解方法去分解这个模数。其他的方法包括计算私密指数$d$或者计算出欧拉函数$\phi(N)$，因为计算这些和分解RSA的模实际上是一样的</p>
+<ul>
+<li>我们去思考欧拉的$\phi$函数$\phi(N)=(p-1)(q-1)$，当对于RSA的模数N来说$\phi(N)$是已知的时，我们可以通过计算下面的方程来有效的分解模数：</li>
+</ul>
+<p>$$
+\begin{equation}
+\begin{split}
+N &amp;=pq\
+\phi(N) &amp;=(p-1)(q-1)\
+\end{split}
+\end{equation}
+$$</p>
+<p>​		我们也容易发现$p$和$q$其实就是下面的方程的两个解：</p>
+<p>$$
+x^2-(N-\phi(N)+1)x+N=0
+$$
+​		因此，只要给定了$\phi(N)$，我们就可以有效的分解模数。</p>
+<ul>
+<li>当已知$\lambda(N)$时，我们同样可以分解模数。根据Simmons，我们可以知道$\gcd(p-1,q-1)$是唯一一个满足下面的式子的数字：</li>
+</ul>
+<p>$$
+\frac{N}{\lambda(N)}-2 &lt;\gcd(p-1)(q-1)&lt;\frac{N}{\lambda(N)}
+$$</p>
+<p>​		因此，当我们得到$\lambda(N)$和$\gcd(p-1,q-1)$时，我们可以简单的计算出：
+$$
+\phi(N)=\gcd(p-1,q-1)\lambda(p-1,q-1)
+$$
+​		然后我们继续用上面提到的方法来分解模数。</p>
+<ul>
+<li>
+<p>另一个更加常用的分解模数的方法是：对于一些奇整数$N$，$N=p_1^{v_1}\cdot\cdot\cdot p_r^{v_r}$是他的素数分解方法。我们应当考虑以下三个公式：
+$$
+\begin{equation}
+\begin{split}
+\phi(N) &amp;=p_1^{v_1-1}\cdot\cdot\cdot p_r^{v_r-1}(p_1-1)\cdot\cdot\cdot(p_r-1)\
+\lambda(N)&amp;=p_1^{v_1-1}\cdot\cdot\cdot p_r^{v_r-1}lcm(p_1-1,\cdot\cdot\cdot, p_r-1)\
+\lambda&rsquo;(N)&amp;=lcm(p_1-1,\cdot\cdot\cdot, p_r-1)\
+\end{split}
+\end{equation}
+$$</p>
+</li>
+<li>
+<p>其中$\phi(N)$是欧拉函数，$\lambda(N)$是卡米歇尔函数。我们使用<strong>米勒(Miller)<strong>得出的结论：当我们在多项式时间内可以分解N并且得到一组$\lambda&rsquo;(N)$时，我们可以构建一个</strong>Las Vegas 算法</strong>。由于$\phi(N)$和$\lambda(N)$都是$\lambda&rsquo;(N)$的倍数，也就是说只要我们被给定了上述任意一个方程式，我们就可以分解N。因此，知道很多组$\phi(N)$和$\lambda(N)$就能够分解RSA的模数。</p>
+</li>
+<li>
+<p>现在我们考虑我们知道私钥的情况。根据密钥方程：
+$$
+ed=1+k\varphi(N)
+$$
+其中$\varphi(N)$等于$\phi(N)$或$\lambda(N)$（取决于公共和私密指数是如何定义的），当我们知道d时，我们就可以计算出
+$$
+ed-1=k\varphi(N)
+$$
+由于$\varphi(N)$是$\lambda&rsquo;(N)$的倍数，我们可以使用米勒的结论来尝试分解模数。这样，拥有了私密指数，我们就有可能破解RSA</p>
+<p>由于公共指数和私密指数被定义为模$\phi(N)$下互逆，我们知道如果被告知了私密指数$d$，模数肯定会在指数时间内被分解（公共指数和私密指数满足条件$ed&lt;N^2$）</p>
+</li>
+</ul>
+<h4 id="133-rsa的密码分析">1.3.3 RSA的密码分析</h4>
+<p>RSA攻击有很多类型，例如，有很多种<strong>侧信道攻击</strong>的方式，他们利用实现RSA的设备的一些物理性质来进行攻击。其中包括<strong>故障注入（fault injection attacks)</strong>、<strong>计时攻击(timing attacks)</strong>、<strong>功耗攻击(power analysis attacks)</strong>、<strong>分支预测攻击(branch analysis attacks)</strong></p>
+<p><img src="http://cn-sec.com/wp-content/uploads/2022/01/8-1642150089.png" alt="侧信道攻击与电子数据取证"></p>
+<p>其他的攻击方式主要关注于密码安全性中的人为干预因素。<strong>社会工程攻击</strong>可以用来预测一个人的行为。这种方法通过某些方式来获取用户的一些信息。例如，如果你在半夜疯狂的向一个人打电话并告诉他工作上有紧急情况，需要密码短语，你就有可能获取到用于确保RSA私钥的安全性的密码短语。在所谓的**软磨硬泡攻击(rubber-hose attacks)**中，您可以通过武力或者威胁来获取一些信息。</p>
+<p>我们所考虑的攻击方式是排除掉RSA被使用的物理环境的。这些攻击方式是基于RSA密码学的数学结构（模或者密钥方程的形式），并且利用一些特定参数的选择（例如使用较小的公共指数或者私密指数）。我们也会包括一些使用有关私钥的相关知识的攻击方式，但是并不关心这些信息是如何获得的。</p>
+<h4 id="134-rsa的同态性质">1.3.4 RSA的同态性质</h4>
+<p>RSA具有乘法的性质——两个明文信息乘积的加密等于两个明文信息加密的乘积（在模N的前提下），这个性质通常被称为<strong>RSA的同态性质</strong>，并遵循模的乘法的基本性质。利用这个RSA的同态性质，Davida证明了教科书上的RSA面对<strong>选择密文攻击</strong>是不安全的。如下是Judy Moore对攻击的简化：</p>
+<p>假设对方得到了一个密文$c=m^e \bmod N$并且想要计算出明文$m$，选择一个随机数$x \in \mathbb{Z}_N$，对方索要密文$c_0=cx^e$的明文。由于所需的明文$m_0$满足
+$$
+m_0=c_0^d \bmod N=(cx^e)^d \bmod N=c^dx^{ed}\bmod N=mx \bmod N
+$$
+那么对方（已知m0）可以通过简单的计算$m=m_0x^{-1} \bmod N$来获得目标明文。</p>
+<p>另一种使用了RSA的同态性质的攻击方式来自于Bonrh,Joux和Nguyen。他们利用过了这样一个事实：在实际中，RSA通常用于加密一些短信息（通常是用于对称密钥加密系统的一个会话密钥）。本质上，他们的攻击方式是一种<strong>中间相遇攻击(Meet-in-the-middle attack)</strong>，其中$l$位的目标明文可以被分解为两个$\frac{l}{2}$位的因子$m_1$和$m_2$ $(i.e.,m=m_1m_2)$。首先，这种攻击方式需要共建一个表格，表格里有所有$\frac{l}{2}$位的数字$m_1&rsquo;$和它们的加密结果$(m_1&rsquo;)^e \bmod N$。然后，对于每个可能的$\frac{l}{2}$位的数字$m_2&rsquo;$，计算$c(m_2&rsquo;)^{-e}\bmod N$的值来和表格中的加密结果作比较，当$m_2&rsquo;=m_2$时，满足
+$$
+c(m_2)^{-e}\bmod N=(m_1m_2)^e(m_2)^{-e}\bmod N=(m_1)^e\bmod N
+$$
+所以，当找到这种配对方式时，明文$m$的分解方式和他自身就被找到了。这种攻击方式需要计算$2^{\frac{l}{2}+1}$次模幂运算，需要在表格中储存$2^{\frac{l}{2}}l$对数字，并且成功的概率约为18%（超过明文m的选择）</p>
+<p>只要在明文中添加一些结构，这些攻击方式就可以很轻易地被避免，特别是使用适当的填充方案就足够了，例如OAEP。</p>
+<h4 id="135-语义安全">1.3.5 语义安全</h4>
+<p>我们回忆一下，一个语义安全的加密系统就是你没有办法从给定的密文（包括已知公钥）中得到任何有关明文的信息。</p>
+<p>我们上面定义的RSA加密系统显然不是一个语义安全的加密系统。尤其是，任何<strong>确定性的加密系统</strong>都不能说是语义安全的。给定两个明文和其中一个的密文，任何攻击者都可以判断出密文对应的是哪段明文（通过简单的加密明文并进行比较）。因此，所有语义安全的加密系统都应该是<strong>概率性的系统</strong></p>
+<p>另外，可以很容易发现，明文的雅克比符号（和模数）可以很轻易地通过密文的雅可比符号（和模数）泄露出来。特别的，我们可以发现对于任意明文$m$和它对应的密文$c$，满足
+$$
+(\frac{c}{N})=(\frac{m}{N})
+$$
+因此，仅仅知道密文和公钥，就泄露了一些明文的信息。</p>
+<p>但是，当RSA是通过OAEP实现的时，我们可以证明只要RSA的假设成立，它就是语义安全的。在公钥$e=3$时的情况已经被证实了。所有这些证明都是基于随机语言模型的。我们也可以用其他填充方式来确保RSA安全</p>
+<h3 id="14-rsa的效率">1.4 RSA的效率</h3>
+<p>我们简单的考虑一下RSA的效率。特别的，我们考虑素数生成和模幂运算所需要花费的时间，它们分别是密钥生成算法和加密解密算法中最重要的部分。</p>
+<h4 id="141-素数的生成">1.4.1 素数的生成</h4>
+<p>RSA中的密钥生成算法需要生成两个大小几乎相同的素数。我们使用Miller-Rabin质数检验和试除法，可以在预计运行时间为$O(\frac{n^4}{\log(n)}+tn^3)$的时间内，生成一个n位的随机（也许）素数。这种方法有最多$t^{-4}$的概率会输出一个复合数，而非素数。这个复杂方法被认为是简单二次运算，可以通过快速乘法来进行改进。但是即使是已知最快的方法，它的复杂度至少也有$O(n^2)$。对于一个大模数来说，这是一个很耗时的操作，尤其是如果需要生成大量素数的情况。</p>
+<p>有很多快速生成素数的方法，但是没有一个能在这方面有显著的突破。</p>
+<h4 id="142-模幂运算未完">1.4.2 模幂运算（未完）</h4>
+<p>RSA中的加密和解密都包含模幂运算，当加密指数和模数非常大时，这些操作可能会非常耗时。有一个$b$位的加密指数$B$和一个$n$位的模数$N$，对一些$X \in \mathbb{Z}_N$，有模幂运算
+$$
+X^B\bmod N
+$$
+有很多不同的模幂运算算法，但是本质上，这种计算的复杂度可以转化为计算模幂运算的数量。例如，</p>
+<h3 id="15-rsa签名方案">1.5 RSA签名方案</h3>
+<p>在RSA被提出时，RSA最初是用于<strong>构造加密方案</strong>和<strong>数字签名方案</strong>的。最初，解密操作可以用于为一个文件签名，加密操作可以用于验证签名。在本文中，我们只考虑RSA（及其变种）作为加密方案的情况</p>
+<h3 id="16-rsa的变种具体见第三章">1.6 RSA的变种（具体见第三章）</h3>
+<p>略</p>
+<h3 id="17-一些额外的笔记">1.7 一些额外的笔记</h3>
+</section>
+
+  
+  
+  <div class="paginator">
+    
+    <a class="prev" href="https://p1um3r.github.io/blog/rsa%E8%A7%A3%E9%A2%98%E6%80%BB%E7%BB%93/">
+      <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3.77086 21.1546C11.0491 22.698 21.4339 21.7773 21.4339 16.3608V4.63375C21.4339 3.93962 21.3581 3.30535 21.1917 2.76787M3.77086 21.1546C1.9934 20.7777 0.973585 18.7264 1.08749 16.688C1.2668 13.479 1.15721 9.43135 1.00513 6.21507C0.87809 3.52811 3.12891 1.16316 5.51029 1.25008C9.76594 1.40542 15.377 1.20229 18.7912 1.00542C20.0864 0.930734 20.8406 1.63385 21.1917 2.76787M3.77086 21.1546C4.56586 21.4723 5.49168 21.7879 6.5 22.0658M21.1917 2.76787C23.1097 4.18217 23.13 12.4191 22.9004 16.3608C20.8478 24.0194 12.3061 23.6662 6.5 22.0658M21.1917 2.76787C21.7612 4.51192 22.7203 9.67216 22 16.3608C21.2797 23.0494 11.3665 22.9511 6.5 22.0658M9.94496 9C9.28897 9.61644 7.63215 10.997 6.04814 11.7966C5.98257 11.8297 5.98456 11.9753 6.05061 12.0063C7.05496 12.4779 8.92941 13.9264 9.94496 15M6.44444 11.9667C8.86549 12.0608 14 12 16 11" stroke="currentColor" stroke-linecap="round"/>
+      </svg>
+      <span>RSA解题总结</span></a>
+    
+    
+    <a class="next" href="https://p1um3r.github.io/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/"><span>常见密码和编码总结</span>
+      <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3.77086 21.1546C11.0491 22.698 21.4339 21.7773 21.4339 16.3608V4.63375C21.4339 3.93962 21.3581 3.30535 21.1917 2.76787M3.77086 21.1546C1.9934 20.7777 0.973585 18.7264 1.08749 16.688C1.2668 13.479 1.15721 9.43135 1.00513 6.21507C0.87809 3.52811 3.12891 1.16316 5.51029 1.25008C9.76594 1.40542 15.377 1.20229 18.7912 1.00542C20.0864 0.930734 20.8406 1.63385 21.1917 2.76787M3.77086 21.1546C4.56586 21.4723 5.49168 21.7879 6.5 22.0658M21.1917 2.76787C23.1097 4.18217 23.13 12.4191 22.9004 16.3608C20.8478 24.0194 12.3061 23.6662 6.5 22.0658M21.1917 2.76787C21.7612 4.51192 22.7203 9.67216 22 16.3608C21.2797 23.0494 11.3665 22.9511 6.5 22.0658M12.055 9C12.711 9.61644 14.3679 10.997 15.9519 11.7966C16.0174 11.8297 16.0154 11.9753 15.9494 12.0063C14.945 12.4779 13.0706 13.9264 12.055 15M15.5556 11.9667C13.1345 12.0608 8 12 6 11" stroke="currentColor" stroke-linecap="round"/>
+      </svg>
+    </a>
+    
+  </div>
+  
+
+  
+
+<div class="related-resources">
+  
+    
+    
+    
+    <h3>相关系列文章推荐</h3>
+      <nav>
+        <ul>
+        
+        
+          
+            <li>
+              <a href="/blog/rsa%E8%A7%A3%E9%A2%98%E6%80%BB%E7%BB%93/">RSA解题总结</a>
+            </li>
+          
+        
+          
+        
+        </ul>
+      </nav>
+    
+  
+</div>
+
+
+  
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
+    integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"
+    integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js"
+    integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: '$$', right: '$$', display:true},
+          {left: '$', right: '$', display:false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      }
+    );"></script>
+</article>
+
+
+        </div><footer class="footer">
+  <p>&copy; 2023 <a href="https://p1um3r.github.io">p1um&#39;s blog</a>
+    Powered by
+    <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>
+    <a href="https://github.com/guangzhengli/hugo-theme-ladder" rel="noopener" target="_blank">Ladder</a>
+️  </p>
+</footer>
+
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10.5376 22.7916C11.0152 22.7207 22.5795 21.1781 22.0978 10.4211C22.0536 9.43274 21.9303 8.53367 21.7387 7.71865M10.5376 22.7916C16.876 22.3728 20.0969 19.8899 21.5383 16.9142M10.5376 22.7916C9.7707 22.9055 8.97982 22.8964 8.19743 22.7725M21.7387 7.71865C21.4988 6.69828 21.1518 5.80967 20.7188 5.04257M21.7387 7.71865C22.6022 10.1105 23.0542 13.7848 21.5383 16.9142M20.7188 5.04257C17.1684 -1.24629 7.83127 0.632493 4.27577 5.04257C2.88063 6.77451 -0.0433281 11.1668 1.38159 16.6571C2.27481 20.0988 5.17269 22.2936 8.19743 22.7725M20.7188 5.04257C22.0697 6.9404 24.0299 11.3848 22.3541 15.4153M21.5383 16.9142C21.8737 16.4251 22.1428 15.9235 22.3541 15.4153M8.19743 22.7725C12.1971 23.4683 20.6281 22.971 22.3541 15.4153M14 10.945C13.3836 10.289 12.003 8.63215 11.2034 7.04814C11.1703 6.98257 11.0247 6.98456 10.9937 7.05061C10.5221 8.05496 9.07362 9.92941 8 10.945M11.0333 7.44444C10.9392 9.86549 11 15 12 17" stroke="currentColor" stroke-linecap="round"/>
+    </svg>
+</a>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Copied';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+        codeblock.parentNode.appendChild(copybutton);
+    });
+</script></main>
+    </body>
+  
+  <script src="/main.min.6bb26b69159420159c74dc9e097b06a578ed2b68c701466a91a44a9632d851bd0af167a1b30012387b4c512b48ad9ad4d3394e04d77ae38d57e1920fe4ed34fe.js" integrity="sha512-a7JraRWUIBWcdNyeCXsGpXjtK2jHAUZqkaRKljLYUb0K8WehswASOHtMUStIrZrU0zlOBNd6441X4ZIP5O00/g==" crossorigin="anonymous" defer></script></html>

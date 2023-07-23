@@ -6,11 +6,11 @@
     <description>Recent content in tutorial on p1um&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 23 Jul 2023 22:18:00 +0800</lastBuildDate><atom:link href="https://p1um3r.github.io/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 11 Apr 2023 08:00:00 +0800</lastBuildDate><atom:link href="https://p1um3r.github.io/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Typora 使用说明</title>
       <link>https://p1um3r.github.io/blog/typora-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</link>
-      <pubDate>Sun, 23 Jul 2023 22:18:00 +0800</pubDate>
+      <pubDate>Tue, 11 Apr 2023 08:00:00 +0800</pubDate>
       
       <guid>https://p1um3r.github.io/blog/typora-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</guid>
       <description>&lt;h1 id=&#34;typora-使用说明&#34;&gt;Typora 使用说明&lt;/h1&gt;
@@ -251,12 +251,13 @@
 &lt;p&gt;(5) 但是关闭重启Typora后，修改的效果会消失&lt;/p&gt;
 &lt;p&gt;若想永久生效需要修改主题文件&lt;/p&gt;
 &lt;p&gt;文件-》偏好设置-》外观-》打开主题文件夹&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/960724506a24424cb53efcf70da4297d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5L2g5oiR5pyJ54y_,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/960724506a24424cb53efcf70da4297d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5L2g5oiR5pyJ54y_,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
 &lt;p&gt;当前使用谁就修改它的内容&lt;/p&gt;
 &lt;p&gt;原文链接：&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/dc_12138/article/details/124263439&#34;&gt;https://blog.csdn.net/dc_12138/article/details/124263439&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/CxNingSX/article/details/126018046&#34;&gt;https://blog.csdn.net/CxNingSX/article/details/126018046&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/YUEsheng416/article/details/124870862&#34;&gt;https://blog.csdn.net/YUEsheng416/article/details/124870862&lt;/a&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/YUEsheng416/article/details/124870862&#34;&gt;https://blog.csdn.net/YUEsheng416/article/details/124870862&lt;/a&gt;&lt;/p&gt;
+</description>
     </item>
     
   </channel>
