@@ -1,41 +1,27 @@
 <!DOCTYPE html>
 <html lang="zh"><head>
-	<meta name="generator" content="Hugo 0.113.0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>p1um&#39;s blog</title>
+    <title>RSA</title>
     <meta charset="utf-8">
     <meta name="description" content="Ladder@">
     <meta name="author" content="p1um">
-    <link rel="canonical" href="https://p1um3r.github.io/">
+    <link rel="canonical" href="https://p1um3r.github.io/series/rsa/">
 
     <link rel="alternate" type="application/rss+xml" href="https://p1um3r.github.io/index.xml" title="p1um&#39;s blog">
 
     
 
 
-    <meta property="og:title" content="p1um&#39;s blog" />
+    <meta property="og:title" content="RSA" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://p1um3r.github.io/" />
+<meta property="og:url" content="https://p1um3r.github.io/series/rsa/" />
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="p1um&#39;s blog"/>
+<meta name="twitter:title" content="RSA"/>
 <meta name="twitter:description" content=""/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "p1um's blog",
-  "url": "https://p1um3r.github.io",
-  "description": "",
-  "thumbnailUrl": "https://p1um3r.github.io/favicon.ico",
-  "sameAs": [
-      
-  ]
-}
-</script>
     <link rel="icon" href="/images/avatar.jpg" sizes="16x16">
 
 <link rel="apple-touch-icon" href="/images/avatar.jpg">
@@ -113,71 +99,28 @@
     </section>
 </nav>
 <div id="content">
-    <div class="home">
-    <div class="info">
-        <div class="intro">
-            <h1>p1um</h1>
-            <small>密码学新人，菜鸟，努力学习ing</small>
-            <p>一些学习内容的记录，供自己以后查阅</p>
-        </div>
-
-        
-        
-        <div class="avatar"><img src="/images/avatar.jpg" alt="avatar"></div>
-        
-        
-    </div>
-
-    <div class="featured">
-        
-
-  <h2>推荐阅读</h2>
-
-<div class="featured-list">
-  
-    <article class="featured-single">
-        <h4><a href="/blog/hello-world/">Hello World</a></h4>
-        <p>
-  <small>
-    2023年7月23日&nbsp;· 3 字&nbsp;· 1 分钟</small>
-
-  
-<p>
-        Hello World! crhdbd!
-    </article>
-  
-    <article class="featured-single">
-        <h4><a href="/blog/typora-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">Typora 使用说明</a></h4>
-        <p>
-  <small>
-    2023年7月23日&nbsp;· 166 字&nbsp;· 1 分钟</small>
-
-  
-<p>
-        <h1 id="typora-使用说明">Typora 使用说明</h1>
-<h3 id="标题">标题</h3>
-<p>标题语法了解html都不陌生，有点儿类似，h1~h6类似这边的#号。数字越小（#号越少）标题越大，分六个等级。
-定义标题有以下几种方式。</p>
-    </article>
-  
-    <article class="featured-single">
-        <h4><a href="/blog/rsa%E8%A7%A3%E9%A2%98%E6%80%BB%E7%BB%93/">RSA解题总结</a></h4>
-        <p>
+<div class="blog-wrapper">
+  <div>
+    <div class="blog-list">
+      
+      <article>
+        <div class="blog-card">
+          <h3><a href="/blog/rsa%E8%A7%A3%E9%A2%98%E6%80%BB%E7%BB%93/">RSA解题总结</a></h3>
+          <p>
   <small>
     2023年7月23日&nbsp;· 1635 字&nbsp;· 8 分钟</small>
 
   
 <p>
-        RSA解题总结 一般情况 加密 解密 p = 1325465431q = 152317153e = 65537 方法一：
+          RSA解题总结 一般情况 加密 解密 p = 1325465431q = 152317153e = 65537 方法一：
 import libnum n = p * q phi = (p - 1) * (q - 1) d = pow(e, -1, phi) m = pow(c, d, n) print(libnum.n2s(int(m))) 方法二：
 from Crypto.PublicKey import RSA from Crypto.Cipher import PKCS1_OAEP import gmpy2 import binascii phi = (p - 1) * (q - 1) d = pow(e, -1, phi) rsa_components = (n, e, int(d), p, q) arsa = RSA.
-    </article>
+        </div>
+      </article>
+      </div>
+    
   </div>
-    </div>
-
 </div>
-
-
 
         </div><footer class="footer">
   <p>&copy; 2023 <a href="https://p1um3r.github.io">p1um&#39;s blog</a>
