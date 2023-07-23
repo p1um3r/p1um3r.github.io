@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-cn"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typora 使用说明</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Ladder@Typora 使用说明 标题 标题语法了解html都不陌生，有点儿类似，h1~h6类似这边的#号。数字越小（#号越少）标题越大，分六个等级。 定义标题有以下几种方式。
+方式一：这个标题手敲就在文本前边敲#号，#和文本中间需又空格隔开。
+方式二：快捷键，Ctrl&#43;(1~6)。
+方式三：增大标题级别：Ctr&#43;=；减少标题级别：Ctrl&#43;-;
+方式四：在Typora文本编辑区右键鼠标，选择段落也可以插入标题。不止标题，还有其他样式设置
+方式五：在编辑器中左上角的菜单栏选择段落去插入标题。不止标题，还有其他样式设置
+前两种方式应该比较常用（推荐），后两种适合小白 \textcolor{red}{前两种方式应该比较常用（推荐），后两种适合小白}
+标题 语法（方式一） 快捷键（方式二） 一级标题 #一级标题 Ctrl&#43;1 二级标题 ##二级标题 Ctrl&#43;2 三级标题 ###三级标题 Ctrl&#43;3 四级标题 ####四级标题 Ctrl&#43;4 五级标题 #####五级标题 Ctrl&#43;5 六级标题 ######六级标题 Ctrl&#43;6 字体样式（斜体，加粗，下划线，删除线等） 字体 语法（方式一） 快捷键（方式二） 斜体 *文本*或_文本_ Ctrl&#43;I 加粗 **文本**或__文本__ Ctrl&#43;B 下划线 &lt;u&gt;文本&lt;/u&gt; Ctrl&#43;U 删除线 ~~文本~~ Alt&#43;Shift&#43;5 加粗斜体 ***文本*** 无 高亮 ==文本== 备注：需勾选高亮设置 文本居中 &lt;center&gt;文本&lt;/center&gt; 无 文本颜色修改 $\textcolor{颜色}{文本}$ 备注：需勾选内联公式设置 清除文本样式 文本 Ctrl&#43;\ 文本颜色修改 $\textcolor{GreenYellow}{GreenYellow}，\textcolor{Yellow}{Yellow}，\textcolor{Goldenrod}{Goldenrod},\textcolor{Dandelion}{Dandelion}， \textcolor{Apricot}{Apricot}， \textcolor{Peach}{Peach}， \textcolor{Melon}{Melon}， \textcolor{YellowOrange}{YellowOrange}， $$\textcolor{Orange}{Orange}，\textcolor{BurntOrange}{BurntOrange}，\textcolor{Bittersweet}{Bittersweet}，\textcolor{RedOrange}{RedOrange}，\textcolor{Mahogany}{Mahogany}，\textcolor{Maroon}{Maroon}，\textcolor{BrickRed}{BrickRed}，\textcolor{Red}{Red}$，$\textcolor{OrangeRed}{OrangeRed}， \textcolor{RubineRed}{RubineRed}， \textcolor{WildStrawberry}{WildStrawberry}，\textcolor{Salmon}{Salmon}，\textcolor{CarnationPink}{CarnationPink}， \textcolor{Magenta}{Magenta}，\textcolor{VioletRed}{VioletRed}$， $\textcolor{Rhodamine}{Rhodamine}， \textcolor{Mulberry}{Mulberry}，\textcolor{RedViolet}{RedViolet}， \textcolor{Fuchsia}{Fuchsia}， \textcolor{Lavender}{Lavender}，\textcolor{Thistle}{Thistle}，\textcolor{Orchid}{Orchid}，\textcolor{DarkOrchid}{DarkOrchid}$,$\textcolor{Purple}{Purple}，\textcolor{Plum}{Plum}，\textcolor{Violet}{Violet}，\textcolor{RoyalPurple}{RoyalPurple}，\textcolor{BlueViolet}{BlueViolet}，\textcolor{Periwinkle}{Periwinkle}， \textcolor{CadetBlue}{CadetBlue}，\textcolor{CornflowerBlue}{CornflowerBlue}$，$\textcolor{MidnightBlue}{MidnightBlue}，\textcolor{NavyBlue}{NavyBlue}，\textcolor{RoyalBlue}{RoyalBlue}，\textcolor{Blue}{Blue}，\textcolor{Cerulean}{Cerulean}，\textcolor{Cyan}{Cyan}，\textcolor{ProcessBlue}{ProcessBlue}，\textcolor{SkyBlue}{SkyBlue}$，$\textcolor{Turquoise}{Turquoise}，\textcolor{TealBlue}{TealBlue}，\textcolor{Aquamarine}{Aquamarine}，\textcolor{BlueGreen}{BlueGreen}，\textcolor{Emerald}{Emerald}，\textcolor{JungleGreen}{JungleGreen}，\textcolor{SeaGreen}{SeaGreen}，\textcolor{Green}{Green}$，$\textcolor{ForestGreen}{ForestGreen}，\textcolor{PineGreen}{PineGreen}，\textcolor{LimeGreen}{LimeGreen}，\textcolor{YellowGreen}{YellowGreen}，\textcolor{SpringGreen}{SpringGreen}，\textcolor{OliveGreen}{OliveGreen}，\textcolor{RawSienna}{RawSienna}$，$\textcolor{Sepia}{Sepia}，\textcolor{Brown}{Brown}，\textcolor{Tan}{Tan}，\textcolor{Gray}{Gray}，\textcolor{Black}{Black}$">
+    <meta name="author" content="p1um">
+    <link rel="canonical" href="https://p1um3r.github.io/blog/typora-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">
+
+    <link rel="alternate" type="application/rss+xml" href="https://p1um3r.github.io/index.xml" title="p1um&#39;s blog">
+
+    
+
+
+    <meta property="og:title" content="Typora 使用说明" />
+<meta property="og:description" content="Typora 使用说明 标题 标题语法了解html都不陌生，有点儿类似，h1~h6类似这边的#号。数字越小（#号越少）标题越大，分六个等级。 定义标题有以下几种方式。
+方式一：这个标题手敲就在文本前边敲#号，#和文本中间需又空格隔开。
+方式二：快捷键，Ctrl&#43;(1~6)。
+方式三：增大标题级别：Ctr&#43;=；减少标题级别：Ctrl&#43;-;
+方式四：在Typora文本编辑区右键鼠标，选择段落也可以插入标题。不止标题，还有其他样式设置
+方式五：在编辑器中左上角的菜单栏选择段落去插入标题。不止标题，还有其他样式设置
+前两种方式应该比较常用（推荐），后两种适合小白 \textcolor{red}{前两种方式应该比较常用（推荐），后两种适合小白}
+标题 语法（方式一） 快捷键（方式二） 一级标题 #一级标题 Ctrl&#43;1 二级标题 ##二级标题 Ctrl&#43;2 三级标题 ###三级标题 Ctrl&#43;3 四级标题 ####四级标题 Ctrl&#43;4 五级标题 #####五级标题 Ctrl&#43;5 六级标题 ######六级标题 Ctrl&#43;6 字体样式（斜体，加粗，下划线，删除线等） 字体 语法（方式一） 快捷键（方式二） 斜体 *文本*或_文本_ Ctrl&#43;I 加粗 **文本**或__文本__ Ctrl&#43;B 下划线 &lt;u&gt;文本&lt;/u&gt; Ctrl&#43;U 删除线 ~~文本~~ Alt&#43;Shift&#43;5 加粗斜体 ***文本*** 无 高亮 ==文本== 备注：需勾选高亮设置 文本居中 &lt;center&gt;文本&lt;/center&gt; 无 文本颜色修改 $\textcolor{颜色}{文本}$ 备注：需勾选内联公式设置 清除文本样式 文本 Ctrl&#43;\ 文本颜色修改 $\textcolor{GreenYellow}{GreenYellow}，\textcolor{Yellow}{Yellow}，\textcolor{Goldenrod}{Goldenrod},\textcolor{Dandelion}{Dandelion}， \textcolor{Apricot}{Apricot}， \textcolor{Peach}{Peach}， \textcolor{Melon}{Melon}， \textcolor{YellowOrange}{YellowOrange}， $$\textcolor{Orange}{Orange}，\textcolor{BurntOrange}{BurntOrange}，\textcolor{Bittersweet}{Bittersweet}，\textcolor{RedOrange}{RedOrange}，\textcolor{Mahogany}{Mahogany}，\textcolor{Maroon}{Maroon}，\textcolor{BrickRed}{BrickRed}，\textcolor{Red}{Red}$，$\textcolor{OrangeRed}{OrangeRed}， \textcolor{RubineRed}{RubineRed}， \textcolor{WildStrawberry}{WildStrawberry}，\textcolor{Salmon}{Salmon}，\textcolor{CarnationPink}{CarnationPink}， \textcolor{Magenta}{Magenta}，\textcolor{VioletRed}{VioletRed}$， $\textcolor{Rhodamine}{Rhodamine}， \textcolor{Mulberry}{Mulberry}，\textcolor{RedViolet}{RedViolet}， \textcolor{Fuchsia}{Fuchsia}， \textcolor{Lavender}{Lavender}，\textcolor{Thistle}{Thistle}，\textcolor{Orchid}{Orchid}，\textcolor{DarkOrchid}{DarkOrchid}$,$\textcolor{Purple}{Purple}，\textcolor{Plum}{Plum}，\textcolor{Violet}{Violet}，\textcolor{RoyalPurple}{RoyalPurple}，\textcolor{BlueViolet}{BlueViolet}，\textcolor{Periwinkle}{Periwinkle}， \textcolor{CadetBlue}{CadetBlue}，\textcolor{CornflowerBlue}{CornflowerBlue}$，$\textcolor{MidnightBlue}{MidnightBlue}，\textcolor{NavyBlue}{NavyBlue}，\textcolor{RoyalBlue}{RoyalBlue}，\textcolor{Blue}{Blue}，\textcolor{Cerulean}{Cerulean}，\textcolor{Cyan}{Cyan}，\textcolor{ProcessBlue}{ProcessBlue}，\textcolor{SkyBlue}{SkyBlue}$，$\textcolor{Turquoise}{Turquoise}，\textcolor{TealBlue}{TealBlue}，\textcolor{Aquamarine}{Aquamarine}，\textcolor{BlueGreen}{BlueGreen}，\textcolor{Emerald}{Emerald}，\textcolor{JungleGreen}{JungleGreen}，\textcolor{SeaGreen}{SeaGreen}，\textcolor{Green}{Green}$，$\textcolor{ForestGreen}{ForestGreen}，\textcolor{PineGreen}{PineGreen}，\textcolor{LimeGreen}{LimeGreen}，\textcolor{YellowGreen}{YellowGreen}，\textcolor{SpringGreen}{SpringGreen}，\textcolor{OliveGreen}{OliveGreen}，\textcolor{RawSienna}{RawSienna}$，$\textcolor{Sepia}{Sepia}，\textcolor{Brown}{Brown}，\textcolor{Tan}{Tan}，\textcolor{Gray}{Gray}，\textcolor{Black}{Black}$" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://p1um3r.github.io/blog/typora-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2023-07-23T22:18:00+08:00" />
+<meta property="article:modified_time" content="2023-07-23T22:18:00+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Typora 使用说明"/>
+<meta name="twitter:description" content="Typora 使用说明 标题 标题语法了解html都不陌生，有点儿类似，h1~h6类似这边的#号。数字越小（#号越少）标题越大，分六个等级。 定义标题有以下几种方式。
+方式一：这个标题手敲就在文本前边敲#号，#和文本中间需又空格隔开。
+方式二：快捷键，Ctrl&#43;(1~6)。
+方式三：增大标题级别：Ctr&#43;=；减少标题级别：Ctrl&#43;-;
+方式四：在Typora文本编辑区右键鼠标，选择段落也可以插入标题。不止标题，还有其他样式设置
+方式五：在编辑器中左上角的菜单栏选择段落去插入标题。不止标题，还有其他样式设置
+前两种方式应该比较常用（推荐），后两种适合小白 \textcolor{red}{前两种方式应该比较常用（推荐），后两种适合小白}
+标题 语法（方式一） 快捷键（方式二） 一级标题 #一级标题 Ctrl&#43;1 二级标题 ##二级标题 Ctrl&#43;2 三级标题 ###三级标题 Ctrl&#43;3 四级标题 ####四级标题 Ctrl&#43;4 五级标题 #####五级标题 Ctrl&#43;5 六级标题 ######六级标题 Ctrl&#43;6 字体样式（斜体，加粗，下划线，删除线等） 字体 语法（方式一） 快捷键（方式二） 斜体 *文本*或_文本_ Ctrl&#43;I 加粗 **文本**或__文本__ Ctrl&#43;B 下划线 &lt;u&gt;文本&lt;/u&gt; Ctrl&#43;U 删除线 ~~文本~~ Alt&#43;Shift&#43;5 加粗斜体 ***文本*** 无 高亮 ==文本== 备注：需勾选高亮设置 文本居中 &lt;center&gt;文本&lt;/center&gt; 无 文本颜色修改 $\textcolor{颜色}{文本}$ 备注：需勾选内联公式设置 清除文本样式 文本 Ctrl&#43;\ 文本颜色修改 $\textcolor{GreenYellow}{GreenYellow}，\textcolor{Yellow}{Yellow}，\textcolor{Goldenrod}{Goldenrod},\textcolor{Dandelion}{Dandelion}， \textcolor{Apricot}{Apricot}， \textcolor{Peach}{Peach}， \textcolor{Melon}{Melon}， \textcolor{YellowOrange}{YellowOrange}， $$\textcolor{Orange}{Orange}，\textcolor{BurntOrange}{BurntOrange}，\textcolor{Bittersweet}{Bittersweet}，\textcolor{RedOrange}{RedOrange}，\textcolor{Mahogany}{Mahogany}，\textcolor{Maroon}{Maroon}，\textcolor{BrickRed}{BrickRed}，\textcolor{Red}{Red}$，$\textcolor{OrangeRed}{OrangeRed}， \textcolor{RubineRed}{RubineRed}， \textcolor{WildStrawberry}{WildStrawberry}，\textcolor{Salmon}{Salmon}，\textcolor{CarnationPink}{CarnationPink}， \textcolor{Magenta}{Magenta}，\textcolor{VioletRed}{VioletRed}$， $\textcolor{Rhodamine}{Rhodamine}， \textcolor{Mulberry}{Mulberry}，\textcolor{RedViolet}{RedViolet}， \textcolor{Fuchsia}{Fuchsia}， \textcolor{Lavender}{Lavender}，\textcolor{Thistle}{Thistle}，\textcolor{Orchid}{Orchid}，\textcolor{DarkOrchid}{DarkOrchid}$,$\textcolor{Purple}{Purple}，\textcolor{Plum}{Plum}，\textcolor{Violet}{Violet}，\textcolor{RoyalPurple}{RoyalPurple}，\textcolor{BlueViolet}{BlueViolet}，\textcolor{Periwinkle}{Periwinkle}， \textcolor{CadetBlue}{CadetBlue}，\textcolor{CornflowerBlue}{CornflowerBlue}$，$\textcolor{MidnightBlue}{MidnightBlue}，\textcolor{NavyBlue}{NavyBlue}，\textcolor{RoyalBlue}{RoyalBlue}，\textcolor{Blue}{Blue}，\textcolor{Cerulean}{Cerulean}，\textcolor{Cyan}{Cyan}，\textcolor{ProcessBlue}{ProcessBlue}，\textcolor{SkyBlue}{SkyBlue}$，$\textcolor{Turquoise}{Turquoise}，\textcolor{TealBlue}{TealBlue}，\textcolor{Aquamarine}{Aquamarine}，\textcolor{BlueGreen}{BlueGreen}，\textcolor{Emerald}{Emerald}，\textcolor{JungleGreen}{JungleGreen}，\textcolor{SeaGreen}{SeaGreen}，\textcolor{Green}{Green}$，$\textcolor{ForestGreen}{ForestGreen}，\textcolor{PineGreen}{PineGreen}，\textcolor{LimeGreen}{LimeGreen}，\textcolor{YellowGreen}{YellowGreen}，\textcolor{SpringGreen}{SpringGreen}，\textcolor{OliveGreen}{OliveGreen}，\textcolor{RawSienna}{RawSienna}$，$\textcolor{Sepia}{Sepia}，\textcolor{Brown}{Brown}，\textcolor{Tan}{Tan}，\textcolor{Gray}{Gray}，\textcolor{Black}{Black}$"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Blogs",
+      "item": "https://p1um3r.github.io/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Typora 使用说明",
+      "item": "https://p1um3r.github.io/blog/typora-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Typora 使用说明",
+  "name": "Typora 使用说明",
+  "description": "Typora 使用说明 标题 标题语法了解html都不陌生，有点儿类似，h1~h6类似这边的#号。数字越小（#号越少）标题越大，分六个等级。 定义标题有以下几种方式。\n方式一：这个标题手敲就在文本前边敲#号，#和文本中间需又空格隔开。\n方式二：快捷键，Ctrl+(1~6)。\n方式三：增大标题级别：Ctr+=；减少标题级别：Ctrl+-;\n方式四：在Typora文本编辑区右键鼠标，选择段落也可以插入标题。不止标题，还有其他样式设置\n方式五：在编辑器中左上角的菜单栏选择段落去插入标题。不止标题，还有其他样式设置\n前两种方式应该比较常用（推荐），后两种适合小白 \\textcolor{red}{前两种方式应该比较常用（推荐），后两种适合小白}\n标题 语法（方式一） 快捷键（方式二） 一级标题 #一级标题 Ctrl+1 二级标题 ##二级标题 Ctrl+2 三级标题 ###三级标题 Ctrl+3 四级标题 ####四级标题 Ctrl+4 五级标题 #####五级标题 Ctrl+5 六级标题 ######六级标题 Ctrl+6 字体样式（斜体，加粗，下划线，删除线等） 字体 语法（方式一） 快捷键（方式二） 斜体 *文本*或_文本_ Ctrl+I 加粗 **文本**或__文本__ Ctrl+B 下划线 \u0026lt;u\u0026gt;文本\u0026lt;/u\u0026gt; Ctrl+U 删除线 ~~文本~~ Alt+Shift+5 加粗斜体 ***文本*** 无 高亮 ==文本== 备注：需勾选高亮设置 文本居中 \u0026lt;center\u0026gt;文本\u0026lt;/center\u0026gt; 无 文本颜色修改 $\\textcolor{颜色}{文本}$ 备注：需勾选内联公式设置 清除文本样式 文本 Ctrl+\\ 文本颜色修改 $\\textcolor{GreenYellow}{GreenYellow}，\\textcolor{Yellow}{Yellow}，\\textcolor{Goldenrod}{Goldenrod},\\textcolor{Dandelion}{Dandelion}， \\textcolor{Apricot}{Apricot}， \\textcolor{Peach}{Peach}， \\textcolor{Melon}{Melon}， \\textcolor{YellowOrange}{YellowOrange}， $$\\textcolor{Orange}{Orange}，\\textcolor{BurntOrange}{BurntOrange}，\\textcolor{Bittersweet}{Bittersweet}，\\textcolor{RedOrange}{RedOrange}，\\textcolor{Mahogany}{Mahogany}，\\textcolor{Maroon}{Maroon}，\\textcolor{BrickRed}{BrickRed}，\\textcolor{Red}{Red}$，$\\textcolor{OrangeRed}{OrangeRed}， \\textcolor{RubineRed}{RubineRed}， \\textcolor{WildStrawberry}{WildStrawberry}，\\textcolor{Salmon}{Salmon}，\\textcolor{CarnationPink}{CarnationPink}， \\textcolor{Magenta}{Magenta}，\\textcolor{VioletRed}{VioletRed}$， $\\textcolor{Rhodamine}{Rhodamine}， \\textcolor{Mulberry}{Mulberry}，\\textcolor{RedViolet}{RedViolet}， \\textcolor{Fuchsia}{Fuchsia}， \\textcolor{Lavender}{Lavender}，\\textcolor{Thistle}{Thistle}，\\textcolor{Orchid}{Orchid}，\\textcolor{DarkOrchid}{DarkOrchid}$,$\\textcolor{Purple}{Purple}，\\textcolor{Plum}{Plum}，\\textcolor{Violet}{Violet}，\\textcolor{RoyalPurple}{RoyalPurple}，\\textcolor{BlueViolet}{BlueViolet}，\\textcolor{Periwinkle}{Periwinkle}， \\textcolor{CadetBlue}{CadetBlue}，\\textcolor{CornflowerBlue}{CornflowerBlue}$，$\\textcolor{MidnightBlue}{MidnightBlue}，\\textcolor{NavyBlue}{NavyBlue}，\\textcolor{RoyalBlue}{RoyalBlue}，\\textcolor{Blue}{Blue}，\\textcolor{Cerulean}{Cerulean}，\\textcolor{Cyan}{Cyan}，\\textcolor{ProcessBlue}{ProcessBlue}，\\textcolor{SkyBlue}{SkyBlue}$，$\\textcolor{Turquoise}{Turquoise}，\\textcolor{TealBlue}{TealBlue}，\\textcolor{Aquamarine}{Aquamarine}，\\textcolor{BlueGreen}{BlueGreen}，\\textcolor{Emerald}{Emerald}，\\textcolor{JungleGreen}{JungleGreen}，\\textcolor{SeaGreen}{SeaGreen}，\\textcolor{Green}{Green}$，$\\textcolor{ForestGreen}{ForestGreen}，\\textcolor{PineGreen}{PineGreen}，\\textcolor{LimeGreen}{LimeGreen}，\\textcolor{YellowGreen}{YellowGreen}，\\textcolor{SpringGreen}{SpringGreen}，\\textcolor{OliveGreen}{OliveGreen}，\\textcolor{RawSienna}{RawSienna}$，$\\textcolor{Sepia}{Sepia}，\\textcolor{Brown}{Brown}，\\textcolor{Tan}{Tan}，\\textcolor{Gray}{Gray}，\\textcolor{Black}{Black}$",
+  "keywords": [
+    "tutorial"
+  ],
+  "articleBody": "Typora 使用说明 标题 标题语法了解html都不陌生，有点儿类似，h1~h6类似这边的#号。数字越小（#号越少）标题越大，分六个等级。 定义标题有以下几种方式。\n方式一：这个标题手敲就在文本前边敲#号，#和文本中间需又空格隔开。\n方式二：快捷键，Ctrl+(1~6)。\n方式三：增大标题级别：Ctr+=；减少标题级别：Ctrl+-;\n方式四：在Typora文本编辑区右键鼠标，选择段落也可以插入标题。不止标题，还有其他样式设置\n方式五：在编辑器中左上角的菜单栏选择段落去插入标题。不止标题，还有其他样式设置\n前两种方式应该比较常用（推荐），后两种适合小白 \\textcolor{red}{前两种方式应该比较常用（推荐），后两种适合小白}\n标题 语法（方式一） 快捷键（方式二） 一级标题 #一级标题 Ctrl+1 二级标题 ##二级标题 Ctrl+2 三级标题 ###三级标题 Ctrl+3 四级标题 ####四级标题 Ctrl+4 五级标题 #####五级标题 Ctrl+5 六级标题 ######六级标题 Ctrl+6 字体样式（斜体，加粗，下划线，删除线等） 字体 语法（方式一） 快捷键（方式二） 斜体 *文本*或_文本_ Ctrl+I 加粗 **文本**或__文本__ Ctrl+B 下划线 文本 Ctrl+U 删除线 ~~文本~~ Alt+Shift+5 加粗斜体 ***文本*** 无 高亮 ==文本== 备注：需勾选高亮设置 文本居中 文本 无 文本颜色修改 $\\textcolor{颜色}{文本}$ 备注：需勾选内联公式设置 清除文本样式 文本 Ctrl+\\ 文本颜色修改 $\\textcolor{GreenYellow}{GreenYellow}，\\textcolor{Yellow}{Yellow}，\\textcolor{Goldenrod}{Goldenrod},\\textcolor{Dandelion}{Dandelion}， \\textcolor{Apricot}{Apricot}， \\textcolor{Peach}{Peach}， \\textcolor{Melon}{Melon}， \\textcolor{YellowOrange}{YellowOrange}， $$\\textcolor{Orange}{Orange}，\\textcolor{BurntOrange}{BurntOrange}，\\textcolor{Bittersweet}{Bittersweet}，\\textcolor{RedOrange}{RedOrange}，\\textcolor{Mahogany}{Mahogany}，\\textcolor{Maroon}{Maroon}，\\textcolor{BrickRed}{BrickRed}，\\textcolor{Red}{Red}$，$\\textcolor{OrangeRed}{OrangeRed}， \\textcolor{RubineRed}{RubineRed}， \\textcolor{WildStrawberry}{WildStrawberry}，\\textcolor{Salmon}{Salmon}，\\textcolor{CarnationPink}{CarnationPink}， \\textcolor{Magenta}{Magenta}，\\textcolor{VioletRed}{VioletRed}$， $\\textcolor{Rhodamine}{Rhodamine}， \\textcolor{Mulberry}{Mulberry}，\\textcolor{RedViolet}{RedViolet}， \\textcolor{Fuchsia}{Fuchsia}， \\textcolor{Lavender}{Lavender}，\\textcolor{Thistle}{Thistle}，\\textcolor{Orchid}{Orchid}，\\textcolor{DarkOrchid}{DarkOrchid}$,$\\textcolor{Purple}{Purple}，\\textcolor{Plum}{Plum}，\\textcolor{Violet}{Violet}，\\textcolor{RoyalPurple}{RoyalPurple}，\\textcolor{BlueViolet}{BlueViolet}，\\textcolor{Periwinkle}{Periwinkle}， \\textcolor{CadetBlue}{CadetBlue}，\\textcolor{CornflowerBlue}{CornflowerBlue}$，$\\textcolor{MidnightBlue}{MidnightBlue}，\\textcolor{NavyBlue}{NavyBlue}，\\textcolor{RoyalBlue}{RoyalBlue}，\\textcolor{Blue}{Blue}，\\textcolor{Cerulean}{Cerulean}，\\textcolor{Cyan}{Cyan}，\\textcolor{ProcessBlue}{ProcessBlue}，\\textcolor{SkyBlue}{SkyBlue}$，$\\textcolor{Turquoise}{Turquoise}，\\textcolor{TealBlue}{TealBlue}，\\textcolor{Aquamarine}{Aquamarine}，\\textcolor{BlueGreen}{BlueGreen}，\\textcolor{Emerald}{Emerald}，\\textcolor{JungleGreen}{JungleGreen}，\\textcolor{SeaGreen}{SeaGreen}，\\textcolor{Green}{Green}$，$\\textcolor{ForestGreen}{ForestGreen}，\\textcolor{PineGreen}{PineGreen}，\\textcolor{LimeGreen}{LimeGreen}，\\textcolor{YellowGreen}{YellowGreen}，\\textcolor{SpringGreen}{SpringGreen}，\\textcolor{OliveGreen}{OliveGreen}，\\textcolor{RawSienna}{RawSienna}$，$\\textcolor{Sepia}{Sepia}，\\textcolor{Brown}{Brown}，\\textcolor{Tan}{Tan}，\\textcolor{Gray}{Gray}，\\textcolor{Black}{Black}$\n当然颜色还有很多就不一一举例了，上边是这些颜色的单词(如上黑体没正常显示的在Typora上都会正常显示)，根据更换字体颜色的语法去讲单词写入语法中，就出现如上效果，大小写不区分。如：\n$\\textcolor{black}{文本}$ $\\textcolor{#00fcfc}{文本}$ $\\textcolor{rgb(255,0,0)}{文本}$ 这边就列这如上三种常用颜色选择器模式，注意这块需要更改设置才能识别到字体样式，需要在Typora软件里更改设置。在左上角菜单栏里选择。\n设置步骤：文件——\u003e偏好设置——\u003eMarkdown——\u003e勾选内联公式即可；识别高亮语法设置同理勾选高亮即可。操作如下图\n插入内容 插入列表 有序列表：正常插入即可，如1.，2.； 无序列表：使用+,-和*都可以创建无序列表； 其中，如果已使用一级无序列，可以直接回车+Tab,调至二级无序列表；\n如果已使用二级无序列，可以shift+Tab回到上一级；\n任务列表：依次输入-+空格+[空格]+空格；\n增加缩进：Ctrl+] ; 减少缩进：Ctrl+[;\n插入代码和代码块 代码表示，即在A的前后加飘号; 代码块表示:(偏好里可设置是否自动标号) 三个飘号+代码类型; 快捷键：Ctrl+Shift+K; 插入表格 输入|表头1|表头2|并回车，即可创建一个包含2列表； 直接弹出对话框Ctrl+T; 表格内对齐方式 左对齐：:| 右对齐：|: 中对齐：:|: 插入数学公式 行间：直接输入$$并回车，即可打开公式输入框，公式按照[LaTex公式语法](https://zhuanlan.zhihu.com/p/110756681#:~:text= 在LaTeX数学模式中，公式有两种形式——行内公式和行间公式。,前者公式嵌入在行内，适用于简单短小的公式；后者居中独占一行，适用于比较长或重要的公式。 公式中的空格均会被忽略，可以使用命令quad或qquad实现)输入; 行内：直接输入$+LaTex公式+$; 快捷键：Ctrl+Shift+M； 插入链接 行内式：[网址名字]+(链接)；\n欢迎来到百度；\n跳转功能：\n超链接跳转，即插入上述链接； 参考式链接跳转，输入[名字描述]+[标号]，再Ctrl+单击跳转至末尾添加地址；例如，CSDN跳转介绍; 本地文件跳转（未成功），[Readme1]+(文件路径)；例如[优化控制][D:\\3Typora笔记\\优化控制.md]； 制作锚点，任意跳转：输入标记锚点，在需要跳转此处的地方输入显示文字；例如，加粗； 注：当锚点文字是文中文字时，可以不用设置锚点，直接输入代码实现跳转~~ 例如，跳转至标题分级； 插入表情 在表情单词的前后输入两个:，能够找到对应表情，如:smile: :smile:\n插入图片 输入!+[显示的文字]+(图片地址);快捷键：Ctrle+Shift+I; 建议直接拖拽图片进来~ 插入目录 输入[toc]并回车，自动在当前位置创建目录；\n插入代码块 快捷键：输入```+ 回车（ 可以选择代码语言）\n标注 引用文字 可以用来表示内容的递进关系:\n\u003e+空格+引用文字； Ctrl+Shift+Q; 分割线 输入***或者---并回车；\n删除线\n分别在A前后输入~~或者使用快捷键：Alt+Shift+5;\n标注上下标 +A+；+A+\n建议打开设置：（需设置）在需要标注的A前后加入^表示上标；~表示下标；\ntypora简单偏好设置 1.让大纲看起来更舒服 Typora的文件—»\u003e偏好设置\n2.自动保存（需要重启Typora) 3.调试功能及使用（需要重启Typora) （1）勾选开启调试模式\n（2）右键点击检查\n（3）小箭头定位元素\n（4）定位后 可在Style中修改\n(5) 但是关闭重启Typora后，修改的效果会消失\n若想永久生效需要修改主题文件\n文件-》偏好设置-》外观-》打开主题文件夹\n当前使用谁就修改它的内容\n原文链接：\nhttps://blog.csdn.net/dc_12138/article/details/124263439\nhttps://blog.csdn.net/CxNingSX/article/details/126018046\nhttps://blog.csdn.net/YUEsheng416/article/details/124870862\n",
+  "wordCount" : "166",
+  "inLanguage": "zh-cn",
+  "datePublished": "2023-07-23T22:18:00+08:00",
+  "dateModified": "2023-07-23T22:18:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "p1um"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://p1um3r.github.io/blog/typora-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "p1um's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://p1um3r.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+    <link rel="icon" href="/images/avatar.jpg" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/avatar.jpg">
+
+<link rel="manifest" href="/images/avatar.jpg">
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/lxgw-wenkai-webfont/1.6.0/style.css" />
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/main.min.e6ec12edc0d8c93b5db5cd08dc408bf68bf4dd526cd28d8b3807af3aeedbad00.css" integrity="sha256-5uwS7cDYyTtdtc0I3ECL9ov03VJs0o2LOAevOu7brQA=" crossorigin="anonymous" media="screen" />
+    
+
+
+    
+    <link rel="stylesheet" href="/scss/highlight/github-dark.min.min.66034289ee9a113219a2c4aae0a8bd2095ab255c832a42efcf5863f10814e7a1.css" />
+
+    
+    <script src="/js/highlight.min.min.872dfd2cd00064018a833a6e8e77a0fbf8fbac159546f2f205d4dad79a5d8e15.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script>(()=>{var t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,e=localStorage.getItem("theme");t&&e===null&&(localStorage.setItem("theme","dark"),document.documentElement.setAttribute("data-dark-mode","")),t&&e==="dark"&&document.documentElement.setAttribute("data-dark-mode",""),e==="dark"&&document.documentElement.setAttribute("data-dark-mode","")})()</script>
+    </head>
+<body>
+      <main class="wrapper"><nav class="navigation">
+    <section class="container">
+        <a class="navigation-brand" href="/">
+            主页
+        </a>
+        <input type="checkbox" id="menu-toggle" />
+        <label class="menu-button float-right" for="menu-toggle">
+            <span></span><span></span><span></span>
+        </label>
+        
+        <ul class="navigation-list" id="navigation-list">
+            
+            
+            <li class="navigation-item navigation-menu">
+                <a class="navigation-link" href="/blog/">文章</a>
+            </li>
+            
+            <li class="navigation-item navigation-menu">
+                <a class="navigation-link" href="/tags/">分类</a>
+            </li>
+            
+            <li class="navigation-item navigation-menu">
+                <a class="navigation-link" href="/archives/">历史文章</a>
+            </li>
+            
+            
+
+            <li class="navigation-item menu-separator">
+                <span>|</span>
+            </li>
+
+            
+            
+            <li class="navigation-item navigation-social">
+                <a class="navigation-link" href="https://github.com/p1um3r"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+            </li>
+            
+            
+
+            <li class="navigation-item navigation-dark">
+                <button id="mode" type="button" aria-label="toggle user light or dark theme">
+                    <span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                    <span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+                </button>
+            </li>
+
+            
+        </ul>
+        
+    </section>
+</nav>
+<div id="content">
+<article class="blog-single">
+  <header class="blog-title">
+    <h1>Typora 使用说明</h1>
+  </header>
+
+  <p>
+  <small>
+    July 23, 2023&nbsp;· &nbsp;· </small>
+
+  
+<p>
+
+  <div class="blog-toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#标题">标题</a></li>
+        <li><a href="#字体样式斜体加粗下划线删除线等">字体样式（斜体，加粗，下划线，删除线等）</a></li>
+        <li><a href="#插入内容">插入内容</a></li>
+        <li><a href="#标注">标注</a></li>
+        <li><a href="#typora简单偏好设置">typora简单偏好设置</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+
+  <section class="blog-content"><h1 id="typora-使用说明">Typora 使用说明</h1>
+<h3 id="标题">标题</h3>
+<p>标题语法了解html都不陌生，有点儿类似，h1~h6类似这边的#号。数字越小（#号越少）标题越大，分六个等级。
+定义标题有以下几种方式。</p>
+<ul>
+<li>
+<p><code>方式一：这个标题手敲就在文本前边敲#号，#和文本中间需又空格隔开。</code></p>
+</li>
+<li>
+<p><code>方式二：快捷键，Ctrl+(1~6)。</code></p>
+</li>
+<li>
+<p><code>方式三：增大标题级别：Ctr+=；减少标题级别：Ctrl+-;</code></p>
+</li>
+<li>
+<p><code> 方式四：在Typora文本编辑区右键鼠标，选择段落也可以插入标题。不止标题，还有其他样式设置</code></p>
+</li>
+<li>
+<p><code> 方式五：在编辑器中左上角的菜单栏选择段落去插入标题。不止标题，还有其他样式设置</code></p>
+</li>
+</ul>
+<p>前两种方式应该比较常用（推荐），后两种适合小白 \textcolor{red}{前两种方式应该比较常用（推荐），后两种适合小白}</p>
+<table>
+<thead>
+<tr>
+<th>标题</th>
+<th>语法（方式一）</th>
+<th>快捷键（方式二）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一级标题</td>
+<td>#一级标题</td>
+<td>Ctrl+1</td>
+</tr>
+<tr>
+<td>二级标题</td>
+<td>##二级标题</td>
+<td>Ctrl+2</td>
+</tr>
+<tr>
+<td>三级标题</td>
+<td>###三级标题</td>
+<td>Ctrl+3</td>
+</tr>
+<tr>
+<td>四级标题</td>
+<td>####四级标题</td>
+<td>Ctrl+4</td>
+</tr>
+<tr>
+<td>五级标题</td>
+<td>#####五级标题</td>
+<td>Ctrl+5</td>
+</tr>
+<tr>
+<td>六级标题</td>
+<td>######六级标题</td>
+<td>Ctrl+6</td>
+</tr>
+</tbody>
+</table>
+<h3 id="字体样式斜体加粗下划线删除线等">字体样式（斜体，加粗，下划线，删除线等）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">字体</th>
+<th style="text-align:center">语法（方式一）</th>
+<th style="text-align:center">快捷键（方式二）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">斜体</td>
+<td style="text-align:center"><code>*文本*</code>或<code>_文本_</code></td>
+<td style="text-align:center">Ctrl+I</td>
+</tr>
+<tr>
+<td style="text-align:center">加粗</td>
+<td style="text-align:center"><code>**文本**</code>或<code>__文本__</code></td>
+<td style="text-align:center">Ctrl+B</td>
+</tr>
+<tr>
+<td style="text-align:center">下划线</td>
+<td style="text-align:center"><code>&lt;u&gt;文本&lt;/u&gt;</code></td>
+<td style="text-align:center">Ctrl+U</td>
+</tr>
+<tr>
+<td style="text-align:center">删除线</td>
+<td style="text-align:center"><code>~~文本~~</code></td>
+<td style="text-align:center">Alt+Shift+5</td>
+</tr>
+<tr>
+<td style="text-align:center">加粗斜体</td>
+<td style="text-align:center"><code>***文本***</code></td>
+<td style="text-align:center">无</td>
+</tr>
+<tr>
+<td style="text-align:center">高亮</td>
+<td style="text-align:center"><code>==文本==</code></td>
+<td style="text-align:center">备注：需勾选高亮设置</td>
+</tr>
+<tr>
+<td style="text-align:center">文本居中</td>
+<td style="text-align:center"><code>&lt;center&gt;文本&lt;/center&gt;</code></td>
+<td style="text-align:center">无</td>
+</tr>
+<tr>
+<td style="text-align:center">文本颜色修改</td>
+<td style="text-align:center"><code>$\textcolor{颜色}{文本}$</code></td>
+<td style="text-align:center">备注：需勾选内联公式设置</td>
+</tr>
+<tr>
+<td style="text-align:center">清除文本样式</td>
+<td style="text-align:center">文本</td>
+<td style="text-align:center"><code>Ctrl</code>+<code>\</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="文本颜色修改">文本颜色修改</h5>
+<p>$\textcolor{GreenYellow}{GreenYellow}，\textcolor{Yellow}{Yellow}，\textcolor{Goldenrod}{Goldenrod},\textcolor{Dandelion}{Dandelion}， \textcolor{Apricot}{Apricot}， \textcolor{Peach}{Peach}， \textcolor{Melon}{Melon}， \textcolor{YellowOrange}{YellowOrange}， $$\textcolor{Orange}{Orange}，\textcolor{BurntOrange}{BurntOrange}，\textcolor{Bittersweet}{Bittersweet}，\textcolor{RedOrange}{RedOrange}，\textcolor{Mahogany}{Mahogany}，\textcolor{Maroon}{Maroon}，\textcolor{BrickRed}{BrickRed}，\textcolor{Red}{Red}$，$\textcolor{OrangeRed}{OrangeRed}， \textcolor{RubineRed}{RubineRed}， \textcolor{WildStrawberry}{WildStrawberry}，\textcolor{Salmon}{Salmon}，\textcolor{CarnationPink}{CarnationPink}， \textcolor{Magenta}{Magenta}，\textcolor{VioletRed}{VioletRed}$， $\textcolor{Rhodamine}{Rhodamine}， \textcolor{Mulberry}{Mulberry}，\textcolor{RedViolet}{RedViolet}， \textcolor{Fuchsia}{Fuchsia}， \textcolor{Lavender}{Lavender}，\textcolor{Thistle}{Thistle}，\textcolor{Orchid}{Orchid}，\textcolor{DarkOrchid}{DarkOrchid}$,$\textcolor{Purple}{Purple}，\textcolor{Plum}{Plum}，\textcolor{Violet}{Violet}，\textcolor{RoyalPurple}{RoyalPurple}，\textcolor{BlueViolet}{BlueViolet}，\textcolor{Periwinkle}{Periwinkle}， \textcolor{CadetBlue}{CadetBlue}，\textcolor{CornflowerBlue}{CornflowerBlue}$，$\textcolor{MidnightBlue}{MidnightBlue}，\textcolor{NavyBlue}{NavyBlue}，\textcolor{RoyalBlue}{RoyalBlue}，\textcolor{Blue}{Blue}，\textcolor{Cerulean}{Cerulean}，\textcolor{Cyan}{Cyan}，\textcolor{ProcessBlue}{ProcessBlue}，\textcolor{SkyBlue}{SkyBlue}$，$\textcolor{Turquoise}{Turquoise}，\textcolor{TealBlue}{TealBlue}，\textcolor{Aquamarine}{Aquamarine}，\textcolor{BlueGreen}{BlueGreen}，\textcolor{Emerald}{Emerald}，\textcolor{JungleGreen}{JungleGreen}，\textcolor{SeaGreen}{SeaGreen}，\textcolor{Green}{Green}$，$\textcolor{ForestGreen}{ForestGreen}，\textcolor{PineGreen}{PineGreen}，\textcolor{LimeGreen}{LimeGreen}，\textcolor{YellowGreen}{YellowGreen}，\textcolor{SpringGreen}{SpringGreen}，\textcolor{OliveGreen}{OliveGreen}，\textcolor{RawSienna}{RawSienna}$，$\textcolor{Sepia}{Sepia}，\textcolor{Brown}{Brown}，\textcolor{Tan}{Tan}，\textcolor{Gray}{Gray}，\textcolor{Black}{Black}$</p>
+<p>当然颜色还有很多就不一一举例了，上边是这些颜色的单词(如上黑体没正常显示的在Typora上都会正常显示)，根据更换字体颜色的语法去讲单词写入语法中，就出现如上效果，大小写不区分。如：</p>
+<ul>
+<li><code>$\textcolor{black}{文本}$</code></li>
+<li><code>$\textcolor{#00fcfc}{文本}$</code></li>
+<li><code>$\textcolor{rgb(255,0,0)}{文本}$</code></li>
+</ul>
+<p>这边就列这如上三种常用颜色选择器模式，注意这块需要更改设置才能识别到字体样式，需要在Typora软件里更改设置。在左上角菜单栏里选择。</p>
+<p>设置步骤：文件——&gt;偏好设置——&gt;<em>M<strong>a</strong>r<strong>k</strong>d<strong>o</strong>wn</em>——&gt;勾选内联公式即可；识别高亮语法设置同理勾选高亮即可。操作如下图</p>
+<p><img src="https://img-blog.csdnimg.cn/d6e8fa7f3763440689739be96259cb92.jpeg#pic_center" alt="高亮操作步骤"></p>
+<h3 id="插入内容">插入内容</h3>
+<h5 id="插入列表"><strong>插入列表</strong></h5>
+<ul>
+<li>有序列表：正常插入即可，如<code>1.</code>，<code>2.</code>；</li>
+<li>无序列表：使用<code>+</code>,<code>-</code>和<code>*</code>都可以创建无序列表；</li>
+</ul>
+<blockquote>
+<p>其中，如果已使用一级无序列，可以直接回车+<code>Tab</code>,调至二级无序列表；</p>
+<p>如果已使用二级无序列，可以<code>shift</code>+<code>Tab</code>回到上一级；</p>
+</blockquote>
+<p>任务列表：依次输入<code>-</code>+<code>空格</code>+<code>[空格]</code>+<code>空格</code>；</p>
+<p>增加缩进：<code>Ctrl</code>+<code>]</code> ; 减少缩进：<code>Ctrl</code>+<code>[</code>;</p>
+<h5 id="插入代码和代码块"><strong>插入代码和代码块</strong></h5>
+<ul>
+<li>代码表示，即在A的前后加<code>飘号</code>;</li>
+<li>代码块表示:(偏好里可设置是否自动标号)
+<ul>
+<li>三个<code>飘号</code>+<code>代码类型</code>;</li>
+<li>快捷键：<code>Ctrl+Shift+K</code>;</li>
+</ul>
+</li>
+</ul>
+<h5 id="插入表格"><strong>插入表格</strong></h5>
+<ul>
+<li>输入<code>|表头1|表头2|</code>并回车，即可创建一个包含2列表；</li>
+<li>直接弹出对话框<code>Ctrl+T</code>;</li>
+</ul>
+<h5 id="表格内对齐方式"><strong>表格内对齐方式</strong></h5>
+<ul>
+<li>左对齐：<code>:|</code></li>
+<li>右对齐：<code>|:</code></li>
+<li>中对齐：<code>:|:</code></li>
+</ul>
+<h5 id="插入数学公式"><strong>插入数学公式</strong></h5>
+<ul>
+<li>行间：直接输入<code>$$</code>并回车，即可打开公式输入框，公式按照[LaTex公式语法](<a href="https://zhuanlan.zhihu.com/p/110756681#:~:text=">https://zhuanlan.zhihu.com/p/110756681#:~:text=</a> 在LaTeX数学模式中，公式有两种形式——行内公式和行间公式。,前者公式嵌入在行内，适用于简单短小的公式；后者居中独占一行，适用于比较长或重要的公式。 公式中的空格均会被忽略，可以使用命令quad或qquad实现)输入;</li>
+<li>行内：直接输入<code>$</code>+LaTex公式+<code>$</code>;</li>
+<li>快捷键：<code>Ctrl+Shift+M</code>；</li>
+</ul>
+<h5 id="插入链接"><strong>插入链接</strong></h5>
+<ul>
+<li>
+<p>行内式：[网址名字]+(链接)；</p>
+<p>欢迎来到百度；</p>
+</li>
+<li>
+<p><strong>跳转功能</strong>：</p>
+<ul>
+<li>超链接跳转，即插入上述链接；</li>
+<li>参考式链接跳转，输入[名字描述]+[标号]，再Ctrl+单击跳转至末尾添加地址；例如，CSDN跳转介绍;</li>
+<li>本地文件跳转（未成功），[Readme1]+(文件路径)；例如[优化控制][D:\3Typora笔记\优化控制.md]；</li>
+<li>制作锚点，任意跳转：输入<!-- raw HTML omitted --><!-- raw HTML omitted -->标记锚点，在需要跳转此处的地方输入<!-- raw HTML omitted -->显示文字<!-- raw HTML omitted -->；例如，加粗；
+<ul>
+<li>注：当锚点文字是文中文字时，可以不用设置锚点，直接输入代码实现跳转~~ 例如，跳转至标题分级；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="插入表情"><strong>插入表情</strong></h5>
+<p>在表情单词的前后输入两个<code>:</code>，能够找到对应表情，如<code>:smile:</code> :smile:</p>
+<h5 id="插入图片"><strong>插入图片</strong></h5>
+<ul>
+<li>输入<code>!</code>+<code>[显示的文字]</code>+<code>(图片地址)</code>;快捷键：<code>Ctrle</code>+<code>Shift</code>+<code>I</code>;</li>
+<li>建议直接拖拽图片进来~</li>
+</ul>
+<h5 id="插入目录"><strong>插入目录</strong></h5>
+<p>输入<code>[toc]</code>并回车，自动在当前位置创建目录；</p>
+<h5 id="插入代码块">插入代码块</h5>
+<p>快捷键：输入```+ 回车（ 可以选择代码语言）</p>
+<h3 id="标注">标注</h3>
+<h5 id="引用文字"><strong>引用文字</strong></h5>
+<p>可以用来表示内容的递进关系:</p>
+<ul>
+<li><code>&gt;</code>+<code>空格</code>+引用文字；</li>
+<li><code>Ctrl</code>+<code>Shift</code>+<code>Q</code>;</li>
+</ul>
+<h5 id="分割线"><strong>分割线</strong></h5>
+<p>输入<code>***</code>或者<code>---</code>并回车；</p>
+<p><strong>删除线</strong></p>
+<p>分别在A前后输入<code>~~</code>或者使用快捷键：<code>Alt</code>+<code>Shift</code>+<code>5</code>;</p>
+<h5 id="标注上下标"><strong>标注上下标</strong></h5>
+<ul>
+<li>
+<p><code>&lt;sup&gt;</code>+A+<code>&lt;/sup&gt;</code>；<code>&lt;sub&gt;</code>+A+<code>&lt;/sub&gt;</code></p>
+</li>
+<li>
+<p>建议打开设置：（需设置）在需要标注的A前后加入<code>^</code>表示上标；<code>~</code>表示下标；</p>
+</li>
+</ul>
+<h3 id="typora简单偏好设置">typora简单偏好设置</h3>
+<h5 id="1让大纲看起来更舒服">1.让大纲看起来更舒服</h5>
+<p>Typora的文件—&raquo;&gt;偏好设置</p>
+<p><img src="https://img-blog.csdnimg.cn/5c7b0d7088d241f1bbb00b8be55b8a5d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5L2g5oiR5pyJ54y_,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
+<h5 id="2自动保存需要重启typora">2.自动保存（需要重启Typora)</h5>
+<h5 id="在这里插入图片描述httpsimg-blogcsdnimgcn4b6699fc9fc44cbbb7b2481d43866891pngpic_center"><img src="https://img-blog.csdnimg.cn/4b6699fc9fc44cbbb7b2481d43866891.png#pic_center" alt="在这里插入图片描述"></h5>
+<h5 id="3调试功能及使用需要重启typora">3.调试功能及使用（需要重启Typora)</h5>
+<p>（1）勾选开启调试模式</p>
+<p><img src="https://img-blog.csdnimg.cn/b696544d550c4d4d93e6bfbbc786dec0.png#pic_center" alt="在这里插入图片描述"></p>
+<p>（2）右键点击检查</p>
+<p>（3）小箭头定位元素</p>
+<p><img src="https://img-blog.csdnimg.cn/e63ec5f762e644e1a1cf631a39d56e84.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5L2g5oiR5pyJ54y_,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
+<p>（4）定位后 可在Style中修改</p>
+<p><img src="https://img-blog.csdnimg.cn/317e7bc12aa44668a6bd642e62bb2d90.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5L2g5oiR5pyJ54y_,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
+<p>(5) 但是关闭重启Typora后，修改的效果会消失</p>
+<p>若想永久生效需要修改主题文件</p>
+<p>文件-》偏好设置-》外观-》打开主题文件夹</p>
+<p><img src="https://img-blog.csdnimg.cn/960724506a24424cb53efcf70da4297d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5L2g5oiR5pyJ54y_,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
+<p>当前使用谁就修改它的内容</p>
+<p>原文链接：</p>
+<p><a href="https://blog.csdn.net/dc_12138/article/details/124263439">https://blog.csdn.net/dc_12138/article/details/124263439</a></p>
+<p><a href="https://blog.csdn.net/CxNingSX/article/details/126018046">https://blog.csdn.net/CxNingSX/article/details/126018046</a></p>
+<p><a href="https://blog.csdn.net/YUEsheng416/article/details/124870862">https://blog.csdn.net/YUEsheng416/article/details/124870862</a></p>
+</section>
+
+  
+  
+  <div class="paginator">
+    
+    <a class="prev" href="https://p1um3r.github.io/blog/hello-world/">
+      <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3.77086 21.1546C11.0491 22.698 21.4339 21.7773 21.4339 16.3608V4.63375C21.4339 3.93962 21.3581 3.30535 21.1917 2.76787M3.77086 21.1546C1.9934 20.7777 0.973585 18.7264 1.08749 16.688C1.2668 13.479 1.15721 9.43135 1.00513 6.21507C0.87809 3.52811 3.12891 1.16316 5.51029 1.25008C9.76594 1.40542 15.377 1.20229 18.7912 1.00542C20.0864 0.930734 20.8406 1.63385 21.1917 2.76787M3.77086 21.1546C4.56586 21.4723 5.49168 21.7879 6.5 22.0658M21.1917 2.76787C23.1097 4.18217 23.13 12.4191 22.9004 16.3608C20.8478 24.0194 12.3061 23.6662 6.5 22.0658M21.1917 2.76787C21.7612 4.51192 22.7203 9.67216 22 16.3608C21.2797 23.0494 11.3665 22.9511 6.5 22.0658M9.94496 9C9.28897 9.61644 7.63215 10.997 6.04814 11.7966C5.98257 11.8297 5.98456 11.9753 6.05061 12.0063C7.05496 12.4779 8.92941 13.9264 9.94496 15M6.44444 11.9667C8.86549 12.0608 14 12 16 11" stroke="currentColor" stroke-linecap="round"/>
+      </svg>
+      <span>Hello World</span></a>
+    
+    
+  </div>
+  
+
+  
+
+
+  
+  
+  
+</article>
+
+
+        </div><footer class="footer">
+  <p>&copy; 2023 <a href="https://p1um3r.github.io">p1um&#39;s blog</a>
+    Powered by
+    <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>
+    <a href="https://github.com/guangzhengli/hugo-theme-ladder" rel="noopener" target="_blank">Ladder</a>
+️  </p>
+</footer>
+
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10.5376 22.7916C11.0152 22.7207 22.5795 21.1781 22.0978 10.4211C22.0536 9.43274 21.9303 8.53367 21.7387 7.71865M10.5376 22.7916C16.876 22.3728 20.0969 19.8899 21.5383 16.9142M10.5376 22.7916C9.7707 22.9055 8.97982 22.8964 8.19743 22.7725M21.7387 7.71865C21.4988 6.69828 21.1518 5.80967 20.7188 5.04257M21.7387 7.71865C22.6022 10.1105 23.0542 13.7848 21.5383 16.9142M20.7188 5.04257C17.1684 -1.24629 7.83127 0.632493 4.27577 5.04257C2.88063 6.77451 -0.0433281 11.1668 1.38159 16.6571C2.27481 20.0988 5.17269 22.2936 8.19743 22.7725M20.7188 5.04257C22.0697 6.9404 24.0299 11.3848 22.3541 15.4153M21.5383 16.9142C21.8737 16.4251 22.1428 15.9235 22.3541 15.4153M8.19743 22.7725C12.1971 23.4683 20.6281 22.971 22.3541 15.4153M14 10.945C13.3836 10.289 12.003 8.63215 11.2034 7.04814C11.1703 6.98257 11.0247 6.98456 10.9937 7.05061C10.5221 8.05496 9.07362 9.92941 8 10.945M11.0333 7.44444C10.9392 9.86549 11 15 12 17" stroke="currentColor" stroke-linecap="round"/>
+    </svg>
+</a>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Copied';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+        codeblock.parentNode.appendChild(copybutton);
+    });
+</script></main>
+    </body>
+  
+  <script src="/main.min.6bb26b69159420159c74dc9e097b06a578ed2b68c701466a91a44a9632d851bd0af167a1b30012387b4c512b48ad9ad4d3394e04d77ae38d57e1920fe4ed34fe.js" integrity="sha512-a7JraRWUIBWcdNyeCXsGpXjtK2jHAUZqkaRKljLYUb0K8WehswASOHtMUStIrZrU0zlOBNd6441X4ZIP5O00/g==" crossorigin="anonymous" defer></script></html>

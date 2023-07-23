@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on p1um&#39;s blog</title>
+    <link>https://p1um3r.github.io/blog/</link>
+    <description>Recent content in Blogs on p1um&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 23 Jul 2023 22:18:34 +0800</lastBuildDate><atom:link href="https://p1um3r.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello World</title>
+      <link>https://p1um3r.github.io/blog/hello-world/</link>
+      <pubDate>Sun, 23 Jul 2023 22:18:34 +0800</pubDate>
+      
+      <guid>https://p1um3r.github.io/blog/hello-world/</guid>
+      <description>&lt;p&gt;Hello World!
+crhdbd!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Typora 使用说明</title>
+      <link>https://p1um3r.github.io/blog/typora-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</link>
+      <pubDate>Sun, 23 Jul 2023 22:18:00 +0800</pubDate>
+      
+      <guid>https://p1um3r.github.io/blog/typora-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</guid>
+      <description>&lt;h1 id=&#34;typora-使用说明&#34;&gt;Typora 使用说明&lt;/h1&gt;
+&lt;h3 id=&#34;标题&#34;&gt;标题&lt;/h3&gt;
+&lt;p&gt;标题语法了解html都不陌生，有点儿类似，h1~h6类似这边的#号。数字越小（#号越少）标题越大，分六个等级。
+定义标题有以下几种方式。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;方式一：这个标题手敲就在文本前边敲#号，#和文本中间需又空格隔开。&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;方式二：快捷键，Ctrl+(1~6)。&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;方式三：增大标题级别：Ctr+=；减少标题级别：Ctrl+-;&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt; 方式四：在Typora文本编辑区右键鼠标，选择段落也可以插入标题。不止标题，还有其他样式设置&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt; 方式五：在编辑器中左上角的菜单栏选择段落去插入标题。不止标题，还有其他样式设置&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;前两种方式应该比较常用（推荐），后两种适合小白 \textcolor{red}{前两种方式应该比较常用（推荐），后两种适合小白}&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;标题&lt;/th&gt;
+&lt;th&gt;语法（方式一）&lt;/th&gt;
+&lt;th&gt;快捷键（方式二）&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;一级标题&lt;/td&gt;
+&lt;td&gt;#一级标题&lt;/td&gt;
+&lt;td&gt;Ctrl+1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;二级标题&lt;/td&gt;
+&lt;td&gt;##二级标题&lt;/td&gt;
+&lt;td&gt;Ctrl+2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;三级标题&lt;/td&gt;
+&lt;td&gt;###三级标题&lt;/td&gt;
+&lt;td&gt;Ctrl+3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;四级标题&lt;/td&gt;
+&lt;td&gt;####四级标题&lt;/td&gt;
+&lt;td&gt;Ctrl+4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;五级标题&lt;/td&gt;
+&lt;td&gt;#####五级标题&lt;/td&gt;
+&lt;td&gt;Ctrl+5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;六级标题&lt;/td&gt;
+&lt;td&gt;######六级标题&lt;/td&gt;
+&lt;td&gt;Ctrl+6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;字体样式斜体加粗下划线删除线等&#34;&gt;字体样式（斜体，加粗，下划线，删除线等）&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;字体&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;语法（方式一）&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;快捷键（方式二）&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;斜体&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;code&gt;*文本*&lt;/code&gt;或&lt;code&gt;_文本_&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Ctrl+I&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;加粗&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;code&gt;**文本**&lt;/code&gt;或&lt;code&gt;__文本__&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Ctrl+B&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;下划线&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;code&gt;&amp;lt;u&amp;gt;文本&amp;lt;/u&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Ctrl+U&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;删除线&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;code&gt;~~文本~~&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Alt+Shift+5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;加粗斜体&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;code&gt;***文本***&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;无&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;高亮&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;code&gt;==文本==&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;备注：需勾选高亮设置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;文本居中&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;code&gt;&amp;lt;center&amp;gt;文本&amp;lt;/center&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;无&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;文本颜色修改&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;code&gt;$\textcolor{颜色}{文本}$&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;备注：需勾选内联公式设置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;清除文本样式&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;文本&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;code&gt;Ctrl&lt;/code&gt;+&lt;code&gt;\&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h5 id=&#34;文本颜色修改&#34;&gt;文本颜色修改&lt;/h5&gt;
+&lt;p&gt;$\textcolor{GreenYellow}{GreenYellow}，\textcolor{Yellow}{Yellow}，\textcolor{Goldenrod}{Goldenrod},\textcolor{Dandelion}{Dandelion}， \textcolor{Apricot}{Apricot}， \textcolor{Peach}{Peach}， \textcolor{Melon}{Melon}， \textcolor{YellowOrange}{YellowOrange}， $$\textcolor{Orange}{Orange}，\textcolor{BurntOrange}{BurntOrange}，\textcolor{Bittersweet}{Bittersweet}，\textcolor{RedOrange}{RedOrange}，\textcolor{Mahogany}{Mahogany}，\textcolor{Maroon}{Maroon}，\textcolor{BrickRed}{BrickRed}，\textcolor{Red}{Red}$，$\textcolor{OrangeRed}{OrangeRed}， \textcolor{RubineRed}{RubineRed}， \textcolor{WildStrawberry}{WildStrawberry}，\textcolor{Salmon}{Salmon}，\textcolor{CarnationPink}{CarnationPink}， \textcolor{Magenta}{Magenta}，\textcolor{VioletRed}{VioletRed}$， $\textcolor{Rhodamine}{Rhodamine}， \textcolor{Mulberry}{Mulberry}，\textcolor{RedViolet}{RedViolet}， \textcolor{Fuchsia}{Fuchsia}， \textcolor{Lavender}{Lavender}，\textcolor{Thistle}{Thistle}，\textcolor{Orchid}{Orchid}，\textcolor{DarkOrchid}{DarkOrchid}$,$\textcolor{Purple}{Purple}，\textcolor{Plum}{Plum}，\textcolor{Violet}{Violet}，\textcolor{RoyalPurple}{RoyalPurple}，\textcolor{BlueViolet}{BlueViolet}，\textcolor{Periwinkle}{Periwinkle}， \textcolor{CadetBlue}{CadetBlue}，\textcolor{CornflowerBlue}{CornflowerBlue}$，$\textcolor{MidnightBlue}{MidnightBlue}，\textcolor{NavyBlue}{NavyBlue}，\textcolor{RoyalBlue}{RoyalBlue}，\textcolor{Blue}{Blue}，\textcolor{Cerulean}{Cerulean}，\textcolor{Cyan}{Cyan}，\textcolor{ProcessBlue}{ProcessBlue}，\textcolor{SkyBlue}{SkyBlue}$，$\textcolor{Turquoise}{Turquoise}，\textcolor{TealBlue}{TealBlue}，\textcolor{Aquamarine}{Aquamarine}，\textcolor{BlueGreen}{BlueGreen}，\textcolor{Emerald}{Emerald}，\textcolor{JungleGreen}{JungleGreen}，\textcolor{SeaGreen}{SeaGreen}，\textcolor{Green}{Green}$，$\textcolor{ForestGreen}{ForestGreen}，\textcolor{PineGreen}{PineGreen}，\textcolor{LimeGreen}{LimeGreen}，\textcolor{YellowGreen}{YellowGreen}，\textcolor{SpringGreen}{SpringGreen}，\textcolor{OliveGreen}{OliveGreen}，\textcolor{RawSienna}{RawSienna}$，$\textcolor{Sepia}{Sepia}，\textcolor{Brown}{Brown}，\textcolor{Tan}{Tan}，\textcolor{Gray}{Gray}，\textcolor{Black}{Black}$&lt;/p&gt;
+&lt;p&gt;当然颜色还有很多就不一一举例了，上边是这些颜色的单词(如上黑体没正常显示的在Typora上都会正常显示)，根据更换字体颜色的语法去讲单词写入语法中，就出现如上效果，大小写不区分。如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;$\textcolor{black}{文本}$&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$\textcolor{#00fcfc}{文本}$&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$\textcolor{rgb(255,0,0)}{文本}$&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这边就列这如上三种常用颜色选择器模式，注意这块需要更改设置才能识别到字体样式，需要在Typora软件里更改设置。在左上角菜单栏里选择。&lt;/p&gt;
+&lt;p&gt;设置步骤：文件——&amp;gt;偏好设置——&amp;gt;&lt;em&gt;M&lt;strong&gt;a&lt;/strong&gt;r&lt;strong&gt;k&lt;/strong&gt;d&lt;strong&gt;o&lt;/strong&gt;wn&lt;/em&gt;——&amp;gt;勾选内联公式即可；识别高亮语法设置同理勾选高亮即可。操作如下图&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/d6e8fa7f3763440689739be96259cb92.jpeg#pic_center&#34; alt=&#34;高亮操作步骤&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;插入内容&#34;&gt;插入内容&lt;/h3&gt;
+&lt;h5 id=&#34;插入列表&#34;&gt;&lt;strong&gt;插入列表&lt;/strong&gt;&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;有序列表：正常插入即可，如&lt;code&gt;1.&lt;/code&gt;，&lt;code&gt;2.&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;无序列表：使用&lt;code&gt;+&lt;/code&gt;,&lt;code&gt;-&lt;/code&gt;和&lt;code&gt;*&lt;/code&gt;都可以创建无序列表；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;其中，如果已使用一级无序列，可以直接回车+&lt;code&gt;Tab&lt;/code&gt;,调至二级无序列表；&lt;/p&gt;
+&lt;p&gt;如果已使用二级无序列，可以&lt;code&gt;shift&lt;/code&gt;+&lt;code&gt;Tab&lt;/code&gt;回到上一级；&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;任务列表：依次输入&lt;code&gt;-&lt;/code&gt;+&lt;code&gt;空格&lt;/code&gt;+&lt;code&gt;[空格]&lt;/code&gt;+&lt;code&gt;空格&lt;/code&gt;；&lt;/p&gt;
+&lt;p&gt;增加缩进：&lt;code&gt;Ctrl&lt;/code&gt;+&lt;code&gt;]&lt;/code&gt; ; 减少缩进：&lt;code&gt;Ctrl&lt;/code&gt;+&lt;code&gt;[&lt;/code&gt;;&lt;/p&gt;
+&lt;h5 id=&#34;插入代码和代码块&#34;&gt;&lt;strong&gt;插入代码和代码块&lt;/strong&gt;&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;代码表示，即在A的前后加&lt;code&gt;飘号&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;代码块表示:(偏好里可设置是否自动标号)
+&lt;ul&gt;
+&lt;li&gt;三个&lt;code&gt;飘号&lt;/code&gt;+&lt;code&gt;代码类型&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;快捷键：&lt;code&gt;Ctrl+Shift+K&lt;/code&gt;;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;插入表格&#34;&gt;&lt;strong&gt;插入表格&lt;/strong&gt;&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;输入&lt;code&gt;|表头1|表头2|&lt;/code&gt;并回车，即可创建一个包含2列表；&lt;/li&gt;
+&lt;li&gt;直接弹出对话框&lt;code&gt;Ctrl+T&lt;/code&gt;;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;表格内对齐方式&#34;&gt;&lt;strong&gt;表格内对齐方式&lt;/strong&gt;&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;左对齐：&lt;code&gt;:|&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;右对齐：&lt;code&gt;|:&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;中对齐：&lt;code&gt;:|:&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;插入数学公式&#34;&gt;&lt;strong&gt;插入数学公式&lt;/strong&gt;&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;行间：直接输入&lt;code&gt;$$&lt;/code&gt;并回车，即可打开公式输入框，公式按照[LaTex公式语法](&lt;a href=&#34;https://zhuanlan.zhihu.com/p/110756681#:~:text=&#34;&gt;https://zhuanlan.zhihu.com/p/110756681#:~:text=&lt;/a&gt; 在LaTeX数学模式中，公式有两种形式——行内公式和行间公式。,前者公式嵌入在行内，适用于简单短小的公式；后者居中独占一行，适用于比较长或重要的公式。 公式中的空格均会被忽略，可以使用命令quad或qquad实现)输入;&lt;/li&gt;
+&lt;li&gt;行内：直接输入&lt;code&gt;$&lt;/code&gt;+LaTex公式+&lt;code&gt;$&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;快捷键：&lt;code&gt;Ctrl+Shift+M&lt;/code&gt;；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;插入链接&#34;&gt;&lt;strong&gt;插入链接&lt;/strong&gt;&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;行内式：[网址名字]+(链接)；&lt;/p&gt;
+&lt;p&gt;欢迎来到百度；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;跳转功能&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;超链接跳转，即插入上述链接；&lt;/li&gt;
+&lt;li&gt;参考式链接跳转，输入[名字描述]+[标号]，再Ctrl+单击跳转至末尾添加地址；例如，CSDN跳转介绍;&lt;/li&gt;
+&lt;li&gt;本地文件跳转（未成功），[Readme1]+(文件路径)；例如[优化控制][D:\3Typora笔记\优化控制.md]；&lt;/li&gt;
+&lt;li&gt;制作锚点，任意跳转：输入&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;标记锚点，在需要跳转此处的地方输入&lt;!-- raw HTML omitted --&gt;显示文字&lt;!-- raw HTML omitted --&gt;；例如，加粗；
+&lt;ul&gt;
+&lt;li&gt;注：当锚点文字是文中文字时，可以不用设置锚点，直接输入代码实现跳转~~ 例如，跳转至标题分级；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;插入表情&#34;&gt;&lt;strong&gt;插入表情&lt;/strong&gt;&lt;/h5&gt;
+&lt;p&gt;在表情单词的前后输入两个&lt;code&gt;:&lt;/code&gt;，能够找到对应表情，如&lt;code&gt;:smile:&lt;/code&gt; :smile:&lt;/p&gt;
+&lt;h5 id=&#34;插入图片&#34;&gt;&lt;strong&gt;插入图片&lt;/strong&gt;&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;输入&lt;code&gt;!&lt;/code&gt;+&lt;code&gt;[显示的文字]&lt;/code&gt;+&lt;code&gt;(图片地址)&lt;/code&gt;;快捷键：&lt;code&gt;Ctrle&lt;/code&gt;+&lt;code&gt;Shift&lt;/code&gt;+&lt;code&gt;I&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;建议直接拖拽图片进来~&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;插入目录&#34;&gt;&lt;strong&gt;插入目录&lt;/strong&gt;&lt;/h5&gt;
+&lt;p&gt;输入&lt;code&gt;[toc]&lt;/code&gt;并回车，自动在当前位置创建目录；&lt;/p&gt;
+&lt;h5 id=&#34;插入代码块&#34;&gt;插入代码块&lt;/h5&gt;
+&lt;p&gt;快捷键：输入```+ 回车（ 可以选择代码语言）&lt;/p&gt;
+&lt;h3 id=&#34;标注&#34;&gt;标注&lt;/h3&gt;
+&lt;h5 id=&#34;引用文字&#34;&gt;&lt;strong&gt;引用文字&lt;/strong&gt;&lt;/h5&gt;
+&lt;p&gt;可以用来表示内容的递进关系:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&amp;gt;&lt;/code&gt;+&lt;code&gt;空格&lt;/code&gt;+引用文字；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl&lt;/code&gt;+&lt;code&gt;Shift&lt;/code&gt;+&lt;code&gt;Q&lt;/code&gt;;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;分割线&#34;&gt;&lt;strong&gt;分割线&lt;/strong&gt;&lt;/h5&gt;
+&lt;p&gt;输入&lt;code&gt;***&lt;/code&gt;或者&lt;code&gt;---&lt;/code&gt;并回车；&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;删除线&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;分别在A前后输入&lt;code&gt;~~&lt;/code&gt;或者使用快捷键：&lt;code&gt;Alt&lt;/code&gt;+&lt;code&gt;Shift&lt;/code&gt;+&lt;code&gt;5&lt;/code&gt;;&lt;/p&gt;
+&lt;h5 id=&#34;标注上下标&#34;&gt;&lt;strong&gt;标注上下标&lt;/strong&gt;&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;sup&amp;gt;&lt;/code&gt;+A+&lt;code&gt;&amp;lt;/sup&amp;gt;&lt;/code&gt;；&lt;code&gt;&amp;lt;sub&amp;gt;&lt;/code&gt;+A+&lt;code&gt;&amp;lt;/sub&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;建议打开设置：（需设置）在需要标注的A前后加入&lt;code&gt;^&lt;/code&gt;表示上标；&lt;code&gt;~&lt;/code&gt;表示下标；&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;typora简单偏好设置&#34;&gt;typora简单偏好设置&lt;/h3&gt;
+&lt;h5 id=&#34;1让大纲看起来更舒服&#34;&gt;1.让大纲看起来更舒服&lt;/h5&gt;
+&lt;p&gt;Typora的文件—&amp;raquo;&amp;gt;偏好设置&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/5c7b0d7088d241f1bbb00b8be55b8a5d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5L2g5oiR5pyJ54y_,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h5 id=&#34;2自动保存需要重启typora&#34;&gt;2.自动保存（需要重启Typora)&lt;/h5&gt;
+&lt;h5 id=&#34;在这里插入图片描述httpsimg-blogcsdnimgcn4b6699fc9fc44cbbb7b2481d43866891pngpic_center&#34;&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/4b6699fc9fc44cbbb7b2481d43866891.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/h5&gt;
+&lt;h5 id=&#34;3调试功能及使用需要重启typora&#34;&gt;3.调试功能及使用（需要重启Typora)&lt;/h5&gt;
+&lt;p&gt;（1）勾选开启调试模式&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/b696544d550c4d4d93e6bfbbc786dec0.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;（2）右键点击检查&lt;/p&gt;
+&lt;p&gt;（3）小箭头定位元素&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/e63ec5f762e644e1a1cf631a39d56e84.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5L2g5oiR5pyJ54y_,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;（4）定位后 可在Style中修改&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/317e7bc12aa44668a6bd642e62bb2d90.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5L2g5oiR5pyJ54y_,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;(5) 但是关闭重启Typora后，修改的效果会消失&lt;/p&gt;
+&lt;p&gt;若想永久生效需要修改主题文件&lt;/p&gt;
+&lt;p&gt;文件-》偏好设置-》外观-》打开主题文件夹&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/960724506a24424cb53efcf70da4297d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5L2g5oiR5pyJ54y_,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;当前使用谁就修改它的内容&lt;/p&gt;
+&lt;p&gt;原文链接：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/dc_12138/article/details/124263439&#34;&gt;https://blog.csdn.net/dc_12138/article/details/124263439&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/CxNingSX/article/details/126018046&#34;&gt;https://blog.csdn.net/CxNingSX/article/details/126018046&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/YUEsheng416/article/details/124870862&#34;&gt;https://blog.csdn.net/YUEsheng416/article/details/124870862&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
