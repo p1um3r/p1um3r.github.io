@@ -14,9 +14,15 @@
       
       <guid>https://p1um3r.github.io/blog/rsa%E8%A7%A3%E9%A2%98%E6%80%BB%E7%BB%93/</guid>
       <description>&lt;h1 id=&#34;rsa解题总结&#34;&gt;RSA解题总结&lt;/h1&gt;
-&lt;h2 id=&#34;一般情况&#34;&gt;一般情况&lt;/h2&gt;
+&lt;h2 id=&#34;1一般情况&#34;&gt;1、一般情况&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;h3 id=&#34;加密&#34;&gt;加密&lt;/h3&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;h3 id=&#34;解密&#34;&gt;解密&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;p = 1325465431
 q = 152317153
 e = 65537
@@ -42,14 +48,89 @@ e = 65537
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;decrypted &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; rsakey&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;decrypt(c)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(decrypted)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 用于加密时经过填充，导致c和n长度一样的情况，此时用pow解会出现乱码&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;共模数攻击&#34;&gt;共模数攻击&lt;/h2&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;2共模数攻击&#34;&gt;2、共模数攻击&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h3 id=&#34;原理&#34;&gt;原理&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;任何两个用户具有相同的模数都是不安全的，因为每个用户都可以轻松地将模数分解。&lt;/p&gt;
+&lt;p&gt;假设用户生成了$r$个拥有共模数$N$的$RSA$素数，可以得到$r$个方程式：
+$$
+\begin{equation}
+\begin{split}
+e_1d_1 =&amp;amp; 1 + k_1\lambda(N)\newline
+&amp;amp;\vdots\newline
+e_rd_r =&amp;amp; 1 + k_r\lambda(N)
+\end{split}
+\end{equation}
+$$
+其中 $k_i&amp;lt;d_i$恒成立。由于每个私有指数$e$都很小，所以我们假设每个公共指数都是足够大的。&lt;/p&gt;
+&lt;p&gt;共模数攻击是基于维纳攻击&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;RSA%E8%A7%A3%E9%A2%98%E6%80%BB%E7%BB%93/image-20230806165716546.png&#34; alt=&#34;image-20230806165716546&#34;&gt;
+$$
+e_id_i=1+k_i\lambda(N)=1+\frac{k_i}{g}\phi(N)=1+\frac{k_i}{g}(N-s)
+$$
+我们用$W_i$来表示$g$乘以第$i$个密钥方程。写作：
+$$
+W_i:e_id_ig-k_iN=g-k_is
+$$
+$W_i$是维纳攻击的起点。&lt;/p&gt;
+&lt;p&gt;由于每个人方程式中的$\lambda(N)$的值都相同，所以可以将任意两个方程式结合起来来获得一个不含$\lambda(N)$的新方程。
+$$
+e_id_i=1+k_i\lambda(N)\newline
+e_jd_j=1+k_j\lambda(N)\newline
+k_je_id_i=k_j+k_jk_i\lambda(N)\newline
+k_ie_jd_j=k_i+k_jk_i\lambda(N)\newline
+$$
+合并得到：
+$$
+G_{i,j}:k_id_je_j-k_jd_ie_i=k_i-k_j
+$$
+这个方程式$G_{i,j}$是共模数攻击的起点。&lt;/p&gt;
+&lt;p&gt;对于每个例子，我们可以假定公共指数足够大（$e_i\approx N$)，$g=\gcd(p-1,q-1)$较小（假定$\frac{g}{k_i}&amp;lt;1$恒成立）&lt;/p&gt;
+&lt;p&gt;这种攻击方式是一种基于格的攻击。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h3 id=&#34;证明&#34;&gt;证明&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;利用上述，我们考虑两个有共模数$N$的$RSA$，每个的私有指数都小于$N^{\delta_2}$，我们得到以下几个方程：
+$$
+k_2W_1:k_2d_1ge_1-k_2k_1N=k_2(g-k_1s)\newline
+gG_{1,2}:k_1d_2ge_2-k_2d_1ge_1=g(k_1-k_2)\newline
+W_1W_2:d_1d_2g^2e_1e_2-d_1k_2ge_1N-d_2k_1ge_2N+k_1k_2N^2=(g-k_1s)(g-k_2s)
+$$
+同时，平凡方程$k_1k_2=k_1k_2$可以写成向量矩阵方程$x_2 \mathcal{B}_2 =v_2$，其中：
+$$
+\begin{align}
+x_2&amp;amp;=(k_1k_2,k_2d_1g,k_1d_2g,d_1d_2g^2)\newline
+\mathcal{B}_2&amp;amp;=
+\begin{bmatrix}
+1&amp;amp;-N&amp;amp;0&amp;amp;N^2\newline
+&amp;amp;e_1&amp;amp;-e_1&amp;amp;-e_1N\newline
+&amp;amp;&amp;amp;e_2&amp;amp;-e_2N\newline
+&amp;amp;&amp;amp;&amp;amp;e_1e_2
+\end{bmatrix}\newline
+v_2&amp;amp;=(j_1k_2,k_2(g-k_1s),g(k_1-k_2),(g-k_1s)(g-k_2s))
+\end{align}
+$$
+$v_2$是$\mathcal{B}_2$中行向量的线性组合，同时也是由$\mathcal{B}_2$的行向量生成的格$\mathcal{L}_2$中的一个向量。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;h3 id=&#34;攻击流程&#34;&gt;攻击流程&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;1.攻击者获得两个或多个$RSA$公钥，它们共用相同的模数$n$。&lt;/p&gt;
 &lt;p&gt;2.攻击者选取一个消息$m$，并对其进行加密，得到密文$c_1=m^{e_1} \bmod n$和$c_2=m^{e_2} \bmod n$，其中$e_1$和$e_2$分别是两个公钥中的指数&lt;/p&gt;
 &lt;p&gt;3.攻击者寻找模数$n$和两个指数$e_1$和$e_2$的最大公约数$\gcd(e_1,e_2)$，并将其命名为$g$。&lt;/p&gt;
 &lt;p&gt;4.如果$g$不等于 1，则说明攻击者找到了至少一个质因数$p$或$q$,并可以用它来推导$RSA$私钥中的指数$d$。&lt;/p&gt;
 &lt;p&gt;5.通过继续计算，攻击者可以确定私钥中的指数$d$，并从而获得原始消息$m$。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;h3 id=&#34;实现&#34;&gt;实现&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; gmpy2 &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; gcdext
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; libnum
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0xa6241c28743fbbe4f2f67cee7121497f622fd81947af30f327fb028445b39c2d517ba7fdcb5f6ac9e6217205f8ec9576bdec7a0faef221c29291c784eed393cd95eb0d358d2a1a35dbff05d6fa0cc597f672dcfbeecbb14bd1462cb6ba4f465f30f22e595c36e6282c3e426831d30f0479ee18b870ab658a54571774d25d6875&lt;/span&gt;
@@ -60,8 +141,12 @@ e = 65537
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;g, r, s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; gcdext(e1, e2)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;m &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; pow(c1, r, n) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; pow(c2, s, n) &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; n
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(libnum&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;n2s(int(m)))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;低加密指数广播攻击&#34;&gt;低加密指数广播攻击&lt;/h2&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;3低加密指数广播攻击&#34;&gt;3、低加密指数广播攻击&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;h3 id=&#34;适用情况&#34;&gt;适用情况&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;e很小，并且使用了相同的加密指数e给若干个接收者发送相同的信息&lt;/p&gt;
 &lt;p&gt;例如当$e=3$时，有以下等式成立：
 $$
@@ -72,10 +157,14 @@ c_3 = pow(m,e,n_3)\newline
 $$
 对上列等式运用中国剩余定理，得到
 $$
-c_x = pow(m,e,n_1*n_2*n_3*\cdots)
+c_x = pow(m,e,n_1&lt;em&gt;n_2&lt;/em&gt;n_3*&amp;hellip;)
 $$
 随后再进行低加密指数攻击。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;h3 id=&#34;实现-1&#34;&gt;实现&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; gmpy2
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; functools &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; reduce
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;CRT&lt;/span&gt;(clist, nlist):
@@ -96,16 +185,28 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    print(&lt;span style=&#34;color:#e6db74&#34;&gt;f&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;m=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;{&lt;/span&gt;m&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    print(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;could not decode m&amp;#34;&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;素数分解&#34;&gt;素数分解&lt;/h2&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;4素数分解&#34;&gt;4、素数分解&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;h3 id=&#34;方法&#34;&gt;方法&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;1、n值为&lt;strong&gt;临近&lt;/strong&gt;素数相乘得到可用yafu分解&lt;/p&gt;
-&lt;h2 id=&#34;低加密指数攻击&#34;&gt;低加密指数攻击&lt;/h2&gt;
-&lt;h3 id=&#34;原理&#34;&gt;原理&lt;/h3&gt;
+&lt;h2 id=&#34;5低加密指数攻击&#34;&gt;5、低加密指数攻击&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h3 id=&#34;原理-1&#34;&gt;原理&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;在 RSA 中 e 也称为加密指数。&lt;/p&gt;
 &lt;p&gt;由于 e 是可以随意选取的，选取小一点的 e 可以缩短加密时间，但是选取不当的话，就会造成安全问题。&lt;/p&gt;
 &lt;p&gt;若$m^3 &amp;lt; n$，即$c = m^3$&lt;/p&gt;
 &lt;p&gt;若$m^3 &amp;gt; n$但并非$m^3 \gg n$，即$c = (m^3 + i * n) \bmod n$，其中$i$是我们需要爆破的系数&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;h3 id=&#34;实现-2&#34;&gt;实现&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;若$m^3 &amp;lt; n$&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; gmpy2
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;n&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;22885480907469109159947272333565375109310485067211461543881386718201442106967914852474989176175269612229966461160065872310916096148216253429849921988412342732706875998100337754561586600637594798877898552625378551427864501926224989873772743227733285336042475675299391051376624685754547818835551263597996620383338263448888107691240136257201191331617560711786674975909597833383395574686942099700631002290836152972352041024137872983284691831292216787307841877839674258086005814225532597955826353796634417780156185485054141684249037538570742860026295194559710972266059844824388916869414355952432189722465103299013237588737&lt;/span&gt;
@@ -128,8 +229,12 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print(&lt;span style=&#34;color:#e6db74&#34;&gt;f&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;m=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;{&lt;/span&gt;m&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;break&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    i &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;低解密指数攻击-wiener-attack&#34;&gt;低解密指数攻击 (Wiener Attack)&lt;/h2&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;6低解密指数攻击-wiener-attack&#34;&gt;6、低解密指数攻击 (Wiener Attack)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;h3 id=&#34;实现-3&#34;&gt;实现&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; gmpy2
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; Crypto.Util.number &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; long_to_bytes
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
@@ -184,23 +289,39 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;c &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;165251729917394529793163344300848992394021337429474789711805041655116845722480301677817165053253655027459227404782607373107477419083333844871948673626672704233977397989843349633720167495862807995411682262559392496273163155214888276398332204954185252030616473235814999366132031184631541209554169938146205402400412307638567132128690379079483633171535375278689326189057930259534983374296873110199636558962144635514392282351103900375366360933088605794654279480277782805401749872568584335215630740265944133347038070337891035560658434763924576508969938866566235926587685108811154229747423410476421860059769485356567301897413767088823807510568561254627099309752215808220067495561412081320541540679503218232020279947159175547517811501280846596226165148013762293861131544331444165070186672186027410082671602892508739473724143698396105392623164025712124329254933353509384748403154342322725203183050328143736631333990445537119855865348221215277608372952942702104088940952142851523651639574409075484106857403651453121036577767672430612728022444370874223001778580387635197325043524719396707713385963432915855227152371800527536048555551237729690663544828830627192867570345853910196397851763591543484023134551876591248557980182981967782409054277224&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;d &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; wienerAttack(e, n)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;m &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; pow(c, d, n)
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;p---1光滑数分解&#34;&gt;$p - 1$光滑数分解&lt;/h2&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;7p---1光滑数分解&#34;&gt;7、$p - 1$光滑数分解&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;h3 id=&#34;前置知识&#34;&gt;前置知识&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;费马小定理$(Fermat Theorem)$：若$p$是素数，且$p \nmid a$,则$a^{p-1} \equiv 1(\bmod p)$&lt;/p&gt;
 &lt;p&gt;​                 $//$本来是$a^p \equiv a(\bmod p)$，为了方便我们写成上面的形式&lt;/p&gt;
 &lt;p&gt;$B-Smooth$数：如果一个整数的所有素因子都不大于B，我们称这个整数为$B-Smooth$数。&lt;/p&gt;
 &lt;p&gt;例$1:12=2&lt;em&gt;2&lt;/em&gt;3$，因此$12$是$3-Smooth$的数&lt;/p&gt;
 &lt;p&gt;例$2:30=2&lt;em&gt;3&lt;/em&gt;5$，因此$130$是$5-Smooth$的数&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;h3 id=&#34;概述&#34;&gt;概述&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;光滑数 (Smooth number)：指可以分解为小素数乘积的正整数&lt;/p&gt;
 &lt;p&gt;当p是N 的因数，并且p−1是光滑数，可以考虑使用&lt;code&gt;Pollard&#39;s p-1&lt;/code&gt;算法来分解N&lt;/p&gt;
 &lt;p&gt;当p是N的因数，并且p+1是光滑数，可以考虑使用&lt;code&gt;Williams&#39;s p+1&lt;/code&gt;算法来分解N&lt;/p&gt;
-&lt;h3 id=&#34;原理-1&#34;&gt;原理&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h3 id=&#34;原理-2&#34;&gt;原理&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;设$p-1$是$B-Smooth$的，可设$p-1=p_1p_2&amp;hellip;p_n(\forall 1\le i\le n,p_i\le B)$&lt;/p&gt;
 &lt;p&gt;若$p_1,p_2,&amp;hellip;,p_n$两两不同，则$p_1p_2&amp;hellip;p_n\mid B! \Rightarrow (p-1)\mid B!\Rightarrow B!=k(p-1)$。因此$a^{B!} \equiv a^{k(p-1)}\equiv 1(\bmod p)$&lt;/p&gt;
 &lt;p&gt;假设$N=pq$，计算$\gcd(a^{B!}-1, N)$，只要结果大于$0$小于$N$，那么结果就为$p$&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/8f6e63a2fa13494a81e0f65c2ccf1c9d.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;h3 id=&#34;实现-4&#34;&gt;实现&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;方法一：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;P &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; prod(primes)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
@@ -225,9 +346,13 @@ while True:
         print(&amp;#34;q=&amp;#34;,q)
         break
     n += 1
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;p1光滑数分解&#34;&gt;$p+1$光滑数分解&lt;/h2&gt;
-&lt;h2 id=&#34;dp泄露&#34;&gt;$dp$泄露&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;8p1光滑数分解&#34;&gt;8、$p+1$光滑数分解&lt;/h2&gt;
+&lt;h2 id=&#34;9dp泄露&#34;&gt;9、$dp$泄露&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;h3 id=&#34;实现-5&#34;&gt;实现&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; gmpy2
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; libnum
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;e &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;65537&lt;/span&gt;
@@ -243,8 +368,12 @@ while True:
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        d &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; gmpy2&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;invert(e, phi)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        m &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; int(pow(c, d, n))
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(libnum&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;n2s(m))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;common-prime-rsa&#34;&gt;Common Prime RSA&lt;/h2&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;10common-prime-rsa&#34;&gt;10、Common Prime RSA&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;h3 id=&#34;简介&#34;&gt;简介&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Wiener 提出，如果 $p$ 和 $q$ 是素数，使得 $p-1$ 和 $q-1$ 有一个大数因子，那么具有这种性质的素数可以作为 Wiener Attack 的反制措施。&lt;/p&gt;
 &lt;p&gt;根据这种理论，出现了一种 $p-1$ 和 $q-1$ 拥有一个共同的大素数因子的 RSA 变体，我们称作共素数RSA（Common Prime RSA）。&lt;/p&gt;
 &lt;p&gt;对于某个大素数 $g$，让 $p=2ga+1$ 且 $q=2gb+1$ 作为平衡素数，保证 $a,b$ 互素且 $h=2gab+a+b$ 是素数。第一个限制确保 $\gcd(p-1,q-1)=2g$，第二个限制确保 $(pq-1)/2=gh$ 与 $N=pq$ 的大小接近。&lt;/p&gt;
@@ -264,7 +393,11 @@ $$
 N-1=2g(2gab+a+b)=2gh
 $$
 定义 $\gamma$ 表示共因子 $g$ 的相对于 $N$ 的大小，即 $g=N^\gamma$。考虑 $g\leq N^{1/2}$，故 $0\leq\gamma\leq1/2$。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;h3 id=&#34;生成算法&#34;&gt;生成算法&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; Crypto.Util.number &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;:
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    gcd
@@ -286,8 +419,14 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                q &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; g &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; b &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; p, q
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(gen_prime(&lt;span style=&#34;color:#ae81ff&#34;&gt;512&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0.48&lt;/span&gt;))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;攻击&#34;&gt;攻击&lt;/h3&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;h3 id=&#34;攻击&#34;&gt;攻击&lt;/h3&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;h4 id=&#34;gamma-接近于-12&#34;&gt;$\gamma$ 接近于 $1/2$&lt;/h4&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;当 $\gamma$ 接近于 $1/2$ 时，$g=N^\gamma$ 接近于 $N^{1/2}$，由于共素数RSA的特殊构造我们可以在 $O(N^{1/4-\gamma/2})$ 分解 $N$，故此时算法时间复杂度接近于 $O(1)$。&lt;/p&gt;
 &lt;p&gt;此时我们只需修改 &lt;code&gt;Pollard&#39;s rho method&lt;/code&gt; 的 $x_i$ 函数。&lt;/p&gt;
 &lt;p&gt;在 Mckee&amp;amp;Pinch 的论文&lt;a href=&#34;https://citeseerx.ist.psu.edu/doc_view/pid/64294c404088b69a519614510b8d12b4809a6b10&#34;&gt;《Further Attacks on Server-Aided RSA Cryptosystems》&lt;/a&gt;中指出将 $f(x)=x^2+1$ 修改为 $f(x)=x^{N-1}+3\pmod{N}$ 是最优解。&lt;/p&gt;
@@ -470,8 +609,18 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;分解-n-1&#34;&gt;分解 $N-1$&lt;/h4&gt;
 &lt;p&gt;当 $\gamma$ 过小，即 $g=N^\gamma$ 过小时，因为已知 $N-1=2gh$，故分解出 $g$ 是较为容易的。&lt;/p&gt;
 &lt;p&gt;可以使用 &lt;code&gt;yafu&lt;/code&gt; 分解 $\frac{N-1}{2}$，其中当 $\gamma$ 值约为 0.10 左右时分解迅速。&lt;/p&gt;
-&lt;h2 id=&#34;coppersmith定理攻击&#34;&gt;coppersmith定理攻击&lt;/h2&gt;
+&lt;h2 id=&#34;11coppersmith定理攻击&#34;&gt;11、coppersmith定理攻击&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;h3 id=&#34;基本原理&#34;&gt;基本原理&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;12e和phi不互素&#34;&gt;12、e和phi不互素&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h3 id=&#34;gcdeφn--1&#34;&gt;gcd(e,φ(n)) ≠ 1&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
@@ -1947,6 +2096,109 @@ Brainfuck只有八种符号，所有的操作都由这八种符号&lt;code&gt;&a
 &lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/dc_12138/article/details/124263439&#34;&gt;https://blog.csdn.net/dc_12138/article/details/124263439&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/CxNingSX/article/details/126018046&#34;&gt;https://blog.csdn.net/CxNingSX/article/details/126018046&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/YUEsheng416/article/details/124870862&#34;&gt;https://blog.csdn.net/YUEsheng416/article/details/124870862&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>欧几里得算法（gcd）</title>
+      <link>https://p1um3r.github.io/blog/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95gcd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://p1um3r.github.io/blog/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95gcd/</guid>
+      <description>&lt;h1 id=&#34;欧几里得算法gcd&#34;&gt;欧几里得算法（gcd）&lt;/h1&gt;
+&lt;h2 id=&#34;一简介&#34;&gt;一、简介&lt;/h2&gt;
+&lt;p&gt;欧几里得算法又称辗转相除法，是指用于计算两个非负整数a，b的最大公约数。应用领域有数学和计算机两个方面。计算公式$\gcd(a,b) = \gcd(b,a \bmod b)$。&lt;/p&gt;
+&lt;h2 id=&#34;二原理&#34;&gt;二、原理&lt;/h2&gt;
+&lt;p&gt;两个整数的最大公约数等于其中较小的数和两数相除余数的最大公约数。&lt;/p&gt;
+&lt;p&gt;假设有两个正整数$a,b$，我们求它们的最大公约数，a可以表示成如下形式：
+$$
+a = b*k+r
+$$
+当$r$不等于$0$时，$a=b,b=r$，一直递归下去&lt;/p&gt;
+&lt;p&gt;因为
+$$
+r = a - kb
+$$
+他们有同一个最大公约数$d$，即
+$$
+r / d = （a-kb）/ d = a/d - kb / d
+$$
+可以一直类推，直到$r == 0$时，$b$就为最大公约数。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/e/e2/Euclidean_algorithm_252_105_animation_flipped.gif&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;1、$252$和$105$的最大公约数是$21$$（252=21×12;105=21×5）$,因为$252−105=21×(12−5)=147$，所以$147$和$105$的最大公约数也是$21$。在这个过程中，较大的数缩小了，所以继续进行同样的计算可以不断缩小这两个数直至余数为零。这时，所剩下的还没有变成零的数就是两数的最大公约数。由辗转相除法也可以推出，两数的最大公约数可以用两数的整数倍相加来表示，如$21=5×105+(−2)×252$。这个重要的结论叫做&lt;strong&gt;裴蜀定理&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;2、计算$a = 1071$和$b = 462$的最大公约数的过程如下：从1071中不断减去462直到小于462（可以减2次，即商$q_0 = 2$），余数是$147$：
+$$
+1071=2\times 462 + 147
+$$
+然后从462中不断减去147直到小于147（可以减3次，即$q_1 = 3$，余数是21：
+$$
+462=3\times 147 +21
+$$
+再从147中不断减去21直到小于21（可以减7次，即$q_2 = 7$），没有余数：
+$$
+147 = 7\times 21 +0
+$$
+此时，余数是0，所以1071和462的最大公约数是21，这和用素因数分解得出的结果相同用表格表示如下：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;步骤数&lt;/th&gt;
+&lt;th&gt;算式&lt;/th&gt;
+&lt;th&gt;商和余数&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$1071=462q_0+r_0$&lt;/td&gt;
+&lt;td&gt;$q_0=2、r_0=147$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;$462=147q_1+r_1$&lt;/td&gt;
+&lt;td&gt;$q_1=3、r_1=21$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$2$&lt;/td&gt;
+&lt;td&gt;$1147=21q_2+r_2$&lt;/td&gt;
+&lt;td&gt;$q_2=7、r_2=0$（算法终止）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;三代码实现&#34;&gt;三、代码实现&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h3 id=&#34;python&#34;&gt;python&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;gcd&lt;/span&gt;(a, b):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; b &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        t &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; a &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; b
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; b
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; t
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; a
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;h3 id=&#34;c&#34;&gt;C++&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;gcd&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; m, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; n) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; t &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt;(t &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        t &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; m &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; n;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        m &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; n;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; t;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; m;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;四扩展欧几里得算法&#34;&gt;四、扩展欧几里得算法&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h3 id=&#34;简介&#34;&gt;简介&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;已知整数$a、b$，扩展欧几里得算法可以在求得$a、b$的最大公约数的同时，找到整数$x、y$（其中一个可能是负数），使它们满足&lt;strong&gt;裴蜀等式&lt;/strong&gt;$ax+by=gcd(a,b)$。如果a是负数，可以把问题转化成$\abs{a}(-x)+by=\gcd(\abs{a},b)$（$\abs{a}$为a的绝对值），然后令$x&amp;rsquo;=(-x)$&lt;/p&gt;
 </description>
     </item>
     

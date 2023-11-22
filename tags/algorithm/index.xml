@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>algorithm on p1um&#39;s blog</title>
+    <link>https://p1um3r.github.io/tags/algorithm/</link>
+    <description>Recent content in algorithm on p1um&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://p1um3r.github.io/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>欧几里得算法（gcd）</title>
+      <link>https://p1um3r.github.io/blog/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95gcd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://p1um3r.github.io/blog/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95gcd/</guid>
+      <description>&lt;h1 id=&#34;欧几里得算法gcd&#34;&gt;欧几里得算法（gcd）&lt;/h1&gt;
+&lt;h2 id=&#34;一简介&#34;&gt;一、简介&lt;/h2&gt;
+&lt;p&gt;欧几里得算法又称辗转相除法，是指用于计算两个非负整数a，b的最大公约数。应用领域有数学和计算机两个方面。计算公式$\gcd(a,b) = \gcd(b,a \bmod b)$。&lt;/p&gt;
+&lt;h2 id=&#34;二原理&#34;&gt;二、原理&lt;/h2&gt;
+&lt;p&gt;两个整数的最大公约数等于其中较小的数和两数相除余数的最大公约数。&lt;/p&gt;
+&lt;p&gt;假设有两个正整数$a,b$，我们求它们的最大公约数，a可以表示成如下形式：
+$$
+a = b*k+r
+$$
+当$r$不等于$0$时，$a=b,b=r$，一直递归下去&lt;/p&gt;
+&lt;p&gt;因为
+$$
+r = a - kb
+$$
+他们有同一个最大公约数$d$，即
+$$
+r / d = （a-kb）/ d = a/d - kb / d
+$$
+可以一直类推，直到$r == 0$时，$b$就为最大公约数。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/e/e2/Euclidean_algorithm_252_105_animation_flipped.gif&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;1、$252$和$105$的最大公约数是$21$$（252=21×12;105=21×5）$,因为$252−105=21×(12−5)=147$，所以$147$和$105$的最大公约数也是$21$。在这个过程中，较大的数缩小了，所以继续进行同样的计算可以不断缩小这两个数直至余数为零。这时，所剩下的还没有变成零的数就是两数的最大公约数。由辗转相除法也可以推出，两数的最大公约数可以用两数的整数倍相加来表示，如$21=5×105+(−2)×252$。这个重要的结论叫做&lt;strong&gt;裴蜀定理&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;2、计算$a = 1071$和$b = 462$的最大公约数的过程如下：从1071中不断减去462直到小于462（可以减2次，即商$q_0 = 2$），余数是$147$：
+$$
+1071=2\times 462 + 147
+$$
+然后从462中不断减去147直到小于147（可以减3次，即$q_1 = 3$，余数是21：
+$$
+462=3\times 147 +21
+$$
+再从147中不断减去21直到小于21（可以减7次，即$q_2 = 7$），没有余数：
+$$
+147 = 7\times 21 +0
+$$
+此时，余数是0，所以1071和462的最大公约数是21，这和用素因数分解得出的结果相同用表格表示如下：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;步骤数&lt;/th&gt;
+&lt;th&gt;算式&lt;/th&gt;
+&lt;th&gt;商和余数&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$1071=462q_0+r_0$&lt;/td&gt;
+&lt;td&gt;$q_0=2、r_0=147$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;$462=147q_1+r_1$&lt;/td&gt;
+&lt;td&gt;$q_1=3、r_1=21$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$2$&lt;/td&gt;
+&lt;td&gt;$1147=21q_2+r_2$&lt;/td&gt;
+&lt;td&gt;$q_2=7、r_2=0$（算法终止）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;三代码实现&#34;&gt;三、代码实现&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h3 id=&#34;python&#34;&gt;python&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;gcd&lt;/span&gt;(a, b):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; b &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        t &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; a &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; b
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; b
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; t
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; a
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;h3 id=&#34;c&#34;&gt;C++&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;gcd&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; m, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; n) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; t &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt;(t &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        t &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; m &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; n;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        m &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; n;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; t;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; m;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;四扩展欧几里得算法&#34;&gt;四、扩展欧几里得算法&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h3 id=&#34;简介&#34;&gt;简介&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;已知整数$a、b$，扩展欧几里得算法可以在求得$a、b$的最大公约数的同时，找到整数$x、y$（其中一个可能是负数），使它们满足&lt;strong&gt;裴蜀等式&lt;/strong&gt;$ax+by=gcd(a,b)$。如果a是负数，可以把问题转化成$\abs{a}(-x)+by=\gcd(\abs{a},b)$（$\abs{a}$为a的绝对值），然后令$x&amp;rsquo;=(-x)$&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

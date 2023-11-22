@@ -1,0 +1,950 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>encode on p1um&#39;s blog</title>
+    <link>https://p1um3r.github.io/tags/encode/</link>
+    <description>Recent content in encode on p1um&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 13 Apr 2023 08:00:00 +0800</lastBuildDate><atom:link href="https://p1um3r.github.io/tags/encode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>常见密码和编码总结</title>
+      <link>https://p1um3r.github.io/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Thu, 13 Apr 2023 08:00:00 +0800</pubDate>
+      
+      <guid>https://p1um3r.github.io/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/</guid>
+      <description>&lt;h1 id=&#34;常见密码和编码总结&#34;&gt;常见密码和编码总结&lt;/h1&gt;
+&lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;
+&lt;p&gt;对常见的编码和密码做个归纳
+并记录一些可用的网站和工具
+可以当做手册使用&lt;/p&gt;
+&lt;h3 id=&#34;一常见编码&#34;&gt;一、常见编码&lt;/h3&gt;
+&lt;h4 id=&#34;1ascii编码&#34;&gt;1、ASCII编码&lt;/h4&gt;
+&lt;p&gt;现今最通用的单字节编码系统，并等同于国际标准ISO/IEC 646&lt;/p&gt;
+&lt;p&gt;可以分作三部分组成
+第一部分是：ASCII非打印控制字符
+第二部分是：ASCII打印字符；
+第三部分是：扩展ASCII打印字符&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201119192658523.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201119192718216.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201119192811181.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;转换网站
+&lt;a href=&#34;http://www.ab126.com/goju/1711.html&#34;&gt;ASCII 在线转换器&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/cencode.html&#34;&gt;ASCII编码转换&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;2base6432编码&#34;&gt;2、base64,32编码&lt;/h4&gt;
+&lt;p&gt;Base64是网络上最常见的用于传输8Bit字节码的编码方式之一&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基于64个可打印字符来表示二进制数据的方法&lt;/li&gt;
+&lt;li&gt;3个字节可表示4个可打印字符&lt;/li&gt;
+&lt;li&gt;如果要编码的字节数不能被3整除：当最后剩余一个八位字节（一个byte）时，最后6位的base64字节块有四位是0值，最后附加上两个等号；如果最后剩余两个八位字节（2byte）时，最后一个6位的base字节块有两位是0值，最后附加一个等号&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201119201223700.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;加密：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; import base64
+&amp;gt;&amp;gt;&amp;gt; encode = base64.b64encode(b&amp;#39;I love you&amp;#39;)
+&amp;gt;&amp;gt;&amp;gt; encode
+b&amp;#39;SSBsb3ZlIHlvdQ==&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;解密：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; import base64
+&amp;gt;&amp;gt;&amp;gt; decode = base64.b64decode(b&amp;#39;SSBsb3ZlIHlvdQ==&amp;#39;)
+&amp;gt;&amp;gt;&amp;gt; decode
+b&amp;#39;I love you&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;base32
+只有大写字母（A-Z）和数字234567&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/2020111920155139.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;跟base64相似就是将base64.b 64encode变成base64.b 32encode
+加密：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; base64
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; encode &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; base64&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;b32encode(&lt;span style=&#34;color:#e6db74&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;I love you&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; encode
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;JEQGY33WMUQHS33V&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;解密：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; base64
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; decode &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; base64&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;b32decode(&lt;span style=&#34;color:#e6db74&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;JEQGY33WMUQHS33V&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; decode
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;I love you&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;网站
+&lt;a href=&#34;http://tool.chinaz.com/tools/base64.aspx&#34;&gt;Base64加密解密&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/base64.html&#34;&gt;base编码&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;3url编码&#34;&gt;3、URL编码&lt;/h4&gt;
+&lt;p&gt;url编码又叫百分号编码，是统一资源定位(URL)编码方式
+URL地址（常说网址）规定了常用地数字，字母可以直接使用，另外一批作为特殊用户字符也可以直接用（/,:@等），剩下的其它所有字符必须通过在该字节ascii码的的16进制字符前面加%编码处理&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;js：有encodeURI、encodeURIComponent&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;PHP有 urlencode、urldecode等&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;url编码和双重编码是绕过时常用手段&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://tool.chinaz.com/tools/urlencode.aspx&#34;&gt;UrlEncode编码/解码&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/url.html&#34;&gt;URL编码&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;4unicode编码&#34;&gt;4、Unicode编码&lt;/h4&gt;
+&lt;p&gt;unicode编码&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;是一种所有符号的编码，现在的规模可以容纳100多万个符号，https://home.unicode.org/&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;只规定了符号的二进制代码，却没有规定这个二进制代码应该如何存储&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;UTF-8 就是在互联网上使用最广的一种 Unicode 的实现方式，其他实现方式还包括 UTF-16（字符用两个字节或四个字节表示）和 UTF-32（字符用四个字节表示），不过在互联网上基本不用&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;UTF-8&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;对于单字节的符号，字节的第一位设为0，后面7位为这个符号的 Unicode 码。因此对于英语字母，UTF-8 编码和 ASCII 码是相同的&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;于n字节的符号（n &amp;gt; 1），第一个字节的前n位都设为1，第n + 1位设为0，后面字节的前两位一律设为10。剩下的没有提及的二进制位，全部为这个符号的 Unicode 码&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201119204245361.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;二者的转换方式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;首先找到该Unicode编号所在的编号范围，进而可以找到与之对应的二进制格式&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;然后将该Unicode编号转化为二进制数（去掉高位的0）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;最后将该二进制数从右向左依次填入二进制格式的X中，如果还有X未填，则设为0&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://tool.chinaz.com/tools/unicode.aspx&#34;&gt;Unicode编码转换&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;5html实体编码&#34;&gt;5、HTML实体编码&lt;/h4&gt;
+&lt;p&gt;喜闻乐见的&lt;code&gt;&amp;amp;#&lt;/code&gt;
+HTML 中的预留字符必须被替换为字符实体
+一些在键盘上找不到的字符也可以使用字符实体来替换&lt;/p&gt;
+&lt;p&gt;可参考
+&lt;a href=&#34;https://www.w3school.com.cn/html/html_entities.asp&#34;&gt;HTML 字符实体&lt;/a&gt;
+&lt;a href=&#34;https://www.runoob.com/tags/html-symbols.html&#34;&gt;HTML 符号实体参考手册&lt;/a&gt;
+&lt;a href=&#34;https://www.w3school.com.cn/tags/html_ref_entities.html&#34;&gt;HTML ISO-8859-1 参考手册&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;https://www.convertstring.com/zh_CN/EncodeDecode/HtmlEncode&#34;&gt;在线HTML编码器&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/html_en.html&#34;&gt;HTML编码&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;6敲击码&#34;&gt;6、敲击码&lt;/h4&gt;
+&lt;p&gt;敲击码(Tap code)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;一种以非常简单的方式对文本信息进行编码的方法&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;因该编码对信息通过使用一系列的点击声音来编码而命名&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;基于5×5方格波利比奥斯方阵来实现的，不同点是用K字母被整合到C中&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/2020111920511547.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201119205121551.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://ctf.ssleye.com/tapcode.html&#34;&gt;敲击码&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;7摩尔斯电码摩斯密码&#34;&gt;7、摩尔斯电码（摩斯密码）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;大名鼎鼎的morse电码&lt;/li&gt;
+&lt;li&gt;早期的数字化通信形式
+不同于现代只使用0和1两种状态的二进制代码&lt;/li&gt;
+&lt;li&gt;代码包括五种：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		- 点（.）&lt;/p&gt;
+&lt;p&gt;​		- 划（-）&lt;/p&gt;
+&lt;p&gt;​		- 每个字符间短的停顿（在点和划之间的停顿）&lt;/p&gt;
+&lt;p&gt;​		- 每个词之间中等的停顿&lt;/p&gt;
+&lt;p&gt;​		- 句子之间长的停顿&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201119210224286.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;https://www.atool99.com/morse.php&#34;&gt;中文摩斯密码 Morse莫尔斯电码加密解密&lt;/a&gt;
+&lt;a href=&#34;http://www.zou114.com/mesm/&#34;&gt;摩尔斯密码在线翻译&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/morse.html&#34;&gt;Morse code&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;8quoted-printable编码&#34;&gt;8、Quoted-printable编码&lt;/h4&gt;
+&lt;p&gt;Quoted-printable编码&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;多用途互联网邮件扩展（MIME) 一种实现方式&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;帮助非ASCII编码的信件传输通过SMTP&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;每个末编码的二进制字符被编码成三个字符，即一个等号和一个十六进制的数字，如‘=AB’&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;编码方法&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201119210615584.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://www.mxcz.net/tools/QuotedPrintable.aspx&#34;&gt;QuotedPrintable编码&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/quoted.html&#34;&gt;Quoted-printable编码&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;9、XXencode编码
+XXencode&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;将输入文本以每三个字节为单位进行编码&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果最后剩下的资料少于三个字节，不够的部份用0补齐&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;这三个字节共有24个Bit，以6bit为单位分为4个组，每个组以十进制来表示所出现的数值只会落在0到63之间&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;以所对应值的位置字符代替。它所选择的可打印字符是：&lt;code&gt;+-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz&lt;/code&gt;，一共64个字符&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;跟base64打印字符相比，就是UUencode多一个&lt;code&gt;-&lt;/code&gt;字符，少一个&lt;code&gt;/&lt;/code&gt; 字符&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://web.chacuo.net/charsetxxencode&#34;&gt;在线XXencode编码&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/xxencode.html&#34;&gt;XXencode&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;10uuencode编码&#34;&gt;10、UUencode编码&lt;/h4&gt;
+&lt;p&gt;UUencode编码&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;起先用在unix网络中，早期在电子邮件中使用较多&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将输入文本以每三个字节为单位进行编码，如果最后剩下的资料少于三个字节，不够的部份用0补齐&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;三个字节共有24个Bit，以6-bit为单位分为4个组，每个组以十进制来表示所出现的字节的数值，这个数值只会落在0到63之间&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;然后将每个数加上32，所产生的结果刚好落在ASCII字符集中可打印字符（32-空白…95-底线）的范围之中&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201120123238507.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://web.chacuo.net/charsetuuencode&#34;&gt;在线UUencode编码&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/uu.html&#34;&gt;UUencode&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;11escapeunescape编码&#34;&gt;11、Escape/Unescape编码&lt;/h4&gt;
+&lt;p&gt;Escape/Unescape&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;又叫%u编码，采用UTF-16BE模式，16进制表示方式前面加%u&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如：字符“中”，UTF-16BE是：“6d93”，因此Escape是“%u6d93”&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;因为目前%字符，常用作URL编码，所以%u这样编码已经逐渐被废弃了&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://web.chacuo.net/charsetescape&#34;&gt;在线Escape编码/加密&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/escape.html&#34;&gt;Escape编码&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;12md5&#34;&gt;12、md5&lt;/h4&gt;
+&lt;p&gt;md5&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;被广泛使用的密码散列函数，可以产生出一个128位（16字节）的散列值（hash value），用于确保信息传输完整一致&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;值范围在&lt;code&gt;0-9&lt;/code&gt;，&lt;code&gt;a-f&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201119213328102.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;md5碰撞&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import hashlib
+
+for i in range(10000, 10000001):
+    s = hashlib.md5(str(i).encode()).hexdigest()[0:5]
+    if s == &amp;#34;5fe45&amp;#34;:
+        print(i)
+        break
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;网站
+&lt;a href=&#34;https://www.cmd5.com/&#34;&gt;CMD5&lt;/a&gt;
+&lt;a href=&#34;http://www.xmd5.org/&#34;&gt;xmd5&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;二换位密码&#34;&gt;二、换位密码&lt;/h3&gt;
+&lt;h4 id=&#34;1栅栏密码&#34;&gt;1、栅栏密码&lt;/h4&gt;
+&lt;p&gt;把要加密的明文分成N个一组，然后把每组的第1个字连起来，形成一段无规律的话&lt;/p&gt;
+&lt;p&gt;以2栏栅栏加密为例&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;明文：THE LONGEST DAY MUST HAVE AN END&lt;/li&gt;
+&lt;li&gt;把将要传递的信息中的字母交替排成上下两行。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		T E O G S D Y U T A E N N&lt;/p&gt;
+&lt;p&gt;​		H L N E T A M S H V A E D&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;密文：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		将下面一行字母排在上面一行的后边。&lt;/p&gt;
+&lt;p&gt;​		TEOGSDYUTAENN HLNETAMSHVAED&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://www.practicalcryptography.com/ciphers/classical-era/rail-fence/&#34;&gt;Rail-fence Cipher&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/railfence.html&#34;&gt;栅栏密码&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;2简单换位密码&#34;&gt;2、简单换位密码&lt;/h4&gt;
+&lt;p&gt;密文k=“&lt;code&gt;3124&lt;/code&gt;”
+明文m=“&lt;code&gt;flag{easy_easy_crypto}&lt;/code&gt;”&lt;/p&gt;
+&lt;p&gt;移位密码首先以k的长度（也就是len(k)=4）切分m，具体如下：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;flag     {eas    y_ea    sy_c    rypt      o}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;总共分成了6个部分，然后按照密钥3124的顺序对每一部分都进行密钥变化。如下是变化规则&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201119230841818.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;变化之后，如下：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;flag     {eas    y_ea    sy_c    rypt      o}
+
+lafg     ea{s    _eya    y_sc    yprt      }o
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;所以密文为：&lt;code&gt;lafgea{s _eyay_scyprt}o&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&#34;3列移位密码&#34;&gt;3、列移位密码&lt;/h4&gt;
+&lt;p&gt;明文 &lt;code&gt;The quick brown fox jumps over the lazy dog&lt;/code&gt;
+密钥 &lt;code&gt;how are u&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;填入5行7列表(事先约定填充的行列数，如果明文不能填充完表格可以约定使用某个字母进行填充)
+按how are u在字母表中的出现的先后顺序进行编号，我们就有a为1,e为2，h为3，o为4，r为5，u为6，w为7
+所以先写出a列，其次e列，以此类推写出的结果便是密文&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201119231129922.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;密文：&lt;code&gt;qoury inpho Tkool hbxva uwmtd cfseg erjez&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://www.practicalcryptography.com/ciphers/classical-era/columnar-transposition/&#34;&gt;Columnar Transposition Cipher&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/colum.html&#34;&gt;列移位密码&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;4曲路密码&#34;&gt;4、曲路密码&lt;/h4&gt;
+&lt;p&gt;事先双方约定密钥(也就是曲路路径)
+明文：&lt;code&gt;The quick brown fox jumps over the lazy dog&lt;/code&gt;
+密文：&lt;code&gt;gesfc inpho dtmwu qoury zejre hbxva lookT&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201119231315538.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;三替换密码&#34;&gt;三、替换密码&lt;/h3&gt;
+&lt;h4 id=&#34;1凯撒密码&#34;&gt;1、凯撒密码&lt;/h4&gt;
+&lt;p&gt;明文中的所有字母都在字母表上向后（或向前）按照一个固定数目进行偏移后被替换成密文&lt;/p&gt;
+&lt;p&gt;明文：&lt;code&gt;The quick brown fox jumps over the lazy dog&lt;/code&gt;
+偏移量：1
+密文：&lt;code&gt;Uif rvjdl cspxo gpy kvnqt pwfs uif mbaz eph&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;https://planetcalc.com/1434/&#34;&gt;Caesar cipher&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/caesar.html&#34;&gt;凯撒密码&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;2rot5131847&#34;&gt;2、ROT5/13/18/47&lt;/h4&gt;
+&lt;p&gt;ROT5：只对数字进行编码，用当前数字往前数的第5个数字替换当前数字，例如当前为0，编码后变成5，当前为1，编码后变成6，以此类推顺序循环。&lt;/p&gt;
+&lt;p&gt;ROT13：只对字母进行编码，用当前字母往前数的第13个字母替换当前字母，例如当前为A，编码后变成N，当前为B，编码后变成O，以此类推顺序循环。&lt;/p&gt;
+&lt;p&gt;ROT18：这是一个异类，本来没有，它是将ROT5和ROT13组合在一起，为了好称呼，将其命名为ROT18。&lt;/p&gt;
+&lt;p&gt;ROT47：对数字、字母、常用符号进行编码，按照它们的ASCII值进行位置替换，用当前字符ASCII值往前数的第47位对应字符替换当前字符，例如当前为小写字母Z，编码后变成大写字母K，当前为数字0，编码后变成符号_。用于ROT47编码的字符其ASCII值范围是33－126，具体可参考ASCII编码，&lt;/p&gt;
+&lt;p&gt;下面以ROT13以例
+明文：&lt;code&gt;the quick brown fox jumps over the lazy dog&lt;/code&gt;
+密文：&lt;code&gt;gur dhvpx oebja sbk whzcf bire gur ynml qbt&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;https://www.qqxiuzi.cn/bianma/ROT5-13-18-47.php&#34;&gt;ROT5/13/18/47编码转换&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/rot13.html&#34;&gt;Rot13密码&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;3qwe加密&#34;&gt;3、QWE加密&lt;/h4&gt;
+&lt;p&gt;从电脑键盘上的字母从Q开始数，顺序是Q W E R T Y U I…
+对应的字母顺序依次是A B C D E F G H 也就是说Q=A,W=B,E=C，依次类推&lt;/p&gt;
+&lt;h4 id=&#34;4拼音九键加密&#34;&gt;4、拼音九键加密&lt;/h4&gt;
+&lt;p&gt;利用字母在九键上的位置进行加密
+特点：数字为偶数个，且偶数位的数小于5(九键上一个键上的字母最多是四个)&lt;/p&gt;
+&lt;p&gt;例：335321414374744361715332
+两个数为一组分开：33 53 21 41 43 74 74 43 61 71 53 32
+对应九键进行查找：3键的第三个字母、5键的第3个字母，以此类推&lt;/p&gt;
+&lt;h4 id=&#34;5埃特巴什码&#34;&gt;5、埃特巴什码&lt;/h4&gt;
+&lt;p&gt;以字母倒序排列作为特殊密钥的替换加密，也称也就是下面的对应关系：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ABCDEFGHIJKLMNOPQRSTUVWXYZ
+ZYXWVUTSRQPONMLKJIHGFEDCBA
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;网站
+&lt;a href=&#34;http://www.practicalcryptography.com/ciphers/classical-era/atbash-cipher/&#34;&gt;Atbash Cipher&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/atbash.html&#34;&gt;埃特巴什码&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;6培根密码&#34;&gt;6、培根密码&lt;/h4&gt;
+&lt;p&gt;每个明文字母被一个由5字符组成的序列替换，最初的加密方式就是由’A’和’B’组成序列替换明文(所以你当然也可以用别的字母)&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;A = aaaaa  I/J = abaaa  R = baaaa
+B = aaaab  K = abaab    S = baaab 
+C = aaaba  L = ababa    T = baaba
+D = aaabb  M = ababb    U/V = baabb
+E = aabaa  N = abbaa    W = babaa
+F = aabab  O = abbab    X = babab
+G = aabba  P = abbba    Y = babba
+H = aabbb  Q = abbbb    Z = babbb
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;网站
+&lt;a href=&#34;http://rumkin.com/tools/cipher/baconian.php&#34;&gt;Baconian Cipher&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/baconian.html&#34;&gt;培根密码&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;7希尔密码&#34;&gt;7、希尔密码&lt;/h4&gt;
+&lt;p&gt;每个字母转换成26进制数字：A=0, B=1, C=2…Z=25
+一串字母当成n维向量，跟一个n×n的矩阵相乘
+再将得出的结果MOD26&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://www.practicalcryptography.com/ciphers/hill-cipher/&#34;&gt;Hill Cipher&lt;/a&gt;
+&lt;a href=&#34;http://www.practicalcryptography.com/cryptanalysis/stochastic-searching/cryptanalysis-hill-cipher/&#34;&gt;Cryptanalysis of the Hill Cipher&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;8猪圈密码&#34;&gt;8、猪圈密码&lt;/h4&gt;
+&lt;p&gt;猪圈密码(Pigpen Cipher或称九宫格密码、朱高密码、共济会密码或共济会员密码)，是一种以格子为基础的简单替代式密码&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201119234953558.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201119235003816.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://www.simonsingh.net/The_Black_Chamber/pigpen.html&#34;&gt;The BLACK Chamber&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/pigpen.html&#34;&gt;猪圈密码&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;变种&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201119235124125.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;9圣堂武士密码&#34;&gt;9、圣堂武士密码&lt;/h4&gt;
+&lt;p&gt;也算是猪圈密码的变种&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201119235451402.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;10银河字母&#34;&gt;10、银河字母&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201120000439513.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;11维吉尼亚密码&#34;&gt;11、维吉尼亚密码&lt;/h4&gt;
+&lt;p&gt;维吉尼亚密码(Vigenère Cipher)
+在单一恺撒密码的基础上扩展出多表代换密码，根据密钥(当密钥长度小于明文长度时可以循环使用)来决定用哪一行的密表来进行替换，以此来对抗字频统计&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201120001240465.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;明文：&lt;code&gt;THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG&lt;/code&gt;
+密钥(循环使用，密钥越长相对破解难度越大)：&lt;code&gt;CULTURE&lt;/code&gt;
+加密过程：如果第一行为明文字母，第一列为密钥字母，那么明文字母’T’列和密钥字母’C’行的交点就是密文字母’V’，以此类推
+密文：&lt;code&gt;VBP JOZGM VCHQE JQR UNGGW QPPK NYI NUKR XFK&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;网站&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.practicalcryptography.com/cryptanalysis/stochastic-searching/cryptanalysis-vigenere-cipher/&#34;&gt;Cryptanalysis of the Vigenere Cipher&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://planetcalc.com/2468/&#34;&gt;Vigenère cipher&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.guballa.de/vigenere-solver&#34;&gt;Vigenere Solver&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ctf.ssleye.com/vigenere.html&#34;&gt;维吉尼亚密码&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;实例&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://fishpond.blog.csdn.net/article/details/111193773&#34;&gt;攻防世界 Crypto高手进阶区 3分题 shanghai&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;12格罗斯费尔德密码&#34;&gt;12、格罗斯费尔德密码&lt;/h4&gt;
+&lt;p&gt;格罗斯费尔德密码(Gronsfeld cipher)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;实际上和维吉尼亚密码相同，除了使用了数字来代替字母以外没有什么区别&lt;/li&gt;
+&lt;li&gt;数字可以选择一种数列，如斐波那契数列，或者一些其他的伪随机序列&lt;/li&gt;
+&lt;li&gt;格罗斯费尔德密码密码分析过程和维吉尼亚密码大同小异，不过，自动密钥密码不能使用卡西斯基算法(kasiski)来破译&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;from pycipher import Gronsfeld
+&amp;gt;&amp;gt;&amp;gt;Gronsfeld([2,20,11,45,20,43,4]).encipher(&amp;#39;THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG&amp;#39;)
+&amp;#39;VBPJOZGMVCHQEJQRUNGGWQPPKNYINUKRXFK&amp;#39;
+&amp;gt;&amp;gt;&amp;gt;Gronsfeld([2,20,11,45,20,43,4]).decipher(&amp;#39;VBPJOZGMVCHQEJQRUNGGWQPPKNYINUKRXFK&amp;#39;)
+&amp;#39;THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;网站
+&lt;a href=&#34;http://rumkin.com/tools/cipher/gronsfeld.php&#34;&gt;Gronsfeld Cipher&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/gronsfeld.html&#34;&gt;Gronsfeld密码&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;13自动密钥密码&#34;&gt;13、自动密钥密码&lt;/h4&gt;
+&lt;p&gt;自动密钥密码(Autokey Cipher)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;是多表替换密码，与维吉尼亚密码密切相关，但使用不同的方法生成密钥，通常来说要比维吉尼亚密码更安全&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;自动密钥密码主要有两种，关键词自动密钥密码和原文自动密钥密码&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下面我们以关键词自动密钥为例：
+明文：&lt;code&gt;THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG&lt;/code&gt;
+关键词：&lt;code&gt;CULTURE&lt;/code&gt;
+自动生成密钥：&lt;code&gt;CULTURE THE QUICK BROWN FOX JUMPS OVER THE&lt;/code&gt;
+接下来的加密过程和维吉尼亚密码类似，从密表可得：
+密文：&lt;code&gt;VBP JOZGD IVEQV HYY AIICX CSNL FWW ZVDP WVK&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://www.practicalcryptography.com/cryptanalysis/stochastic-searching/cryptanalysis-autokey-cipher/&#34;&gt;Cryptanalysis of the Autokey Cipher&lt;/a&gt;
+&lt;a href=&#34;http://www.practicalcryptography.com/ciphers/classical-era/autokey/&#34;&gt;Autokey Cipher&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/autokey.html&#34;&gt;自动密钥密码&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;14博福特密码&#34;&gt;14、博福特密码&lt;/h4&gt;
+&lt;p&gt;博福特密码(Beaufort Cipher)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;一种类似于维吉尼亚密码的代换密码，由弗朗西斯·蒲福(Francis Beaufort)发明&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;最知名的应用是Hagelin M-209密码机&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;属于对等加密，即加密演算法与解密演算法相同&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;明文：&lt;code&gt;THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG&lt;/code&gt;
+密钥(循环使用，密钥越长相对破解难度越大)：&lt;code&gt;CULTURE&lt;/code&gt;
+加密过程：如果第一行为明文字母，第一列为密文字母，那么沿明文字母’T’列出现密钥字母’C’的行号就是密文字母’J’，以此类推。
+密文：&lt;code&gt;JNH DAJCS TUFYE ZOX CZICM OZHC BKA RUMV RDY&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://www.practicalcryptography.com/ciphers/classical-era/beaufort/&#34;&gt;Beaufort Cipher&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/beaufort.html&#34;&gt;博福特密码&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;15滚动密钥密码&#34;&gt;15、滚动密钥密码&lt;/h4&gt;
+&lt;p&gt;滚动密钥密码(Running Key Cipher)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;和维吉尼亚密码有着相同的加密机制，区别是密钥的选取，维吉尼亚使用的密钥简短，而且重复循环使用，与之相反，滚动密钥密码使用很长的密钥，比如引用一本书作为密钥&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;这样做的目的是不重复循环使用密钥，使密文更难破译，尽管如此，滚动密钥密码还是可以被攻破，因为有关于密钥和明文的统计分析模式可供利用，如果滚动密钥密码使用统计上的随机密钥来源，那么理论上是不可破译的，因为任何可能都可以成为密钥，并且所有的可能性都是相等的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;明文：&lt;code&gt;THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG&lt;/code&gt;
+密钥：选取C语言编程(1978版)第63页第1行”errors can occur in several places. A label has…”，去掉非字母部分作为密钥(实际选取的密钥很长，长度至少不小于明文长度)。
+加密过程：加密过程和维吉尼亚密码加密过程相同
+密文:&lt;code&gt;XYV ELAEK OFQYH WWK BYHTJ OGTC TJI DAK YESR&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://www.practicalcryptography.com/ciphers/classical-era/running-key/&#34;&gt;Running Key Cipher&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/runkey.html&#34;&gt;滚动密钥密码&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;16夏多密码曲折加密&#34;&gt;16、夏多密码（曲折加密）&lt;/h4&gt;
+&lt;p&gt;作者麦克斯韦·格兰特在中篇小说《死亡之链》塑造夏多这一英雄人物中所自创的密码&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201120001931805.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在以上所示的字母表密钥的底部，列有四个附加符号1，2，3，4.他们可以放在密文中的任何地方
+每个附加符号指示，如何转动写有密文的纸张，再进行后续的加密或解密操作，直到出现另一个附加符号&lt;/p&gt;
+&lt;p&gt;例：信文：&lt;code&gt;I AM IN DANGER.SEND HELP&lt;/code&gt;(我有危险，速来增援)
+可以加密成&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201120002016884.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;17波利比奥斯方阵密码&#34;&gt;17、波利比奥斯方阵密码&lt;/h4&gt;
+&lt;p&gt;波利比奥斯方阵密码（Polybius Square Cipher或称波利比奥斯棋盘）&lt;/p&gt;
+&lt;p&gt;棋盘密码的一种，是利用波利比奥斯方阵进行加密的密码方式，简单的来说就是把字母排列好，用坐标(行列)的形式表现出来
+字母是密文，明文便是字母的坐标
+常见的排布方式：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201120003147482.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;加密实例：
+明文：&lt;code&gt;THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG&lt;/code&gt;
+密文：&lt;code&gt;442315 4145241325 1242345233 213453 2445323543 442315 31115554 143422&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&#34;18普莱菲尔密码&#34;&gt;18、普莱菲尔密码&lt;/h4&gt;
+&lt;p&gt;普莱菲尔密码(Playfair Cipher)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第一种用于实际的双字替换密码，用双字加密取代了简单代换密码的单字加密，很明显这样使得密文更难破译&lt;/li&gt;
+&lt;li&gt;又称为单方密码(Single Cipher)之后又出现它的升级版Double Playfair，也就是二方密码(Two-square Cipher),在之后又有四方密码(Four-square Cipher)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;明文：&lt;code&gt;THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG&lt;/code&gt;
+密钥：&lt;code&gt;CULTURE&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;（1）编制密码表&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;理密钥字母C U L T U R E，去掉后面重复的字母得到：C U L T R E&lt;/li&gt;
+&lt;li&gt;用上一步得到的字母自上而下来填补5乘5方表的纵列（也可横排），之后的空白按照相同的顺序用字母表中剩余的字母依次填补完整，得到如下的方格:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201120002538276.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这一步需要注意的要点：整理密钥字母时，如果出现”Z”，则需要去除，因为在英文里”Z”的使用频率最低，相应的如果是德文，则需将”I”与”J”当作一个字母来看待，而法语则去掉”W”或”K”。&lt;/p&gt;
+&lt;p&gt;（2）整理明文&lt;/p&gt;
+&lt;p&gt;我们要遵循的原则是“两个一组”，得到是若干个两两成对的字母段，用到的是明文THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG与字母”X“：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;将明文两两一组按顺序排开，得到：TH EQ UI CK BR OW NF OX JU MP SO VE RT HE LA ZY DO G&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;对于末尾的单个字母要加上一个”X“使之成对：TH EQ UI CK BR OW NF OX JU MP SO VE RT HE LA ZY DO GX&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;这一步需要注意的要点：对于相连字母相同者，每个后面都需要加”X“，例如TOMORROW，需要写成：TO MO RX RX OW。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;（3）编写密文&lt;/p&gt;
+&lt;p&gt;我们要得到的密文，当然，对于每个字母对，要严格遵循如下的原则：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;如果两个字母在同一行则要用它右邻的字母替换，如果已在最右边，则用该行最左边的替换，如明文为”CE“，依据上表，应替换为”EG“；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果两个字母在同一列则要用它下边的字母替换，如果已在最下边，则用该行最上边的替换，如明文为”OQ“，依据上表，应替换为”PS“；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果两个字母在不同的行或列，则应在密码表中找两个字母使四个字母组成一个矩形，明文占据两个顶点，需用另外两个顶点的字母替换，如明文为”HX“，可以替换为”WI/J“或”I/JW“（下面的例子将按照横向替换原则即同行优先）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;按照上述原则，将明文TH EQ UI CK BR OW NF OX JU MP SO VE RT HE LA ZY DO GX加以转换得到KU ND LH GT LF WU ES PW LH SI/J NP CG CR AG BU VZ QA I/JV（/表示或者，不过一般用I不用J，所以分析密文时你看25个字母都有而只差一个字母没有用到可以考虑一下这种加密方式）将得到的字母改为大写并五个一组列好&lt;/p&gt;
+&lt;p&gt;密文&lt;code&gt;KUNDL HGTLF WUESP WLHSI NPCGC RAGBU VZQAI V&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://www.practicalcryptography.com/ciphers/classical-era/playfair/&#34;&gt;Playfair Cipher&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/playfair.html&#34;&gt;普莱菲尔密码&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;19adfgx密码&#34;&gt;19、ADFGX密码&lt;/h4&gt;
+&lt;p&gt;ADFGX密码(ADFGX Cipher)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;结合了改良过的Polybius方格替代密码与单行换位密码的矩阵加密密码&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用了5个合理的密文字母：A，D，F，G，X，这些字母之所以这样选择是因为当转译成摩尔斯电码(ADFGX密码是德国军队在一战发明使用的密码)不易混淆，目的是尽可能减少转译过程的操作错误&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;加密矩阵示例：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;   A  D  F  G   X
+  ----------------
+A | p  h  q  g   m 
+D | e  a  y  n   o 
+F | f  d  x  k   r
+G | c  v  s  z   w 
+X | b  u  t  i/j l
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;明文：&lt;code&gt;THE QUICK BROWN FOX&lt;/code&gt;
+密文：&lt;code&gt;XF AD DA AF XD XG GA FG XA FX DX GX DG FA DX FF&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://www.practicalcryptography.com/ciphers/adfgx-cipher/&#34;&gt;ADFGX Cipher&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/adfgx.html&#34;&gt;ADFGX密码&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;20adfgvx密码&#34;&gt;20、ADFGVX密码&lt;/h4&gt;
+&lt;p&gt;ADFGVX密码实际上就是ADFGX密码的扩充升级版
+一样具有ADFGX密码相同的特点，加密过程也类似
+不同的是密文字母增加了V，使得可以再使用10数字来替换明文&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    A D F G V X
+  -------------
+A | p h 0 q g 6
+D | 4 m e a 1 y
+F | l 2 n o f d
+G | x k r 3 c v
+V | s 5 z w 7 b
+X | j 9 u t i 8
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;网站
+&lt;a href=&#34;http://ctf.ssleye.com/adfgvx.html&#34;&gt;ADFGVX密码&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;21双密码&#34;&gt;21、双密码&lt;/h4&gt;
+&lt;p&gt;双密码(Bifid Cipher)结合了波利比奥斯方阵换位密码，并采用分级实现扩散，这里的“双”是指用2个密钥进行加密
+密阵:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;  1 2 3 4 5
+1| p h q g m
+2| e a y l n
+3| o f d x k
+4| r c v s z
+5| w b u t i/j
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;明文:&lt;code&gt;THE QUICK BROWN FOX&lt;/code&gt;
+经过密阵转换：
+行:&lt;code&gt;512 15543 54352 333&lt;/code&gt;
+列:&lt;code&gt;421 33525 21115 214&lt;/code&gt;
+分组:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;51215 54354 35233 3
+42133 52521 11521 4
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;合并：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;5121542133 5435452521 3523311521 34
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在经过密阵转换后密文:&lt;code&gt;WETED TKZNE KYOME X&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://www.practicalcryptography.com/ciphers/classical-era/bifid/&#34;&gt;Bifid Cipher&lt;/a&gt;
+&lt;a href=&#34;http://www.practicalcryptography.com/cryptanalysis/stochastic-searching/cryptanalysis-bifid-cipher/&#34;&gt;Cryptanalysis of the Bifid cipher&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/bifid.html&#34;&gt;双密码&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;22三分密码&#34;&gt;22、三分密码&lt;/h4&gt;
+&lt;p&gt;三分密码(Trifid Cipher)结合换位和替换，三分密码与双密码非常相似，差别之处就是用除了3×3×3的密阵代替5×5密阵。&lt;/p&gt;
+&lt;p&gt;示例密阵:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;密阵顺序 = EPSDUCVWYM.ZLKXNBTFGORIJHAQ      
+ 
+方阵 1      方阵 2      方阵 3                                     
+  1 2 3      1 2 3      1 2 3    
+1 E P S    1 M . Z    1 F G O    
+2 D U C    2 L K X    2 R I J    
+3 V W Y    3 N B T    3 H A Q 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;明文:&lt;code&gt;THE QUICK BROWN FOX.&lt;/code&gt;
+经过密阵转换：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;T H E Q U I C K B R O W N F O X .
+2 3 1 3 1 3 1 2 2 3 3 1 2 3 3 2 2
+3 3 1 3 2 2 2 2 3 2 1 3 3 1 1 2 1
+3 1 1 3 2 2 3 2 2 1 3 2 1 1 3 3 2
+T(233)表示T在第一个方阵第三行第三列的
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;位置
+分组(分组密钥以5为例):&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;THEQU ICKBR OWNFO X.
+23131 31223 31233 22
+33132 22232 13311 21
+31132 23221 32113 32
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;合并：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;23131 33132 31132 31223 22232 23221 31233 13311 32113 22 21 32
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在经过密阵转换后密文:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;231313313231132312232223223221312331331132113222132
+N  O  O  N  W  G  B  X  X  L  G  H  H  W  S  K  W
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;23四方密码&#34;&gt;23、四方密码&lt;/h4&gt;
+&lt;p&gt;四方密码(Four-Square Cipher)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;类似普莱菲尔密码双字母加密密码，这样使加密效果强于其他替换密码，因为频率分析变得更加困难了&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用4个预先设置的5×5字母矩阵，每个矩阵包括25个字母，通常字母’j’被融入到’i’中(维基百科上说’q’被忽略，不过这不重要，因为’q’和’j’都是很少出现的字母)，通常左上和右下矩阵式是标准字母排序明文矩阵，右上和左下矩阵是打乱顺序的密钥矩阵。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;示例矩阵：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201120114617739.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;明文：&lt;code&gt;THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG&lt;/code&gt;
+整理明文(分组不够时用’X’填充)：&lt;code&gt;TH EQ UI CK BR OW NF OX JU MP SO VE RT HE LA ZY DO GX&lt;/code&gt;
+加密过程：分别在明文矩阵中找到’TH’，分别找到他们在右上矩阵有左下矩阵的交点字母’ES’就是密文，以此类推。
+密文：&lt;code&gt;ESZWQAFHGTDKWHRKUENYQOLMQTUNWMBPTGHQ&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://www.practicalcryptography.com/ciphers/classical-era/four-square/&#34;&gt;Four-Square Cipher&lt;/a&gt;
+&lt;a href=&#34;http://www.practicalcryptography.com/cryptanalysis/stochastic-searching/cryptanalysis-foursquare-cipher/&#34;&gt;Cryptanalysis of the Foursquare Cipher&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/four.html&#34;&gt;四方密码&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;24棋盘密码&#34;&gt;24、棋盘密码&lt;/h4&gt;
+&lt;p&gt;棋盘密码（Checkerboard Cipher)是使用一个波利比奥斯方阵和两个密钥作为密阵的替换密码，通常在波利比奥斯方阵中J字母往往被包含在I字母中。&lt;/p&gt;
+&lt;p&gt;示例密阵：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;  Q  U  I  C  K
+  --------------
+B |K  N I/J G  H
+R |P  Q  R  S  T
+O |O  Y  Z  U  A
+W |M  X  W  V  B
+N |L  F  E  D  C
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;经过密阵替换：&lt;/p&gt;
+&lt;p&gt;明文:&lt;code&gt;T H E Q U I C K B R O W N F O X&lt;/code&gt;
+密文:&lt;code&gt;RK BK RU OC OC BI NK BQ WK RI OQ WI BU NU OQ WU&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&#34;25跨棋盘密码&#34;&gt;25、跨棋盘密码&lt;/h4&gt;
+&lt;p&gt;跨棋盘密码(Straddle Checkerboard Cipher)是一种替换密码，当这种密码在结合其他加密方式，加密效果会更好。&lt;/p&gt;
+&lt;p&gt;棋盘示例(选择3和7作为变换):&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;   0 1 2 3 4 5 6 7 8 9
+   f k m   c p d   y e
+3: h b i g q r o s a z
+7: l u t j n w v x    
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;明文: &lt;code&gt;T H E Q U I C K B R O W N F O X&lt;/code&gt;
+经过加密棋盘替换得到密文:&lt;code&gt;72 30 9 34 71 32 4 1 31 35 36 75 74 0 36 77&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;当然我们还可以继续用其他的加密方式在对跨棋盘密码加密出的结果再进行加密:
+示例变换密钥:&lt;code&gt;83729&lt;/code&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; 8372983729837298372983729837
++7230934713241313536757403677
+-----------------------------
+ 5502817432078501808630122404
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在经过棋盘转换后：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;5502817432078501808630122404
+ppfmyk n if  pfkyfyd hkmmcfc
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;最终得到密文：&lt;code&gt;ppfmyk n in pfkyfyd hkmmcfc&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://www.practicalcryptography.com/ciphers/classical-era/straddle-checkerboard/&#34;&gt;Straddle Checkerboard Cipher&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;26云影密码&#34;&gt;26、云影密码&lt;/h4&gt;
+&lt;p&gt;采用的是0作间隔，其他非0数隔开后组合起来相加表示26个字母&lt;/p&gt;
+&lt;p&gt;脚本&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
+#!/usr/bin/python
+# -*- coding=utf8 -*-
+&amp;#34;&amp;#34;&amp;#34;
+# @Author : pig
+# @CreatedTime:2019-11-2423:54:02
+# @Description : 
+&amp;#34;&amp;#34;&amp;#34;
+
+
+def de_code(c):
+    dic = [chr(i) for i in range(ord(&amp;#34;A&amp;#34;), ord(&amp;#34;Z&amp;#34;) + 1)]
+    flag = []
+    c2 = [i for i in c.split(&amp;#34;0&amp;#34;)]
+    for i in c2:
+        c3 = 0
+        for j in i:
+            c3 += int(j)
+        flag.append(dic[c3 - 1])
+    return flag
+
+def encode(plaintext):
+    dic = [chr(i) for i in range(ord(&amp;#34;A&amp;#34;), ord(&amp;#34;Z&amp;#34;) + 1)]
+    m = [i for i in plaintext]
+    tmp = [];flag = []
+    for i in range(len(m)):
+        for j in range(len(dic)):
+            if m[i] == dic[j]:
+                tmp.append(j + 1)
+    for i in tmp:
+        res = &amp;#34;&amp;#34;
+        if i &amp;gt;= 8:
+            res += int(i/8)*&amp;#34;8&amp;#34;
+        if i%8 &amp;gt;=4:
+            res += int(i%8/4)*&amp;#34;4&amp;#34;
+        if i%4 &amp;gt;=2:
+            res += int(i%4/2)*&amp;#34;2&amp;#34;
+        if i%2 &amp;gt;= 1:
+            res += int(i%2/1)*&amp;#34;1&amp;#34;
+        flag.append(res + &amp;#34;0&amp;#34;)
+    print (&amp;#34;&amp;#34;.join(flag)[:-1])
+
+c = input(&amp;#34;输入要解密的数字串:&amp;#34;)
+print (de_code(c))
+m_code = input(&amp;#34;请输入要加密的数字串:&amp;#34;)
+encode(m_code)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;例&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201120115307336.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;27porta密码&#34;&gt;27、Porta密码&lt;/h4&gt;
+&lt;p&gt;Porta密码(Porta Cipher)是一个由意大利那不勒斯的医生Giovanni Battista della Porta发明的多表代换密码
+Porta密码具有加密解密过程的是相同的特点&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201120115627515.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;明文：&lt;code&gt;THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG&lt;/code&gt;
+密钥(循环使用，密钥越长相对破解难度越大)：&lt;code&gt;CULTURE&lt;/code&gt;
+加密过程：明文字母’T’列与密钥字母’C’行交点就是密文字母’F’,以此类推。
+密文：&lt;code&gt;FRW HKQRY YMFMF UAA OLWHD ALWI JPT ZXHC NGV&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://www.practicalcryptography.com/ciphers/classical-era/porta/&#34;&gt;Porta Cipher&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/porta.html&#34;&gt;Porta密码&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;28、仿射密码
+仿射密码(Affine Cipher)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;一种单表代换密码，字母表中的每个字母相应的值使用一个简单的数学函数映射到对应的数值，再把对应数值转换成字母&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;这个公式意味着每个字母加密都会返回一个相同的字母，意义着这种加密方式本质上是一种标准替代密码&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;因此，它具有所有替代密码的弱点&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;每一个字母都是通过函数（ax + b）mod m加密，其中B是位移量，为了保证仿射密码的可逆性，a和m需要满足gcd(a , m)=1，一般m为设置为26&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以E(x) = (5x + 8) mod 26函数为例&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201120120133575.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;解密用D(x)=21(x - 8) mod 26&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://www.practicalcryptography.com/ciphers/classical-era/affine/&#34;&gt;Affine Cipher&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/affine.html&#34;&gt;仿射密码&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;29、Bazeries密码
+Bazeries密码(Bazeries Cipher)是换位密码和替换密码的组合&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;使用两个波利比奥斯方阵，一个明文字母方阵&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用一个随机的数字(一般小于1000000)的生成一个密钥矩阵同时作为第一轮明文划分分组，比如2333这个数字翻译为英文便是TWO THOUSAND THREE HUNDRED THIRTY THREE,从第一个字母T开始选取不重复的字母，之后再从字母表中按序选取没有出现的字母组成密钥矩阵。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;明文:&lt;code&gt;THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG&lt;/code&gt;
+随机数字:&lt;code&gt;2333&lt;/code&gt;
+明文矩阵:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;A  F  L  Q  V
+B  G  M  R  W
+C  H  N  S  X
+D I/J O  T  Y
+E  K  P  U  Z
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;示例密钥矩阵：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;T  W  O  H  U
+S  A  N  D  R
+E I/J Y  B  C
+F  G  K  L  M
+P  Q  V  X  Z
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;明文分组：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;2      3      3    3        2    3     3       3    2     3    3      3
+TH EQU ICK BRO WN FOX JUM PSO VE RTH ELA ZYD OG
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;分组明文反序:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;HT UQE KCI ORB WN XOF MUJ OSP EV EHT ALE DYZ GO
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;使用密钥矩阵替换:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;IL XHP QEG KDS YR CKW NXG KBV PU ILD TOP FMZ AK
+(比如’H’在明文矩阵对应到密钥矩阵的位置就是’I’）
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;30当铺密码&#34;&gt;30、当铺密码&lt;/h4&gt;
+&lt;p&gt;当铺密码 就是一种将中文和数字进行转化的密码，算法相当简单:当前汉字有多少笔画出头，就是转化成数字几&lt;/p&gt;
+&lt;p&gt;例如:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;王夫 井工 夫口 由中人 井中 夫夫 由中大
+67 84 70 123 82 77 125
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;四现代密码&#34;&gt;四、现代密码&lt;/h3&gt;
+&lt;h4 id=&#34;1rsa&#34;&gt;1、RSA&lt;/h4&gt;
+&lt;p&gt;RSA是目前最有影响力和最常用的公钥加密算法，它能够抵抗到目前为止已知的绝大多数密码攻击，已被ISO推荐为公钥数据加密标准。&lt;/p&gt;
+&lt;p&gt;今天只有短的RSA钥匙才可能被强力方式解破。到2008年为止，世界上还没有任何可靠的攻击RSA算法的方式。只要其钥匙的长度足够长，用RSA加密的信息实际上是不能被解破的。目前普遍认为，模式n至少应该取1024位，最好是2048位。但在分布式计算和量子计算机理论日趋成熟的今天，RSA加密安全性受到了挑战和质疑。&lt;/p&gt;
+&lt;p&gt;RSA算法基于一个十分简单的数论事实:将两个大质数相乘十分容易，但是想要对其乘积进行因式分解却极其困难，因此可以将乘积公开作为加密密钥&lt;/p&gt;
+&lt;p&gt;脚本&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import libnum
+from Crypto.Util.number import long_to_bytes
+
+q = int(&amp;#34;0xa6055ec186de51800ddd6fcbf0192384ff42d707a55f57af4fcfb0d1dc7bd97055e8275cd4b78ec63c5d592f567c66393a061324aa2e6a8d8fc2a910cbee1ed9&amp;#34;,16)
+p = int(&amp;#34;0xfa0f9463ea0a93b929c099320d31c277e0b0dbc65b189ed76124f5a1218f5d91fd0102a4c8de11f28be5e4d0ae91ab319f4537e97ed74bc663e972a4a9119307&amp;#34;,16)
+
+e = int(&amp;#34;0x6d1fdab4ce3217b3fc32c9ed480a31d067fd57d93a9ab52b472dc393ab7852fbcb11abbebfd6aaae8032db1316dc22d3f7c3d631e24df13ef23d3b381a1c3e04abcc745d402ee3a031ac2718fae63b240837b4f657f29ca4702da9af22a3a019d68904a969ddb01bcf941df70af042f4fae5cbeb9c2151b324f387e525094c41&amp;#34;,16)
+
+c = 0x7fe1a4f743675d1987d25d38111fae0f78bbea6852cba5beda47db76d119a3efe24cb04b9449f53becd43b0b46e269826a983f832abb53b7a7e24a43ad15378344ed5c20f51e268186d24c76050c1e73647523bd5f91d9b6ad3e86bbf9126588b1dee21e6997372e36c3e74284734748891829665086e0dc523ed23c386bb520
+
+n = q*p
+ 
+d = libnum.invmod(e, (p - 1) * (q - 1))
+m = pow(c, d, n)   # m 的十进制形式
+string = long_to_bytes(m)  # m明文
+print(string)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;网站
+&lt;a href=&#34;http://tool.chacuo.net/cryptrsapubkey&#34;&gt;在线RSA公钥加密解密&lt;/a&gt;
+&lt;a href=&#34;http://tool.chacuo.net/cryptrsaprikey&#34;&gt;在线RSA私钥加密解密&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;2aes&#34;&gt;2、AES&lt;/h4&gt;
+&lt;p&gt;在密码学中又称Rijndael加密法，是美国联邦政府采用的一种区块加密标准。这个标准用来替代原先的DES，已经被多方分析且广为全世界所使用。经过五年的甄选流程，高级加密标准由美国国家标准与技术研究院(NIST)于2001年11月26日发布于FIPS PUB 197，并在2002年5月26日成为有效的标准。2006年，高级加密标准已然成为对称密钥加密中最流行的算法之一。&lt;/p&gt;
+&lt;p&gt;aes密文包括字母 数字 + = /等&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;https://www.cnblogs.com/block2016/p/5596676.html&#34;&gt;AES加密&lt;/a&gt;
+&lt;a href=&#34;https://tool.oschina.net/encrypt/&#34;&gt;在线加密解密&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;3des&#34;&gt;3、DES&lt;/h4&gt;
+&lt;p&gt;DES算法为密码体制中的对称密码体制，又被称为美国数据加密标准，是1972年美国IBM公司研制的对称密码体制加密算法。 明文按64位进行分组，密钥长64位，密钥事实上是56位参与DES运算（第8、16、24、32、40、48、56、64位是校验位， 使得每个密钥都有奇数个1）分组后的明文组和56位的密钥按位替代或交换的方法形成密文组的加密方法&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;https://blog.csdn.net/qq_27570955/article/details/52442092&#34;&gt;DES算法原理完整版&lt;/a&gt;
+&lt;a href=&#34;http://tool.chacuo.net/cryptdes&#34;&gt;在线DES加密解密&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;4ecc&#34;&gt;4、ECC&lt;/h4&gt;
+&lt;p&gt;ECC（Elliptic Curves Cryptography，椭圆曲线密码编码学）
+椭圆加密算法(ECC)是一种公钥加密体制，最初由Koblitz和Miller两人于1985年提出，其数学基础是利用椭圆曲线上的有理点构成Abel加法群上椭圆离散对数的计算困难性
+公钥密码体制根据其所依据的难题一般分为三类:大整数分解问题类、离散对数问题类、椭圆曲线类
+有时也把椭圆曲线类归为离散对数类&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;https://blog.csdn.net/qq_35413770/article/details/103668392&#34;&gt;ECC(椭圆曲线密码编码学)简介&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;5rc4&#34;&gt;5、RC4&lt;/h4&gt;
+&lt;p&gt;RC4（来自Rivest Cipher 4的缩写）是一种流加密算法，密钥长度可变。它加解密使用相同的密钥，因此也属于对称加密算法。RC4是有线等效加密（WEP）中采用的加密算法，也曾经是TLS可采用的算法之一&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;https://wenku.baidu.com/view/404a49828762caaedd33d4c2.html&#34;&gt;RC4算法总结&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/rc4.html&#34;&gt;RC4加解密&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;五代码混淆加密&#34;&gt;五、代码混淆加密&lt;/h3&gt;
+&lt;h4 id=&#34;1vbscriptencode解密&#34;&gt;1、VBScript.Encode解密&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://adophper.com/encode.html&#34;&gt;VBScript.Encode解密&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;2、ppencode
+ppencode-Perl把Perl代码转换成只有英文字母的字符串&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201120121851895.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://namazu.org/~takesako/ppencode/demo.html&#34;&gt;ppencode - JavaScript demo&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/ppencode.html&#34;&gt;PPencode&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;3rrencode&#34;&gt;3、rrencode&lt;/h4&gt;
+&lt;p&gt;rrencode可以把ruby代码全部转换成符号&lt;/p&gt;
+&lt;p&gt;暂时没找到网站
+之前有个挂了&lt;/p&gt;
+&lt;h4 id=&#34;4jjencode&#34;&gt;4、jjencode&lt;/h4&gt;
+&lt;p&gt;jjencode将JS代码转换成只有符号的字符串
+jjencode的解密直接在浏览器的控制台里输入密文即可执行解密&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201120122322824.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://ctf.ssleye.com/jjencode.html&#34;&gt;JJencode&lt;/a&gt;
+&lt;a href=&#34;http://pferrie2.tripod.com/papers/jjencode.pdf&#34;&gt;MALWARE ANALYSIS&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;5aaencode颜文字&#34;&gt;5、aaencode/颜文字&lt;/h4&gt;
+&lt;p&gt;aaencode的解密直接在浏览器的控制台里输入密文即可执行解密&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/2020112012253056.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;https://utf-8.jp/public/aaencode.html&#34;&gt;aaencode demo&lt;/a&gt;
+&lt;a href=&#34;https://cat-in-136.github.io/2010/12/aadecode-decode-encoded-as-aaencode.html&#34;&gt;aadecode - Decode encoded-as-aaencode JavaScript program. &lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/aaencode.html&#34;&gt;AAencode&lt;/a&gt;&lt;a href=&#34;http://ctf.ssleye.com/aaencode.html&#34;&gt;http://ctf.ssleye.com/aaencode.html&lt;/a&gt;)&lt;/p&gt;
+&lt;h4 id=&#34;6jsfuck&#34;&gt;6、JSfuck]&lt;/h4&gt;
+&lt;p&gt;JSFuck 可以让你只用 6 个字符&lt;a href=&#34;&#34;&gt; &lt;/a&gt; ! +来编写 JavaScript 程序&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201120122610268.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://www.jsfuck.com/&#34;&gt;JSFuck&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/jsfuck.html&#34;&gt;JSfuck&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;7jother&#34;&gt;7、jother&lt;/h4&gt;
+&lt;p&gt;jother是一种运用于javascript语言中利用少量字符构造精简的匿名函数方法对于字符串进行的编码方式
+其中8个少量字符包括：&lt;code&gt;! + ( ) [ ] { }&lt;/code&gt;，只用这些字符就能完成对任意字符串的编码
+直接在浏览器(f12)的控制台里输入密文即可执行解密&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201120122904825.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;http://tmxk.org/jother/&#34;&gt;jother&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;8brainfuck&#34;&gt;8、brainfuck&lt;/h4&gt;
+&lt;p&gt;Brainfuck是一种极小化的计算机语言，按照”Turing complete（完整图灵机）”思想设计的语言
+它的主要设计思路是：用最小的概念实现一种“简单”的语言
+Brainfuck只有八种符号，所有的操作都由这八种符号&lt;code&gt;&amp;gt; &amp;lt; + - . , [ ]&lt;/code&gt;的组合来完成&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201120123130406.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;https://www.splitbrain.org/services/ook&#34;&gt;Brainfuck/Ook! Obfuscation/Encoding&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/brain.html&#34;&gt;Brainfuck&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;9ook&#34;&gt;9、Ook!&lt;/h4&gt;
+&lt;p&gt;Ook! 与Brainfuck类似, 但用单词“Ook！”，“Ook.” 和“Ook?”代替&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201120123546215.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;https://www.splitbrain.org/services/ook&#34;&gt;Brainfuck/Ook! Obfuscation/Encoding&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;10bubble-babble&#34;&gt;10、Bubble Babble&lt;/h4&gt;
+&lt;p&gt;Bubble Babble&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;由Antti Huima创建的一种编码方法，可以把二进制信息表示为由交替的元音和辅音组成的伪词（pseudo-words）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;主要用于密码指纹，其编码也具有内置的纠错和冗余&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;编码格式每5个字符中间以-来分隔，作者的原意就是想把难以记得的二进制数据表示为难忘的伪词&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201120125220286.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;网站
+&lt;a href=&#34;https://github.com/eur0pa/bubblepy&#34;&gt;bubblepy&lt;/a&gt;
+&lt;a href=&#34;http://ctf.ssleye.com/bubble.html&#34;&gt;BubbleBabble&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;六其他&#34;&gt;六、其他&lt;/h3&gt;
+&lt;h4 id=&#34;1与佛论禅&#34;&gt;1、与佛论禅&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.keyfc.net/bbs/tools/tudoucode.aspx&#34;&gt;与佛论禅&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/2020111919563157.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;2文本加密&#34;&gt;2、文本加密&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.qqxiuzi.cn/bianma/wenbenjiami.php&#34;&gt;文本加密&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201119230115963.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;3核心价值观密码&#34;&gt;3、核心价值观密码&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ctf.ssleye.com/cvencode.html&#34;&gt;核心价值观密码&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201119235808232.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;4恩尼格码密码&#34;&gt;4、恩尼格码密码&lt;/h4&gt;
+&lt;p&gt;恩尼格玛密码机（德语：Enigma，又译哑谜机，或“谜”式密码机）是一种用于加密与解密文件的密码机。确切地说，恩尼格玛是对二战时期纳粹德国使用的一系列相似的转子机械加解密机器的统称，它包括了许多不同的型号，为密码学对称加密算法的流加密&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://enigmaco.de/enigma/enigma.html&#34;&gt;模拟&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;5兽音译者&#34;&gt;5、兽音译者&lt;/h4&gt;
+&lt;p&gt;给我笑死
+&lt;a href=&#34;http://hi.pcmoe.net/roar.html&#34;&gt;兽音译者&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20210416204016321.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;结语&#34;&gt;结语&lt;/h3&gt;
+&lt;p&gt;对常见的编码和密码做了个归纳&lt;/p&gt;
+&lt;p&gt;一些好用的网站和工具&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://web2hack.org/xssee/&#34;&gt;https://web2hack.org/xssee/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.sojson.com/&#34;&gt;json在线&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://web.chacuo.net/&#34;&gt;程默的博客&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;CaptfEncoder&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/jameslyons/python_cryptanalysis&#34;&gt;python_cryptanalysis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.thonky.com/kryptos/&#34;&gt;Kryptos and Cryptanalysis Information&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://rumkin.com/tools/cipher/&#34;&gt;Cipher Tools&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://encode.chahuo.com/&#34;&gt;在线加密解密&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;原文链接：https://blog.csdn.net/weixin_44604541/article/details/109817480&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
