@@ -918,25 +918,25 @@ $$
 &lt;p&gt;对常见的编码和密码做个归纳
 并记录一些可用的网站和工具
 可以当做手册使用&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;总结：&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;总结&#34;&gt;&lt;strong&gt;总结&lt;/strong&gt;&lt;/h3&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th&gt;ASCII码&lt;/th&gt;
-&lt;th&gt;URL编码&lt;/th&gt;
-&lt;th&gt;base家族编码&lt;/th&gt;
+&lt;th&gt;&lt;a href=&#34;https://p1um3r.github.io/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/#%E4%B8%80%E5%B8%B8%E8%A7%81%E7%BC%96%E7%A0%81:~:text=1%E3%80%81-,ASCII%E7%BC%96%E7%A0%81,-%E7%8E%B0%E4%BB%8A%E6%9C%80%E9%80%9A%E7%94%A8&#34;&gt;ASCII码&lt;/a&gt;&lt;/th&gt;
+&lt;th&gt;&lt;a href=&#34;https://p1um3r.github.io/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/#%E4%B8%80%E5%B8%B8%E8%A7%81%E7%BC%96%E7%A0%81:~:text=3%E3%80%81-,URL%E7%BC%96%E7%A0%81,-url%E7%BC%96%E7%A0%81%E5%8F%88&#34;&gt;URL编码&lt;/a&gt;&lt;/th&gt;
+&lt;th&gt;&lt;a href=&#34;https://p1um3r.github.io/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/#%E4%B8%80%E5%B8%B8%E8%A7%81%E7%BC%96%E7%A0%81:~:text=2%E3%80%81-,base64%2C32%E7%BC%96%E7%A0%81,-Base64%E6%98%AF%E7%BD%91%E7%BB%9C&#34;&gt;base家族编码&lt;/a&gt;&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td&gt;摩尔斯电码（Morse Code）&lt;/td&gt;
-&lt;td&gt;ShellCode&lt;/td&gt;
-&lt;td&gt;XXencode编码&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://p1um3r.github.io/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/#%E4%B8%80%E5%B8%B8%E8%A7%81%E7%BC%96%E7%A0%81:~:text=7%E3%80%81-,%E6%91%A9%E5%B0%94%E6%96%AF%E7%94%B5%E7%A0%81%EF%BC%88%E6%91%A9%E6%96%AF%E5%AF%86%E7%A0%81%EF%BC%89,-%E5%A4%A7%E5%90%8D%E9%BC%8E%E9%BC%8E%E7%9A%84morse&#34;&gt;摩尔斯电码（Morse Code）&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;[ShellCode]&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://p1um3r.github.io/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/#%E4%B8%80%E5%B8%B8%E8%A7%81%E7%BC%96%E7%A0%81:~:text=9%E3%80%81-,XXencode%E7%BC%96%E7%A0%81,-XXencode&#34;&gt;XXencode编码&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;UUencode编码&lt;/td&gt;
-&lt;td&gt;AAencode编码&lt;/td&gt;
-&lt;td&gt;JSfuck编码&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://p1um3r.github.io/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/#%E4%B8%80%E5%B8%B8%E8%A7%81%E7%BC%96%E7%A0%81:~:text=10%E3%80%81-,UUencode%E7%BC%96%E7%A0%81,-UUencode%E7%BC%96%E7%A0%81&#34;&gt;UUencode编码&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://p1um3r.github.io/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/#%E4%B8%80%E5%B8%B8%E8%A7%81%E7%BC%96%E7%A0%81:~:text=5%E3%80%81-,aaencode/%E9%A2%9C%E6%96%87%E5%AD%97,-aaencode%E7%9A%84%E8%A7%A3&#34;&gt;AAencode编码&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://p1um3r.github.io/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/#%E4%B8%80%E5%B8%B8%E8%A7%81%E7%BC%96%E7%A0%81:~:text=6%E3%80%81-,JSfuck,-%5D&#34;&gt;JSfuck编码&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;PPencode&lt;/td&gt;
@@ -1916,7 +1916,7 @@ jjencode的解密直接在浏览器的控制台里输入密文即可执行解密
 &lt;p&gt;&lt;a href=&#34;https://utf-8.jp/public/aaencode.html&#34;&gt;aaencode demo&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://cat-in-136.github.io/2010/12/aadecode-decode-encoded-as-aaencode.html&#34;&gt;aadecode - Decode encoded-as-aaencode JavaScript program. &lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://ctf.ssleye.com/aaencode.html&#34;&gt;AAencode&lt;/a&gt;&lt;a href=&#34;http://ctf.ssleye.com/aaencode.html&#34;&gt;http://ctf.ssleye.com/aaencode.html&lt;/a&gt;)&lt;/p&gt;
-&lt;h4 id=&#34;6jsfuck&#34;&gt;6、JSfuck]&lt;/h4&gt;
+&lt;h4 id=&#34;6jsfuck&#34;&gt;6、JSfuck&lt;/h4&gt;
 &lt;p&gt;JSFuck 可以让你只用 6 个字符&lt;a href=&#34;&#34;&gt; &lt;/a&gt; ! +来编写 JavaScript 程序&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201120122610268.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
 &lt;p&gt;网站&lt;/p&gt;
