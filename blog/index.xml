@@ -316,7 +316,7 @@ $$
 &lt;p&gt;设$p-1$是$B-Smooth$的，可设$p-1=p_1p_2&amp;hellip;p_n(\forall 1\le i\le n,p_i\le B)$&lt;/p&gt;
 &lt;p&gt;若$p_1,p_2,&amp;hellip;,p_n$两两不同，则$p_1p_2&amp;hellip;p_n\mid B! \Rightarrow (p-1)\mid B!\Rightarrow B!=k(p-1)$。因此$a^{B!} \equiv a^{k(p-1)}\equiv 1(\bmod p)$&lt;/p&gt;
 &lt;p&gt;假设$N=pq$，计算$\gcd(a^{B!}-1, N)$，只要结果大于$0$小于$N$，那么结果就为$p$&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/8f6e63a2fa13494a81e0f65c2ccf1c9d.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://p1um3r.github.io/images/RSA%E8%A7%A3%E9%A2%98%E6%80%BB%E7%BB%93/8f6e63a2fa13494a81e0f65c2ccf1c9d.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h3 id=&#34;实现-4&#34;&gt;实现&lt;/h3&gt;
