@@ -228,9 +228,9 @@
 第一部分是：ASCII非打印控制字符
 第二部分是：ASCII打印字符；
 第三部分是：扩展ASCII打印字符</p>
-<p><img src="https://img-blog.csdnimg.cn/20201119192658523.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p><img src="https://img-blog.csdnimg.cn/20201119192718216.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p><img src="https://img-blog.csdnimg.cn/20201119192811181.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/20201119192658523.png" alt="在这里插入图片描述"></p>
+<p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/20201119192718216.png" alt="在这里插入图片描述"></p>
+<p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/20201119192811181.png" alt="在这里插入图片描述"></p>
 <p>转换网站
 <a href="http://www.ab126.com/goju/1711.html">ASCII 在线转换器</a>
 <a href="http://ctf.ssleye.com/cencode.html">ASCII编码转换</a></p>
@@ -241,7 +241,7 @@
 <li>3个字节可表示4个可打印字符</li>
 <li>如果要编码的字节数不能被3整除：当最后剩余一个八位字节（一个byte）时，最后6位的base64字节块有四位是0值，最后附加上两个等号；如果最后剩余两个八位字节（2byte）时，最后一个6位的base字节块有两位是0值，最后附加一个等号</li>
 </ul>
-<p><img src="https://img-blog.csdnimg.cn/20201119201223700.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/20201119201223700.png" alt="在这里插入图片描述"></p>
 <p>加密：</p>
 <pre tabindex="0"><code>&gt;&gt;&gt; import base64
 &gt;&gt;&gt; encode = base64.b64encode(b&#39;I love you&#39;)
@@ -254,7 +254,7 @@ b&#39;SSBsb3ZlIHlvdQ==&#39;
 b&#39;I love you&#39;
 </code></pre><p>base32
 只有大写字母（A-Z）和数字234567</p>
-<p><img src="https://img-blog.csdnimg.cn/2020111920155139.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/2020111920155139.png" alt="在这里插入图片描述"></p>
 <p>跟base64相似就是将base64.b 64encode变成base64.b 32encode
 加密：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#f92672">import</span> base64
@@ -306,7 +306,7 @@ URL地址（常说网址）规定了常用地数字，字母可以直接使用�
 <p>于n字节的符号（n &gt; 1），第一个字节的前n位都设为1，第n + 1位设为0，后面字节的前两位一律设为10。剩下的没有提及的二进制位，全部为这个符号的 Unicode 码</p>
 </li>
 </ul>
-<p><img src="https://img-blog.csdnimg.cn/20201119204245361.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/20201119204245361.png" alt="在这里插入图片描述"></p>
 <p>二者的转换方式</p>
 <ul>
 <li>
@@ -345,8 +345,8 @@ HTML 中的预留字符必须被替换为字符实体
 <p>基于5×5方格波利比奥斯方阵来实现的，不同点是用K字母被整合到C中</p>
 </li>
 </ul>
-<p><img src="https://img-blog.csdnimg.cn/2020111920511547.png#pic_center" alt="在这里插入图片描述"></p>
-<p><img src="https://img-blog.csdnimg.cn/20201119205121551.png#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/2020111920511547.png" alt="在这里插入图片描述"></p>
+<p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/20201119205121551.png" alt="在这里插入图片描述"></p>
 <p>网站
 <a href="http://ctf.ssleye.com/tapcode.html">敲击码</a></p>
 <h4 id="7摩尔斯电码摩斯密码">7、摩尔斯电码（摩斯密码）</h4>
@@ -361,7 +361,7 @@ HTML 中的预留字符必须被替换为字符实体
 <p>​		- 每个字符间短的停顿（在点和划之间的停顿）</p>
 <p>​		- 每个词之间中等的停顿</p>
 <p>​		- 句子之间长的停顿</p>
-<p><img src="https://img-blog.csdnimg.cn/20201119210224286.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/20201119210224286.png" alt="在这里插入图片描述"></p>
 <p>网站
 <a href="https://www.atool99.com/morse.php">中文摩斯密码 Morse莫尔斯电码加密解密</a>
 <a href="http://www.zou114.com/mesm/">摩尔斯密码在线翻译</a>
@@ -380,7 +380,7 @@ HTML 中的预留字符必须被替换为字符实体
 </li>
 </ul>
 <p>编码方法</p>
-<p><img src="https://img-blog.csdnimg.cn/20201119210615584.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/20201119210615584.png" alt="在这里插入图片描述"></p>
 <p>网站
 <a href="http://www.mxcz.net/tools/QuotedPrintable.aspx">QuotedPrintable编码</a>
 <a href="http://ctf.ssleye.com/quoted.html">Quoted-printable编码</a></p>
@@ -422,7 +422,7 @@ XXencode</p>
 <p>然后将每个数加上32，所产生的结果刚好落在ASCII字符集中可打印字符（32-空白…95-底线）的范围之中</p>
 </li>
 </ul>
-<p><img src="https://img-blog.csdnimg.cn/20201120123238507.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/20201120123238507.png" alt="在这里插入图片描述"></p>
 <p>网站
 <a href="http://web.chacuo.net/charsetuuencode">在线UUencode编码</a>
 <a href="http://ctf.ssleye.com/uu.html">UUencode</a></p>
@@ -452,7 +452,7 @@ XXencode</p>
 <p>值范围在<code>0-9</code>，<code>a-f</code></p>
 </li>
 </ul>
-<p><img src="https://img-blog.csdnimg.cn/20201119213328102.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/20201119213328102.png" alt="在这里插入图片描述"></p>
 <p>md5碰撞</p>
 <pre tabindex="0"><code>import hashlib
 
@@ -488,7 +488,7 @@ for i in range(10000, 10000001):
 <p>移位密码首先以k的长度（也就是len(k)=4）切分m，具体如下：</p>
 <pre tabindex="0"><code>flag     {eas    y_ea    sy_c    rypt      o}
 </code></pre><p>总共分成了6个部分，然后按照密钥3124的顺序对每一部分都进行密钥变化。如下是变化规则</p>
-<p><img src="https://img-blog.csdnimg.cn/20201119230841818.png#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/20201119230841818.png" alt="在这里插入图片描述"></p>
 <p>变化之后，如下：</p>
 <pre tabindex="0"><code>flag     {eas    y_ea    sy_c    rypt      o}
 
@@ -500,7 +500,7 @@ lafg     ea{s    _eya    y_sc    yprt      }o
 <p>填入5行7列表(事先约定填充的行列数，如果明文不能填充完表格可以约定使用某个字母进行填充)
 按how are u在字母表中的出现的先后顺序进行编号，我们就有a为1,e为2，h为3，o为4，r为5，u为6，w为7
 所以先写出a列，其次e列，以此类推写出的结果便是密文</p>
-<p><img src="https://img-blog.csdnimg.cn/20201119231129922.png#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/20201119231129922.png" alt="在这里插入图片描述"></p>
 <p>密文：<code>qoury inpho Tkool hbxva uwmtd cfseg erjez</code></p>
 <p>网站
 <a href="http://www.practicalcryptography.com/ciphers/classical-era/columnar-transposition/">Columnar Transposition Cipher</a>
@@ -509,7 +509,7 @@ lafg     ea{s    _eya    y_sc    yprt      }o
 <p>事先双方约定密钥(也就是曲路路径)
 明文：<code>The quick brown fox jumps over the lazy dog</code>
 密文：<code>gesfc inpho dtmwu qoury zejre hbxva lookT</code></p>
-<p><img src="https://img-blog.csdnimg.cn/20201119231315538.png#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/20201119231315538.png" alt="在这里插入图片描述"></p>
 <h3 id="三替换密码">三、替换密码</h3>
 <h4 id="1凯撒密码">1、凯撒密码</h4>
 <p>明文中的所有字母都在字母表上向后（或向前）按照一个固定数目进行偏移后被替换成密文</p>
