@@ -55,8 +55,8 @@
   "keywords": [
     "encode"
   ],
-  "articleBody": "常见密码和编码总结 前言 对常见的编码和密码做个归纳 并记录一些可用的网站和工具 可以当做手册使用\n一、常见编码 1、ASCII编码 现今最通用的单字节编码系统，并等同于国际标准ISO/IEC 646\n可以分作三部分组成 第一部分是：ASCII非打印控制字符 第二部分是：ASCII打印字符； 第三部分是：扩展ASCII打印字符\n转换网站 ASCII 在线转换器 ASCII编码转换\n2、base64,32编码 Base64是网络上最常见的用于传输8Bit字节码的编码方式之一\n基于64个可打印字符来表示二进制数据的方法 3个字节可表示4个可打印字符 如果要编码的字节数不能被3整除：当最后剩余一个八位字节（一个byte）时，最后6位的base64字节块有四位是0值，最后附加上两个等号；如果最后剩余两个八位字节（2byte）时，最后一个6位的base字节块有两位是0值，最后附加一个等号 加密：\n\u003e\u003e\u003e import base64\r\u003e\u003e\u003e encode = base64.b64encode(b'I love you')\r\u003e\u003e\u003e encode\rb'SSBsb3ZlIHlvdQ==' 解密：\n\u003e\u003e\u003e import base64\r\u003e\u003e\u003e decode = base64.b64decode(b'SSBsb3ZlIHlvdQ==')\r\u003e\u003e\u003e decode\rb'I love you' base32 只有大写字母（A-Z）和数字234567\n跟base64相似就是将base64.b 64encode变成base64.b 32encode 加密：\n\u003e\u003e\u003e import base64 \u003e\u003e\u003e encode = base64.b32encode(b'I love you') \u003e\u003e\u003e encode b'JEQGY33WMUQHS33V' 解密：\n\u003e\u003e\u003e import base64 \u003e\u003e\u003e decode = base64.b32decode(b'JEQGY33WMUQHS33V') \u003e\u003e\u003e decode b'I love you' 网站 Base64加密解密 base编码\n3、URL编码 url编码又叫百分号编码，是统一资源定位(URL)编码方式 URL地址（常说网址）规定了常用地数字，字母可以直接使用，另外一批作为特殊用户字符也可以直接用（/,:@等），剩下的其它所有字符必须通过在该字节ascii码的的16进制字符前面加%编码处理\njs：有encodeURI、encodeURIComponent\nPHP有 urlencode、urldecode等\nurl编码和双重编码是绕过时常用手段\n网站 UrlEncode编码/解码 URL编码\n4、Unicode编码 unicode编码\n是一种所有符号的编码，现在的规模可以容纳100多万个符号，https://home.unicode.org/\n只规定了符号的二进制代码，却没有规定这个二进制代码应该如何存储\nUTF-8 就是在互联网上使用最广的一种 Unicode 的实现方式，其他实现方式还包括 UTF-16（字符用两个字节或四个字节表示）和 UTF-32（字符用四个字节表示），不过在互联网上基本不用\nUTF-8\n对于单字节的符号，字节的第一位设为0，后面7位为这个符号的 Unicode 码。因此对于英语字母，UTF-8 编码和 ASCII 码是相同的\n于n字节的符号（n \u003e 1），第一个字节的前n位都设为1，第n + 1位设为0，后面字节的前两位一律设为10。剩下的没有提及的二进制位，全部为这个符号的 Unicode 码\n二者的转换方式\n首先找到该Unicode编号所在的编号范围，进而可以找到与之对应的二进制格式\n然后将该Unicode编号转化为二进制数（去掉高位的0）\n最后将该二进制数从右向左依次填入二进制格式的X中，如果还有X未填，则设为0\n网站 Unicode编码转换\n5、HTML实体编码 喜闻乐见的\u0026# HTML 中的预留字符必须被替换为字符实体 一些在键盘上找不到的字符也可以使用字符实体来替换\n可参考 HTML 字符实体 HTML 符号实体参考手册 HTML ISO-8859-1 参考手册\n网站 在线HTML编码器 HTML编码\n6、敲击码 敲击码(Tap code)\n一种以非常简单的方式对文本信息进行编码的方法\n因该编码对信息通过使用一系列的点击声音来编码而命名\n基于5×5方格波利比奥斯方阵来实现的，不同点是用K字母被整合到C中\n网站 敲击码\n7、摩尔斯电码（摩斯密码） 大名鼎鼎的morse电码 早期的数字化通信形式 不同于现代只使用0和1两种状态的二进制代码 代码包括五种： ​\t- 点（.）\n​\t- 划（-）\n​\t- 每个字符间短的停顿（在点和划之间的停顿）\n​\t- 每个词之间中等的停顿\n​\t- 句子之间长的停顿\n网站 中文摩斯密码 Morse莫尔斯电码加密解密 摩尔斯密码在线翻译 Morse code\n8、Quoted-printable编码 Quoted-printable编码\n多用途互联网邮件扩展（MIME) 一种实现方式\n帮助非ASCII编码的信件传输通过SMTP\n每个末编码的二进制字符被编码成三个字符，即一个等号和一个十六进制的数字，如‘=AB’\n编码方法\n网站 QuotedPrintable编码 Quoted-printable编码\n9、XXencode编码 XXencode\n将输入文本以每三个字节为单位进行编码\n如果最后剩下的资料少于三个字节，不够的部份用0补齐\n这三个字节共有24个Bit，以6bit为单位分为4个组，每个组以十进制来表示所出现的数值只会落在0到63之间\n以所对应值的位置字符代替。它所选择的可打印字符是：+-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz，一共64个字符\n跟base64打印字符相比，就是UUencode多一个-字符，少一个/ 字符\n网站 在线XXencode编码 XXencode\n10、UUencode编码 UUencode编码\n起先用在unix网络中，早期在电子邮件中使用较多\n将输入文本以每三个字节为单位进行编码，如果最后剩下的资料少于三个字节，不够的部份用0补齐\n三个字节共有24个Bit，以6-bit为单位分为4个组，每个组以十进制来表示所出现的字节的数值，这个数值只会落在0到63之间\n然后将每个数加上32，所产生的结果刚好落在ASCII字符集中可打印字符（32-空白…95-底线）的范围之中\n网站 在线UUencode编码 UUencode\n11、Escape/Unescape编码 Escape/Unescape\n又叫%u编码，采用UTF-16BE模式，16进制表示方式前面加%u\n如：字符“中”，UTF-16BE是：“6d93”，因此Escape是“%u6d93”\n因为目前%字符，常用作URL编码，所以%u这样编码已经逐渐被废弃了\n网站 在线Escape编码/加密 Escape编码\n12、md5 md5\n被广泛使用的密码散列函数，可以产生出一个128位（16字节）的散列值（hash value），用于确保信息传输完整一致\n值范围在0-9，a-f\nmd5碰撞\nimport hashlib\rfor i in range(10000, 10000001):\rs = hashlib.md5(str(i).encode()).hexdigest()[0:5]\rif s == \"5fe45\":\rprint(i)\rbreak 网站 CMD5 xmd5\n二、换位密码 1、栅栏密码 把要加密的明文分成N个一组，然后把每组的第1个字连起来，形成一段无规律的话\n以2栏栅栏加密为例\n明文：THE LONGEST DAY MUST HAVE AN END 把将要传递的信息中的字母交替排成上下两行。 ​\tT E O G S D Y U T A E N N\n​\tH L N E T A M S H V A E D\n密文： ​\t将下面一行字母排在上面一行的后边。\n​\tTEOGSDYUTAENN HLNETAMSHVAED\n网站 Rail-fence Cipher 栅栏密码\n2、简单换位密码 密文k=“3124” 明文m=“flag{easy_easy_crypto}”\n移位密码首先以k的长度（也就是len(k)=4）切分m，具体如下：\nflag {eas y_ea sy_c rypt o} 总共分成了6个部分，然后按照密钥3124的顺序对每一部分都进行密钥变化。如下是变化规则\n变化之后，如下：\nflag {eas y_ea sy_c rypt o}\rlafg ea{s _eya y_sc yprt }o 所以密文为：lafgea{s _eyay_scyprt}o\n3、列移位密码 明文 The quick brown fox jumps over the lazy dog 密钥 how are u\n填入5行7列表(事先约定填充的行列数，如果明文不能填充完表格可以约定使用某个字母进行填充) 按how are u在字母表中的出现的先后顺序进行编号，我们就有a为1,e为2，h为3，o为4，r为5，u为6，w为7 所以先写出a列，其次e列，以此类推写出的结果便是密文\n密文：qoury inpho Tkool hbxva uwmtd cfseg erjez\n网站 Columnar Transposition Cipher 列移位密码\n4、曲路密码 事先双方约定密钥(也就是曲路路径) 明文：The quick brown fox jumps over the lazy dog 密文：gesfc inpho dtmwu qoury zejre hbxva lookT\n三、替换密码 1、凯撒密码 明文中的所有字母都在字母表上向后（或向前）按照一个固定数目进行偏移后被替换成密文\n明文：The quick brown fox jumps over the lazy dog 偏移量：1 密文：Uif rvjdl cspxo gpy kvnqt pwfs uif mbaz eph\n网站 Caesar cipher 凯撒密码\n2、ROT5/13/18/47 ROT5：只对数字进行编码，用当前数字往前数的第5个数字替换当前数字，例如当前为0，编码后变成5，当前为1，编码后变成6，以此类推顺序循环。\nROT13：只对字母进行编码，用当前字母往前数的第13个字母替换当前字母，例如当前为A，编码后变成N，当前为B，编码后变成O，以此类推顺序循环。\nROT18：这是一个异类，本来没有，它是将ROT5和ROT13组合在一起，为了好称呼，将其命名为ROT18。\nROT47：对数字、字母、常用符号进行编码，按照它们的ASCII值进行位置替换，用当前字符ASCII值往前数的第47位对应字符替换当前字符，例如当前为小写字母Z，编码后变成大写字母K，当前为数字0，编码后变成符号_。用于ROT47编码的字符其ASCII值范围是33－126，具体可参考ASCII编码，\n下面以ROT13以例 明文：the quick brown fox jumps over the lazy dog 密文：gur dhvpx oebja sbk whzcf bire gur ynml qbt\n网站 ROT5/13/18/47编码转换 Rot13密码\n3、QWE加密 从电脑键盘上的字母从Q开始数，顺序是Q W E R T Y U I… 对应的字母顺序依次是A B C D E F G H 也就是说Q=A,W=B,E=C，依次类推\n4、拼音九键加密 利用字母在九键上的位置进行加密 特点：数字为偶数个，且偶数位的数小于5(九键上一个键上的字母最多是四个)\n例：335321414374744361715332 两个数为一组分开：33 53 21 41 43 74 74 43 61 71 53 32 对应九键进行查找：3键的第三个字母、5键的第3个字母，以此类推\n5、埃特巴什码 以字母倒序排列作为特殊密钥的替换加密，也称也就是下面的对应关系：\nABCDEFGHIJKLMNOPQRSTUVWXYZ\rZYXWVUTSRQPONMLKJIHGFEDCBA 网站 Atbash Cipher 埃特巴什码\n6、培根密码 每个明文字母被一个由5字符组成的序列替换，最初的加密方式就是由’A’和’B’组成序列替换明文(所以你当然也可以用别的字母)\nA = aaaaa I/J = abaaa R = baaaa\rB = aaaab K = abaab S = baaab C = aaaba L = ababa T = baaba\rD = aaabb M = ababb U/V = baabb\rE = aabaa N = abbaa W = babaa\rF = aabab O = abbab X = babab\rG = aabba P = abbba Y = babba\rH = aabbb Q = abbbb Z = babbb 网站 Baconian Cipher 培根密码\n7、希尔密码 每个字母转换成26进制数字：A=0, B=1, C=2…Z=25 一串字母当成n维向量，跟一个n×n的矩阵相乘 再将得出的结果MOD26\n网站 Hill Cipher Cryptanalysis of the Hill Cipher\n8、猪圈密码 猪圈密码(Pigpen Cipher或称九宫格密码、朱高密码、共济会密码或共济会员密码)，是一种以格子为基础的简单替代式密码\n网站 The BLACK Chamber 猪圈密码\n变种\n9、圣堂武士密码 也算是猪圈密码的变种\n10、银河字母 11、维吉尼亚密码 维吉尼亚密码(Vigenère Cipher) 在单一恺撒密码的基础上扩展出多表代换密码，根据密钥(当密钥长度小于明文长度时可以循环使用)来决定用哪一行的密表来进行替换，以此来对抗字频统计\n明文：THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG 密钥(循环使用，密钥越长相对破解难度越大)：CULTURE 加密过程：如果第一行为明文字母，第一列为密钥字母，那么明文字母’T’列和密钥字母’C’行的交点就是密文字母’V’，以此类推 密文：VBP JOZGM VCHQE JQR UNGGW QPPK NYI NUKR XFK\n网站\nCryptanalysis of the Vigenere Cipher Vigenère cipher Vigenere Solver 维吉尼亚密码 实例\n攻防世界 Crypto高手进阶区 3分题 shanghai 12、格罗斯费尔德密码 格罗斯费尔德密码(Gronsfeld cipher)\n实际上和维吉尼亚密码相同，除了使用了数字来代替字母以外没有什么区别 数字可以选择一种数列，如斐波那契数列，或者一些其他的伪随机序列 格罗斯费尔德密码密码分析过程和维吉尼亚密码大同小异，不过，自动密钥密码不能使用卡西斯基算法(kasiski)来破译 \u003e\u003e\u003efrom pycipher import Gronsfeld\r\u003e\u003e\u003eGronsfeld([2,20,11,45,20,43,4]).encipher('THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG')\r'VBPJOZGMVCHQEJQRUNGGWQPPKNYINUKRXFK'\r\u003e\u003e\u003eGronsfeld([2,20,11,45,20,43,4]).decipher('VBPJOZGMVCHQEJQRUNGGWQPPKNYINUKRXFK')\r'THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG' 网站 Gronsfeld Cipher Gronsfeld密码\n13、自动密钥密码 自动密钥密码(Autokey Cipher)\n是多表替换密码，与维吉尼亚密码密切相关，但使用不同的方法生成密钥，通常来说要比维吉尼亚密码更安全\n自动密钥密码主要有两种，关键词自动密钥密码和原文自动密钥密码\n下面我们以关键词自动密钥为例： 明文：THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG 关键词：CULTURE 自动生成密钥：CULTURE THE QUICK BROWN FOX JUMPS OVER THE 接下来的加密过程和维吉尼亚密码类似，从密表可得： 密文：VBP JOZGD IVEQV HYY AIICX CSNL FWW ZVDP WVK\n网站 Cryptanalysis of the Autokey Cipher Autokey Cipher 自动密钥密码\n14、博福特密码 博福特密码(Beaufort Cipher)\n一种类似于维吉尼亚密码的代换密码，由弗朗西斯·蒲福(Francis Beaufort)发明\n最知名的应用是Hagelin M-209密码机\n属于对等加密，即加密演算法与解密演算法相同\n明文：THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG 密钥(循环使用，密钥越长相对破解难度越大)：CULTURE 加密过程：如果第一行为明文字母，第一列为密文字母，那么沿明文字母’T’列出现密钥字母’C’的行号就是密文字母’J’，以此类推。 密文：JNH DAJCS TUFYE ZOX CZICM OZHC BKA RUMV RDY\n网站 Beaufort Cipher 博福特密码\n15、滚动密钥密码 滚动密钥密码(Running Key Cipher)\n和维吉尼亚密码有着相同的加密机制，区别是密钥的选取，维吉尼亚使用的密钥简短，而且重复循环使用，与之相反，滚动密钥密码使用很长的密钥，比如引用一本书作为密钥\n这样做的目的是不重复循环使用密钥，使密文更难破译，尽管如此，滚动密钥密码还是可以被攻破，因为有关于密钥和明文的统计分析模式可供利用，如果滚动密钥密码使用统计上的随机密钥来源，那么理论上是不可破译的，因为任何可能都可以成为密钥，并且所有的可能性都是相等的。\n明文：THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG 密钥：选取C语言编程(1978版)第63页第1行”errors can occur in several places. A label has…”，去掉非字母部分作为密钥(实际选取的密钥很长，长度至少不小于明文长度)。 加密过程：加密过程和维吉尼亚密码加密过程相同 密文:XYV ELAEK OFQYH WWK BYHTJ OGTC TJI DAK YESR\n网站 Running Key Cipher 滚动密钥密码\n16、夏多密码（曲折加密） 作者麦克斯韦·格兰特在中篇小说《死亡之链》塑造夏多这一英雄人物中所自创的密码\n在以上所示的字母表密钥的底部，列有四个附加符号1，2，3，4.他们可以放在密文中的任何地方 每个附加符号指示，如何转动写有密文的纸张，再进行后续的加密或解密操作，直到出现另一个附加符号\n例：信文：I AM IN DANGER.SEND HELP(我有危险，速来增援) 可以加密成\n17、波利比奥斯方阵密码 波利比奥斯方阵密码（Polybius Square Cipher或称波利比奥斯棋盘）\n棋盘密码的一种，是利用波利比奥斯方阵进行加密的密码方式，简单的来说就是把字母排列好，用坐标(行列)的形式表现出来 字母是密文，明文便是字母的坐标 常见的排布方式：\n加密实例： 明文：THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG 密文：442315 4145241325 1242345233 213453 2445323543 442315 31115554 143422\n18、普莱菲尔密码 普莱菲尔密码(Playfair Cipher)\n第一种用于实际的双字替换密码，用双字加密取代了简单代换密码的单字加密，很明显这样使得密文更难破译 又称为单方密码(Single Cipher)之后又出现它的升级版Double Playfair，也就是二方密码(Two-square Cipher),在之后又有四方密码(Four-square Cipher) 明文：THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG 密钥：CULTURE\n（1）编制密码表\n理密钥字母C U L T U R E，去掉后面重复的字母得到：C U L T R E 用上一步得到的字母自上而下来填补5乘5方表的纵列（也可横排），之后的空白按照相同的顺序用字母表中剩余的字母依次填补完整，得到如下的方格: 这一步需要注意的要点：整理密钥字母时，如果出现”Z”，则需要去除，因为在英文里”Z”的使用频率最低，相应的如果是德文，则需将”I”与”J”当作一个字母来看待，而法语则去掉”W”或”K”。\n（2）整理明文\n我们要遵循的原则是“两个一组”，得到是若干个两两成对的字母段，用到的是明文THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG与字母”X“：\n将明文两两一组按顺序排开，得到：TH EQ UI CK BR OW NF OX JU MP SO VE RT HE LA ZY DO G\n对于末尾的单个字母要加上一个”X“使之成对：TH EQ UI CK BR OW NF OX JU MP SO VE RT HE LA ZY DO GX\n这一步需要注意的要点：对于相连字母相同者，每个后面都需要加”X“，例如TOMORROW，需要写成：TO MO RX RX OW。\n（3）编写密文\n我们要得到的密文，当然，对于每个字母对，要严格遵循如下的原则：\n如果两个字母在同一行则要用它右邻的字母替换，如果已在最右边，则用该行最左边的替换，如明文为”CE“，依据上表，应替换为”EG“；\n如果两个字母在同一列则要用它下边的字母替换，如果已在最下边，则用该行最上边的替换，如明文为”OQ“，依据上表，应替换为”PS“；\n如果两个字母在不同的行或列，则应在密码表中找两个字母使四个字母组成一个矩形，明文占据两个顶点，需用另外两个顶点的字母替换，如明文为”HX“，可以替换为”WI/J“或”I/JW“（下面的例子将按照横向替换原则即同行优先）。\n按照上述原则，将明文TH EQ UI CK BR OW NF OX JU MP SO VE RT HE LA ZY DO GX加以转换得到KU ND LH GT LF WU ES PW LH SI/J NP CG CR AG BU VZ QA I/JV（/表示或者，不过一般用I不用J，所以分析密文时你看25个字母都有而只差一个字母没有用到可以考虑一下这种加密方式）将得到的字母改为大写并五个一组列好\n密文KUNDL HGTLF WUESP WLHSI NPCGC RAGBU VZQAI V\n网站 Playfair Cipher 普莱菲尔密码\n19、ADFGX密码 ADFGX密码(ADFGX Cipher)\n结合了改良过的Polybius方格替代密码与单行换位密码的矩阵加密密码\n使用了5个合理的密文字母：A，D，F，G，X，这些字母之所以这样选择是因为当转译成摩尔斯电码(ADFGX密码是德国军队在一战发明使用的密码)不易混淆，目的是尽可能减少转译过程的操作错误\n加密矩阵示例：\nA D F G X\r----------------\rA | p h q g m D | e a y n o F | f d x k r\rG | c v s z w X | b u t i/j l 明文：THE QUICK BROWN FOX 密文：XF AD DA AF XD XG GA FG XA FX DX GX DG FA DX FF\n网站 ADFGX Cipher ADFGX密码\n20、ADFGVX密码 ADFGVX密码实际上就是ADFGX密码的扩充升级版 一样具有ADFGX密码相同的特点，加密过程也类似 不同的是密文字母增加了V，使得可以再使用10数字来替换明文\nA D F G V X\r-------------\rA | p h 0 q g 6\rD | 4 m e a 1 y\rF | l 2 n o f d\rG | x k r 3 c v\rV | s 5 z w 7 b\rX | j 9 u t i 8 网站 ADFGVX密码\n21、双密码 双密码(Bifid Cipher)结合了波利比奥斯方阵换位密码，并采用分级实现扩散，这里的“双”是指用2个密钥进行加密 密阵:\n1 2 3 4 5\r1| p h q g m\r2| e a y l n\r3| o f d x k\r4| r c v s z\r5| w b u t i/j 明文:THE QUICK BROWN FOX 经过密阵转换： 行:512 15543 54352 333 列:421 33525 21115 214 分组:\n51215 54354 35233 3\r42133 52521 11521 4 合并：\n5121542133 5435452521 3523311521 34 在经过密阵转换后密文:WETED TKZNE KYOME X\n网站 Bifid Cipher Cryptanalysis of the Bifid cipher 双密码\n22、三分密码 三分密码(Trifid Cipher)结合换位和替换，三分密码与双密码非常相似，差别之处就是用除了3×3×3的密阵代替5×5密阵。\n示例密阵:\n密阵顺序 = EPSDUCVWYM.ZLKXNBTFGORIJHAQ 方阵 1 方阵 2 方阵 3 1 2 3 1 2 3 1 2 3 1 E P S 1 M . Z 1 F G O 2 D U C 2 L K X 2 R I J 3 V W Y 3 N B T 3 H A Q 明文:THE QUICK BROWN FOX. 经过密阵转换：\nT H E Q U I C K B R O W N F O X .\r2 3 1 3 1 3 1 2 2 3 3 1 2 3 3 2 2\r3 3 1 3 2 2 2 2 3 2 1 3 3 1 1 2 1\r3 1 1 3 2 2 3 2 2 1 3 2 1 1 3 3 2\rT(233)表示T在第一个方阵第三行第三列的 位置 分组(分组密钥以5为例):\nTHEQU ICKBR OWNFO X.\r23131 31223 31233 22\r33132 22232 13311 21\r31132 23221 32113 32 合并：\n23131 33132 31132 31223 22232 23221 31233 13311 32113 22 21 32 在经过密阵转换后密文:\n231313313231132312232223223221312331331132113222132\rN O O N W G B X X L G H H W S K W 23、四方密码 四方密码(Four-Square Cipher)\n类似普莱菲尔密码双字母加密密码，这样使加密效果强于其他替换密码，因为频率分析变得更加困难了\n使用4个预先设置的5×5字母矩阵，每个矩阵包括25个字母，通常字母’j’被融入到’i’中(维基百科上说’q’被忽略，不过这不重要，因为’q’和’j’都是很少出现的字母)，通常左上和右下矩阵式是标准字母排序明文矩阵，右上和左下矩阵是打乱顺序的密钥矩阵。\n示例矩阵：\n明文：THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG 整理明文(分组不够时用’X’填充)：TH EQ UI CK BR OW NF OX JU MP SO VE RT HE LA ZY DO GX 加密过程：分别在明文矩阵中找到’TH’，分别找到他们在右上矩阵有左下矩阵的交点字母’ES’就是密文，以此类推。 密文：ESZWQAFHGTDKWHRKUENYQOLMQTUNWMBPTGHQ\n网站 Four-Square Cipher Cryptanalysis of the Foursquare Cipher 四方密码\n24、棋盘密码 棋盘密码（Checkerboard Cipher)是使用一个波利比奥斯方阵和两个密钥作为密阵的替换密码，通常在波利比奥斯方阵中J字母往往被包含在I字母中。\n示例密阵：\nQ U I C K\r--------------\rB |K N I/J G H\rR |P Q R S T\rO |O Y Z U A\rW |M X W V B\rN |L F E D C 经过密阵替换：\n明文:T H E Q U I C K B R O W N F O X 密文:RK BK RU OC OC BI NK BQ WK RI OQ WI BU NU OQ WU\n25、跨棋盘密码 跨棋盘密码(Straddle Checkerboard Cipher)是一种替换密码，当这种密码在结合其他加密方式，加密效果会更好。\n棋盘示例(选择3和7作为变换):\n0 1 2 3 4 5 6 7 8 9\rf k m c p d y e\r3: h b i g q r o s a z\r7: l u t j n w v x 明文: T H E Q U I C K B R O W N F O X 经过加密棋盘替换得到密文:72 30 9 34 71 32 4 1 31 35 36 75 74 0 36 77\n当然我们还可以继续用其他的加密方式在对跨棋盘密码加密出的结果再进行加密: 示例变换密钥:83729\n8372983729837298372983729837\r+7230934713241313536757403677\r-----------------------------\r5502817432078501808630122404 在经过棋盘转换后：\n5502817432078501808630122404\rppfmyk n if pfkyfyd hkmmcfc 最终得到密文：ppfmyk n in pfkyfyd hkmmcfc\n网站 Straddle Checkerboard Cipher\n26、云影密码 采用的是0作间隔，其他非0数隔开后组合起来相加表示26个字母\n脚本\n#!/usr/bin/python\r# -*- coding=utf8 -*-\r\"\"\"\r# @Author : pig\r# @CreatedTime:2019-11-2423:54:02\r# @Description : \"\"\"\rdef de_code(c):\rdic = [chr(i) for i in range(ord(\"A\"), ord(\"Z\") + 1)]\rflag = []\rc2 = [i for i in c.split(\"0\")]\rfor i in c2:\rc3 = 0\rfor j in i:\rc3 += int(j)\rflag.append(dic[c3 - 1])\rreturn flag\rdef encode(plaintext):\rdic = [chr(i) for i in range(ord(\"A\"), ord(\"Z\") + 1)]\rm = [i for i in plaintext]\rtmp = [];flag = []\rfor i in range(len(m)):\rfor j in range(len(dic)):\rif m[i] == dic[j]:\rtmp.append(j + 1)\rfor i in tmp:\rres = \"\"\rif i \u003e= 8:\rres += int(i/8)*\"8\"\rif i%8 \u003e=4:\rres += int(i%8/4)*\"4\"\rif i%4 \u003e=2:\rres += int(i%4/2)*\"2\"\rif i%2 \u003e= 1:\rres += int(i%2/1)*\"1\"\rflag.append(res + \"0\")\rprint (\"\".join(flag)[:-1])\rc = input(\"输入要解密的数字串:\")\rprint (de_code(c))\rm_code = input(\"请输入要加密的数字串:\")\rencode(m_code) 例\n27、Porta密码 Porta密码(Porta Cipher)是一个由意大利那不勒斯的医生Giovanni Battista della Porta发明的多表代换密码 Porta密码具有加密解密过程的是相同的特点\n明文：THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG 密钥(循环使用，密钥越长相对破解难度越大)：CULTURE 加密过程：明文字母’T’列与密钥字母’C’行交点就是密文字母’F’,以此类推。 密文：FRW HKQRY YMFMF UAA OLWHD ALWI JPT ZXHC NGV\n网站 Porta Cipher Porta密码\n28、仿射密码 仿射密码(Affine Cipher)\n一种单表代换密码，字母表中的每个字母相应的值使用一个简单的数学函数映射到对应的数值，再把对应数值转换成字母\n这个公式意味着每个字母加密都会返回一个相同的字母，意义着这种加密方式本质上是一种标准替代密码\n因此，它具有所有替代密码的弱点\n每一个字母都是通过函数（ax + b）mod m加密，其中B是位移量，为了保证仿射密码的可逆性，a和m需要满足gcd(a , m)=1，一般m为设置为26\n以E(x) = (5x + 8) mod 26函数为例\n解密用D(x)=21(x - 8) mod 26\n网站 Affine Cipher 仿射密码\n29、Bazeries密码 Bazeries密码(Bazeries Cipher)是换位密码和替换密码的组合\n使用两个波利比奥斯方阵，一个明文字母方阵\n使用一个随机的数字(一般小于1000000)的生成一个密钥矩阵同时作为第一轮明文划分分组，比如2333这个数字翻译为英文便是TWO THOUSAND THREE HUNDRED THIRTY THREE,从第一个字母T开始选取不重复的字母，之后再从字母表中按序选取没有出现的字母组成密钥矩阵。\n明文:THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG 随机数字:2333 明文矩阵:\nA F L Q V\rB G M R W\rC H N S X\rD I/J O T Y\rE K P U Z 示例密钥矩阵：\nT W O H U\rS A N D R\rE I/J Y B C\rF G K L M\rP Q V X Z 明文分组：\n2 3 3 3 2 3 3 3 2 3 3 3\rTH EQU ICK BRO WN FOX JUM PSO VE RTH ELA ZYD OG 分组明文反序:\nHT UQE KCI ORB WN XOF MUJ OSP EV EHT ALE DYZ GO 使用密钥矩阵替换:\nIL XHP QEG KDS YR CKW NXG KBV PU ILD TOP FMZ AK\r(比如’H’在明文矩阵对应到密钥矩阵的位置就是’I’） 30、当铺密码 当铺密码 就是一种将中文和数字进行转化的密码，算法相当简单:当前汉字有多少笔画出头，就是转化成数字几\n例如:\n王夫 井工 夫口 由中人 井中 夫夫 由中大\r67 84 70 123 82 77 125 四、现代密码 1、RSA RSA是目前最有影响力和最常用的公钥加密算法，它能够抵抗到目前为止已知的绝大多数密码攻击，已被ISO推荐为公钥数据加密标准。\n今天只有短的RSA钥匙才可能被强力方式解破。到2008年为止，世界上还没有任何可靠的攻击RSA算法的方式。只要其钥匙的长度足够长，用RSA加密的信息实际上是不能被解破的。目前普遍认为，模式n至少应该取1024位，最好是2048位。但在分布式计算和量子计算机理论日趋成熟的今天，RSA加密安全性受到了挑战和质疑。\nRSA算法基于一个十分简单的数论事实:将两个大质数相乘十分容易，但是想要对其乘积进行因式分解却极其困难，因此可以将乘积公开作为加密密钥\n脚本\nimport libnum\rfrom Crypto.Util.number import long_to_bytes\rq = int(\"0xa6055ec186de51800ddd6fcbf0192384ff42d707a55f57af4fcfb0d1dc7bd97055e8275cd4b78ec63c5d592f567c66393a061324aa2e6a8d8fc2a910cbee1ed9\",16)\rp = int(\"0xfa0f9463ea0a93b929c099320d31c277e0b0dbc65b189ed76124f5a1218f5d91fd0102a4c8de11f28be5e4d0ae91ab319f4537e97ed74bc663e972a4a9119307\",16)\re = int(\"0x6d1fdab4ce3217b3fc32c9ed480a31d067fd57d93a9ab52b472dc393ab7852fbcb11abbebfd6aaae8032db1316dc22d3f7c3d631e24df13ef23d3b381a1c3e04abcc745d402ee3a031ac2718fae63b240837b4f657f29ca4702da9af22a3a019d68904a969ddb01bcf941df70af042f4fae5cbeb9c2151b324f387e525094c41\",16)\rc = 0x7fe1a4f743675d1987d25d38111fae0f78bbea6852cba5beda47db76d119a3efe24cb04b9449f53becd43b0b46e269826a983f832abb53b7a7e24a43ad15378344ed5c20f51e268186d24c76050c1e73647523bd5f91d9b6ad3e86bbf9126588b1dee21e6997372e36c3e74284734748891829665086e0dc523ed23c386bb520\rn = q*p\rd = libnum.invmod(e, (p - 1) * (q - 1))\rm = pow(c, d, n) # m 的十进制形式\rstring = long_to_bytes(m) # m明文\rprint(string) 网站 在线RSA公钥加密解密 在线RSA私钥加密解密\n2、AES 在密码学中又称Rijndael加密法，是美国联邦政府采用的一种区块加密标准。这个标准用来替代原先的DES，已经被多方分析且广为全世界所使用。经过五年的甄选流程，高级加密标准由美国国家标准与技术研究院(NIST)于2001年11月26日发布于FIPS PUB 197，并在2002年5月26日成为有效的标准。2006年，高级加密标准已然成为对称密钥加密中最流行的算法之一。\naes密文包括字母 数字 + = /等\n网站 AES加密 在线加密解密\n3、DES DES算法为密码体制中的对称密码体制，又被称为美国数据加密标准，是1972年美国IBM公司研制的对称密码体制加密算法。 明文按64位进行分组，密钥长64位，密钥事实上是56位参与DES运算（第8、16、24、32、40、48、56、64位是校验位， 使得每个密钥都有奇数个1）分组后的明文组和56位的密钥按位替代或交换的方法形成密文组的加密方法\n网站 DES算法原理完整版 在线DES加密解密\n4、ECC ECC（Elliptic Curves Cryptography，椭圆曲线密码编码学） 椭圆加密算法(ECC)是一种公钥加密体制，最初由Koblitz和Miller两人于1985年提出，其数学基础是利用椭圆曲线上的有理点构成Abel加法群上椭圆离散对数的计算困难性 公钥密码体制根据其所依据的难题一般分为三类:大整数分解问题类、离散对数问题类、椭圆曲线类 有时也把椭圆曲线类归为离散对数类\n网站 ECC(椭圆曲线密码编码学)简介\n5、RC4 RC4（来自Rivest Cipher 4的缩写）是一种流加密算法，密钥长度可变。它加解密使用相同的密钥，因此也属于对称加密算法。RC4是有线等效加密（WEP）中采用的加密算法，也曾经是TLS可采用的算法之一\n网站 RC4算法总结 RC4加解密\n五、代码混淆加密 1、VBScript.Encode解密 VBScript.Encode解密\n2、ppencode ppencode-Perl把Perl代码转换成只有英文字母的字符串\n网站 ppencode - JavaScript demo PPencode\n3、rrencode rrencode可以把ruby代码全部转换成符号\n暂时没找到网站 之前有个挂了\n4、jjencode jjencode将JS代码转换成只有符号的字符串 jjencode的解密直接在浏览器的控制台里输入密文即可执行解密\n网站 JJencode MALWARE ANALYSIS\n5、aaencode/颜文字 aaencode的解密直接在浏览器的控制台里输入密文即可执行解密\n网站 aaencode demo aadecode - Decode encoded-as-aaencode JavaScript program. AAencodehttp://ctf.ssleye.com/aaencode.html)\n6、JSfuck] JSFuck 可以让你只用 6 个字符 ! +来编写 JavaScript 程序\n网站 JSFuck JSfuck\n7、jother jother是一种运用于javascript语言中利用少量字符构造精简的匿名函数方法对于字符串进行的编码方式 其中8个少量字符包括：! + ( ) [ ] { }，只用这些字符就能完成对任意字符串的编码 直接在浏览器(f12)的控制台里输入密文即可执行解密\n网站 jother\n8、brainfuck Brainfuck是一种极小化的计算机语言，按照”Turing complete（完整图灵机）”思想设计的语言 它的主要设计思路是：用最小的概念实现一种“简单”的语言 Brainfuck只有八种符号，所有的操作都由这八种符号\u003e \u003c + - . , [ ]的组合来完成\n网站 Brainfuck/Ook! Obfuscation/Encoding Brainfuck\n9、Ook! Ook! 与Brainfuck类似, 但用单词“Ook！”，“Ook.” 和“Ook?”代替\n网站 Brainfuck/Ook! Obfuscation/Encoding\n10、Bubble Babble Bubble Babble\n由Antti Huima创建的一种编码方法，可以把二进制信息表示为由交替的元音和辅音组成的伪词（pseudo-words）\n主要用于密码指纹，其编码也具有内置的纠错和冗余\n编码格式每5个字符中间以-来分隔，作者的原意就是想把难以记得的二进制数据表示为难忘的伪词\n网站 bubblepy BubbleBabble\n六、其他 1、与佛论禅 与佛论禅\n2、文本加密 文本加密\n3、核心价值观密码 核心价值观密码\n4、恩尼格码密码 恩尼格玛密码机（德语：Enigma，又译哑谜机，或“谜”式密码机）是一种用于加密与解密文件的密码机。确切地说，恩尼格玛是对二战时期纳粹德国使用的一系列相似的转子机械加解密机器的统称，它包括了许多不同的型号，为密码学对称加密算法的流加密\n模拟\n5、兽音译者 给我笑死 兽音译者\n结语 对常见的编码和密码做了个归纳\n一些好用的网站和工具\nhttps://web2hack.org/xssee/ json在线 程默的博客 CaptfEncoder python_cryptanalysis Kryptos and Cryptanalysis Information Cipher Tools 在线加密解密 原文链接：https://blog.csdn.net/weixin_44604541/article/details/109817480\n",
-  "wordCount" : "2084",
+  "articleBody": "常见密码和编码总结 前言 对常见的编码和密码做个归纳 并记录一些可用的网站和工具 可以当做手册使用\n总结：\nASCII码 URL编码 base家族编码 摩尔斯电码（Morse Code） ShellCode XXencode编码 UUencode编码 AAencode编码 JSfuck编码 PPencode RRencode asp混淆加密 php混淆加密 css/js混淆加密 VBScript.Encode混淆加密 Quoted-printable编码 Escape/Unescape编码 Unicode编码 jother Brainfuck Ook Bubble Babble 与佛论禅 新与佛论禅 文本加密 核心价值观密码 兽音译者 尊嘟假嘟语 我的世界_地牢密码 中文电码 敲击码 HTML实体编码 md5 凯撒密码 ROT5/13/18/47 QWE加密 拼音九键加密 埃特巴什码 培根密码 希尔密码 猪圈密码 圣堂武士密码 银河字母 维吉尼亚密码 格罗斯费尔德密码 自动密钥密码 博福特密码 滚动密钥密码 夏多密码（曲折密码） 波利比奥斯方阵密码 普莱菲尔密码 ADFGX密码 ADFGVX密码 双密码 三分密码 四方密码 棋盘密码 跨棋盘密码 云影密码 Porta密码 仿射密码 Bazezeries密码 当铺密码 同音替换密码 分组摩尔斯替换密码 Digrafid密码 格朗普雷密码 比尔密码 恩尼格码密码 Lolcode Befunge Chef Piet Shakespeare Whitespace INTERCAL Malbolge BIT ZOMBIE HQ9+ Rabbit 幂数加密 卡尔达诺栅格码（spammimic） 百家姓暗号 一、常见编码 1、ASCII编码 现今最通用的单字节编码系统，并等同于国际标准ISO/IEC 646\n可以分作三部分组成 第一部分是：ASCII非打印控制字符 第二部分是：ASCII打印字符； 第三部分是：扩展ASCII打印字符\n转换网站\nASCII 在线转换器\nASCII编码转换\n2、base64,32编码 Base64是网络上最常见的用于传输8Bit字节码的编码方式之一\n基于64个可打印字符来表示二进制数据的方法 3个字节可表示4个可打印字符 如果要编码的字节数不能被3整除：当最后剩余一个八位字节（一个byte）时，最后6位的base64字节块有四位是0值，最后附加上两个等号；如果最后剩余两个八位字节（2byte）时，最后一个6位的base字节块有两位是0值，最后附加一个等号 加密：\n\u003e\u003e\u003e import base64\r\u003e\u003e\u003e encode = base64.b64encode(b'I love you')\r\u003e\u003e\u003e encode\rb'SSBsb3ZlIHlvdQ==' 解密：\n\u003e\u003e\u003e import base64\r\u003e\u003e\u003e decode = base64.b64decode(b'SSBsb3ZlIHlvdQ==')\r\u003e\u003e\u003e decode\rb'I love you' base32 只有大写字母（A-Z）和数字234567\n跟base64相似就是将base64.b 64encode变成base64.b 32encode 加密：\n\u003e\u003e\u003e import base64 \u003e\u003e\u003e encode = base64.b32encode(b'I love you') \u003e\u003e\u003e encode b'JEQGY33WMUQHS33V' 解密：\n\u003e\u003e\u003e import base64 \u003e\u003e\u003e decode = base64.b32decode(b'JEQGY33WMUQHS33V') \u003e\u003e\u003e decode b'I love you' 网站\nBase64加密解密\nbase编码\n3、URL编码 url编码又叫百分号编码，是统一资源定位(URL)编码方式 URL地址（常说网址）规定了常用地数字，字母可以直接使用，另外一批作为特殊用户字符也可以直接用（/,:@等），剩下的其它所有字符必须通过在该字节ascii码的的16进制字符前面加%编码处理\njs：有encodeURI、encodeURIComponent\nPHP有 urlencode、urldecode等\nurl编码和双重编码是绕过时常用手段\n网站\nUrlEncode编码/解码\nURL编码\n4、Unicode编码 unicode编码\n是一种所有符号的编码，现在的规模可以容纳100多万个符号，https://home.unicode.org/\n只规定了符号的二进制代码，却没有规定这个二进制代码应该如何存储\nUTF-8 就是在互联网上使用最广的一种 Unicode 的实现方式，其他实现方式还包括 UTF-16（字符用两个字节或四个字节表示）和 UTF-32（字符用四个字节表示），不过在互联网上基本不用\nUTF-8\n对于单字节的符号，字节的第一位设为0，后面7位为这个符号的 Unicode 码。因此对于英语字母，UTF-8 编码和 ASCII 码是相同的\n于n字节的符号（n \u003e 1），第一个字节的前n位都设为1，第n + 1位设为0，后面字节的前两位一律设为10。剩下的没有提及的二进制位，全部为这个符号的 Unicode 码\n二者的转换方式\n首先找到该Unicode编号所在的编号范围，进而可以找到与之对应的二进制格式\n然后将该Unicode编号转化为二进制数（去掉高位的0）\n最后将该二进制数从右向左依次填入二进制格式的X中，如果还有X未填，则设为0\n网站\nUnicode编码转换\n5、HTML实体编码 喜闻乐见的\u0026# HTML 中的预留字符必须被替换为字符实体 一些在键盘上找不到的字符也可以使用字符实体来替换\n可参考\nHTML 字符实体\nHTML 符号实体参考手册\nHTML ISO-8859-1 参考手册\n网站\n在线HTML编码器\nHTML编码\n6、敲击码 敲击码(Tap code)\n一种以非常简单的方式对文本信息进行编码的方法\n因该编码对信息通过使用一系列的点击声音来编码而命名\n基于5×5方格波利比奥斯方阵来实现的，不同点是用K字母被整合到C中\n网站\n敲击码\n7、摩尔斯电码（摩斯密码） 大名鼎鼎的morse电码 早期的数字化通信形式 不同于现代只使用0和1两种状态的二进制代码 代码包括五种： ​\t- 点（.）\n​\t- 划（-）\n​\t- 每个字符间短的停顿（在点和划之间的停顿）\n​\t- 每个词之间中等的停顿\n​\t- 句子之间长的停顿\n网站\n中文摩斯密码 Morse莫尔斯电码加密解密\n摩尔斯密码在线翻译\nMorse code\n8、Quoted-printable编码 Quoted-printable编码\n多用途互联网邮件扩展（MIME) 一种实现方式\n帮助非ASCII编码的信件传输通过SMTP\n每个末编码的二进制字符被编码成三个字符，即一个等号和一个十六进制的数字，如‘=AB’\n编码方法\n网站\nQuotedPrintable编码\nQuoted-printable编码\n9、XXencode编码 XXencode\n将输入文本以每三个字节为单位进行编码\n如果最后剩下的资料少于三个字节，不够的部份用0补齐\n这三个字节共有24个Bit，以6bit为单位分为4个组，每个组以十进制来表示所出现的数值只会落在0到63之间\n以所对应值的位置字符代替。它所选择的可打印字符是：+-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz，一共64个字符\n跟base64打印字符相比，就是UUencode多一个-字符，少一个/ 字符\n网站\n在线XXencode编码\nXXencode\n10、UUencode编码 UUencode编码\n起先用在unix网络中，早期在电子邮件中使用较多\n将输入文本以每三个字节为单位进行编码，如果最后剩下的资料少于三个字节，不够的部份用0补齐\n三个字节共有24个Bit，以6-bit为单位分为4个组，每个组以十进制来表示所出现的字节的数值，这个数值只会落在0到63之间\n然后将每个数加上32，所产生的结果刚好落在ASCII字符集中可打印字符（32-空白…95-底线）的范围之中\n网站\n在线UUencode编码\nUUencode\n11、Escape/Unescape编码 Escape/Unescape\n又叫%u编码，采用UTF-16BE模式，16进制表示方式前面加%u\n如：字符“中”，UTF-16BE是：“6d93”，因此Escape是“%u6d93”\n因为目前%字符，常用作URL编码，所以%u这样编码已经逐渐被废弃了\n网站\n在线Escape编码/加密\nEscape编码\n12、md5 md5\n被广泛使用的密码散列函数，可以产生出一个128位（16字节）的散列值（hash value），用于确保信息传输完整一致\n值范围在0-9，a-f\nmd5碰撞\nimport hashlib\rfor i in range(10000, 10000001):\rs = hashlib.md5(str(i).encode()).hexdigest()[0:5]\rif s == \"5fe45\":\rprint(i)\rbreak 网站\nCMD5\nxmd5\n二、换位密码 1、栅栏密码 把要加密的明文分成N个一组，然后把每组的第1个字连起来，形成一段无规律的话\n以2栏栅栏加密为例\n明文：THE LONGEST DAY MUST HAVE AN END 把将要传递的信息中的字母交替排成上下两行。 ​\tT E O G S D Y U T A E N N\n​\tH L N E T A M S H V A E D\n密文： ​\t将下面一行字母排在上面一行的后边。\n​\tTEOGSDYUTAENN HLNETAMSHVAED\n网站\nRail-fence Cipher\n栅栏密码\n2、简单换位密码 密文k=“3124” 明文m=“flag{easy_easy_crypto}”\n移位密码首先以k的长度（也就是len(k)=4）切分m，具体如下：\nflag {eas y_ea sy_c rypt o} 总共分成了6个部分，然后按照密钥3124的顺序对每一部分都进行密钥变化。如下是变化规则\n变化之后，如下：\nflag {eas y_ea sy_c rypt o}\rlafg ea{s _eya y_sc yprt }o 所以密文为：lafgea{s _eyay_scyprt}o\n3、列移位密码 明文 The quick brown fox jumps over the lazy dog 密钥 how are u\n填入5行7列表(事先约定填充的行列数，如果明文不能填充完表格可以约定使用某个字母进行填充) 按how are u在字母表中的出现的先后顺序进行编号，我们就有a为1,e为2，h为3，o为4，r为5，u为6，w为7 所以先写出a列，其次e列，以此类推写出的结果便是密文\n密文：qoury inpho Tkool hbxva uwmtd cfseg erjez\n网站\nColumnar Transposition Cipher\n列移位密码\n4、曲路密码 事先双方约定密钥(也就是曲路路径) 明文：The quick brown fox jumps over the lazy dog 密文：gesfc inpho dtmwu qoury zejre hbxva lookT\n三、替换密码 1、凯撒密码 明文中的所有字母都在字母表上向后（或向前）按照一个固定数目进行偏移后被替换成密文\n明文：The quick brown fox jumps over the lazy dog 偏移量：1 密文：Uif rvjdl cspxo gpy kvnqt pwfs uif mbaz eph\n网站\nCaesar cipher\n凯撒密码\n2、ROT5/13/18/47 ROT5：只对数字进行编码，用当前数字往前数的第5个数字替换当前数字，例如当前为0，编码后变成5，当前为1，编码后变成6，以此类推顺序循环。\nROT13：只对字母进行编码，用当前字母往前数的第13个字母替换当前字母，例如当前为A，编码后变成N，当前为B，编码后变成O，以此类推顺序循环。\nROT18：这是一个异类，本来没有，它是将ROT5和ROT13组合在一起，为了好称呼，将其命名为ROT18。\nROT47：对数字、字母、常用符号进行编码，按照它们的ASCII值进行位置替换，用当前字符ASCII值往前数的第47位对应字符替换当前字符，例如当前为小写字母Z，编码后变成大写字母K，当前为数字0，编码后变成符号_。用于ROT47编码的字符其ASCII值范围是33－126，具体可参考ASCII编码，\n下面以ROT13以例 明文：the quick brown fox jumps over the lazy dog 密文：gur dhvpx oebja sbk whzcf bire gur ynml qbt\n网站\nROT5/13/18/47编码转换\nRot13密码\n3、QWE加密 从电脑键盘上的字母从Q开始数，顺序是Q W E R T Y U I… 对应的字母顺序依次是A B C D E F G H 也就是说Q=A,W=B,E=C，依次类推\n4、拼音九键加密 利用字母在九键上的位置进行加密 特点：数字为偶数个，且偶数位的数小于5(九键上一个键上的字母最多是四个)\n例：335321414374744361715332 两个数为一组分开：33 53 21 41 43 74 74 43 61 71 53 32 对应九键进行查找：3键的第三个字母、5键的第3个字母，以此类推\n5、埃特巴什码 以字母倒序排列作为特殊密钥的替换加密，也称也就是下面的对应关系：\nABCDEFGHIJKLMNOPQRSTUVWXYZ\rZYXWVUTSRQPONMLKJIHGFEDCBA 网站\nAtbash Cipher\n埃特巴什码\n6、培根密码 每个明文字母被一个由5字符组成的序列替换，最初的加密方式就是由’A’和’B’组成序列替换明文(所以你当然也可以用别的字母)\nA = aaaaa I/J = abaaa R = baaaa\rB = aaaab K = abaab S = baaab C = aaaba L = ababa T = baaba\rD = aaabb M = ababb U/V = baabb\rE = aabaa N = abbaa W = babaa\rF = aabab O = abbab X = babab\rG = aabba P = abbba Y = babba\rH = aabbb Q = abbbb Z = babbb 网站\nBaconian Cipher\n培根密码\n7、希尔密码 每个字母转换成26进制数字：A=0, B=1, C=2…Z=25 一串字母当成n维向量，跟一个n×n的矩阵相乘 再将得出的结果MOD26\n网站\nHill Cipher\nCryptanalysis of the Hill Cipher\n8、猪圈密码 猪圈密码(Pigpen Cipher或称九宫格密码、朱高密码、共济会密码或共济会员密码)，是一种以格子为基础的简单替代式密码\n网站\nThe BLACK Chamber\n猪圈密码\n变种\n9、圣堂武士密码 也算是猪圈密码的变种\n10、银河字母 11、维吉尼亚密码 维吉尼亚密码(Vigenère Cipher) 在单一恺撒密码的基础上扩展出多表代换密码，根据密钥(当密钥长度小于明文长度时可以循环使用)来决定用哪一行的密表来进行替换，以此来对抗字频统计\n明文：THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG 密钥(循环使用，密钥越长相对破解难度越大)：CULTURE 加密过程：如果第一行为明文字母，第一列为密钥字母，那么明文字母’T’列和密钥字母’C’行的交点就是密文字母’V’，以此类推 密文：VBP JOZGM VCHQE JQR UNGGW QPPK NYI NUKR XFK\n网站\nCryptanalysis of the Vigenere Cipher Vigenère cipher Vigenere Solver 维吉尼亚密码 实例\n攻防世界 Crypto高手进阶区 3分题 shanghai 12、格罗斯费尔德密码 格罗斯费尔德密码(Gronsfeld cipher)\n实际上和维吉尼亚密码相同，除了使用了数字来代替字母以外没有什么区别 数字可以选择一种数列，如斐波那契数列，或者一些其他的伪随机序列 格罗斯费尔德密码密码分析过程和维吉尼亚密码大同小异，不过，自动密钥密码不能使用卡西斯基算法(kasiski)来破译 \u003e\u003e\u003efrom pycipher import Gronsfeld\r\u003e\u003e\u003eGronsfeld([2,20,11,45,20,43,4]).encipher('THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG')\r'VBPJOZGMVCHQEJQRUNGGWQPPKNYINUKRXFK'\r\u003e\u003e\u003eGronsfeld([2,20,11,45,20,43,4]).decipher('VBPJOZGMVCHQEJQRUNGGWQPPKNYINUKRXFK')\r'THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG' 网站\nGronsfeld Cipher\nGronsfeld密码\n13、自动密钥密码 自动密钥密码(Autokey Cipher)\n是多表替换密码，与维吉尼亚密码密切相关，但使用不同的方法生成密钥，通常来说要比维吉尼亚密码更安全\n自动密钥密码主要有两种，关键词自动密钥密码和原文自动密钥密码\n下面我们以关键词自动密钥为例： 明文：THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG 关键词：CULTURE 自动生成密钥：CULTURE THE QUICK BROWN FOX JUMPS OVER THE 接下来的加密过程和维吉尼亚密码类似，从密表可得： 密文：VBP JOZGD IVEQV HYY AIICX CSNL FWW ZVDP WVK\n网站\nCryptanalysis of the Autokey Cipher\nAutokey Cipher\n自动密钥密码\n14、博福特密码 博福特密码(Beaufort Cipher)\n一种类似于维吉尼亚密码的代换密码，由弗朗西斯·蒲福(Francis Beaufort)发明\n最知名的应用是Hagelin M-209密码机\n属于对等加密，即加密演算法与解密演算法相同\n明文：THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG 密钥(循环使用，密钥越长相对破解难度越大)：CULTURE 加密过程：如果第一行为明文字母，第一列为密文字母，那么沿明文字母’T’列出现密钥字母’C’的行号就是密文字母’J’，以此类推。 密文：JNH DAJCS TUFYE ZOX CZICM OZHC BKA RUMV RDY\n网站\nBeaufort Cipher\n博福特密码\n15、滚动密钥密码 滚动密钥密码(Running Key Cipher)\n和维吉尼亚密码有着相同的加密机制，区别是密钥的选取，维吉尼亚使用的密钥简短，而且重复循环使用，与之相反，滚动密钥密码使用很长的密钥，比如引用一本书作为密钥\n这样做的目的是不重复循环使用密钥，使密文更难破译，尽管如此，滚动密钥密码还是可以被攻破，因为有关于密钥和明文的统计分析模式可供利用，如果滚动密钥密码使用统计上的随机密钥来源，那么理论上是不可破译的，因为任何可能都可以成为密钥，并且所有的可能性都是相等的。\n明文：THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG 密钥：选取C语言编程(1978版)第63页第1行”errors can occur in several places. A label has…”，去掉非字母部分作为密钥(实际选取的密钥很长，长度至少不小于明文长度)。 加密过程：加密过程和维吉尼亚密码加密过程相同 密文:XYV ELAEK OFQYH WWK BYHTJ OGTC TJI DAK YESR\n网站\nRunning Key Cipher\n滚动密钥密码\n16、夏多密码（曲折加密） 作者麦克斯韦·格兰特在中篇小说《死亡之链》塑造夏多这一英雄人物中所自创的密码\n在以上所示的字母表密钥的底部，列有四个附加符号1，2，3，4.他们可以放在密文中的任何地方 每个附加符号指示，如何转动写有密文的纸张，再进行后续的加密或解密操作，直到出现另一个附加符号\n例：信文：I AM IN DANGER.SEND HELP(我有危险，速来增援) 可以加密成\n17、波利比奥斯方阵密码 波利比奥斯方阵密码（Polybius Square Cipher或称波利比奥斯棋盘）\n棋盘密码的一种，是利用波利比奥斯方阵进行加密的密码方式，简单的来说就是把字母排列好，用坐标(行列)的形式表现出来 字母是密文，明文便是字母的坐标 常见的排布方式：\n加密实例： 明文：THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG 密文：442315 4145241325 1242345233 213453 2445323543 442315 31115554 143422\n18、普莱菲尔密码 普莱菲尔密码(Playfair Cipher)\n第一种用于实际的双字替换密码，用双字加密取代了简单代换密码的单字加密，很明显这样使得密文更难破译 又称为单方密码(Single Cipher)之后又出现它的升级版Double Playfair，也就是二方密码(Two-square Cipher),在之后又有四方密码(Four-square Cipher) 明文：THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG 密钥：CULTURE\n（1）编制密码表\n理密钥字母C U L T U R E，去掉后面重复的字母得到：C U L T R E 用上一步得到的字母自上而下来填补5乘5方表的纵列（也可横排），之后的空白按照相同的顺序用字母表中剩余的字母依次填补完整，得到如下的方格: 这一步需要注意的要点：整理密钥字母时，如果出现”Z”，则需要去除，因为在英文里”Z”的使用频率最低，相应的如果是德文，则需将”I”与”J”当作一个字母来看待，而法语则去掉”W”或”K”。\n（2）整理明文\n我们要遵循的原则是“两个一组”，得到是若干个两两成对的字母段，用到的是明文THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG与字母”X“：\n将明文两两一组按顺序排开，得到：TH EQ UI CK BR OW NF OX JU MP SO VE RT HE LA ZY DO G\n对于末尾的单个字母要加上一个”X“使之成对：TH EQ UI CK BR OW NF OX JU MP SO VE RT HE LA ZY DO GX\n这一步需要注意的要点：对于相连字母相同者，每个后面都需要加”X“，例如TOMORROW，需要写成：TO MO RX RX OW。\n（3）编写密文\n我们要得到的密文，当然，对于每个字母对，要严格遵循如下的原则：\n如果两个字母在同一行则要用它右邻的字母替换，如果已在最右边，则用该行最左边的替换，如明文为”CE“，依据上表，应替换为”EG“；\n如果两个字母在同一列则要用它下边的字母替换，如果已在最下边，则用该行最上边的替换，如明文为”OQ“，依据上表，应替换为”PS“；\n如果两个字母在不同的行或列，则应在密码表中找两个字母使四个字母组成一个矩形，明文占据两个顶点，需用另外两个顶点的字母替换，如明文为”HX“，可以替换为”WI/J“或”I/JW“（下面的例子将按照横向替换原则即同行优先）。\n按照上述原则，将明文TH EQ UI CK BR OW NF OX JU MP SO VE RT HE LA ZY DO GX加以转换得到KU ND LH GT LF WU ES PW LH SI/J NP CG CR AG BU VZ QA I/JV（/表示或者，不过一般用I不用J，所以分析密文时你看25个字母都有而只差一个字母没有用到可以考虑一下这种加密方式）将得到的字母改为大写并五个一组列好\n密文KUNDL HGTLF WUESP WLHSI NPCGC RAGBU VZQAI V\n网站\nPlayfair Cipher\n普莱菲尔密码\n19、ADFGX密码 ADFGX密码(ADFGX Cipher)\n结合了改良过的Polybius方格替代密码与单行换位密码的矩阵加密密码\n使用了5个合理的密文字母：A，D，F，G，X，这些字母之所以这样选择是因为当转译成摩尔斯电码(ADFGX密码是德国军队在一战发明使用的密码)不易混淆，目的是尽可能减少转译过程的操作错误\n加密矩阵示例：\nA D F G X\r----------------\rA | p h q g m D | e a y n o F | f d x k r\rG | c v s z w X | b u t i/j l 明文：THE QUICK BROWN FOX 密文：XF AD DA AF XD XG GA FG XA FX DX GX DG FA DX FF\n网站\nADFGX Cipher\nADFGX密码\n20、ADFGVX密码 ADFGVX密码实际上就是ADFGX密码的扩充升级版 一样具有ADFGX密码相同的特点，加密过程也类似 不同的是密文字母增加了V，使得可以再使用10数字来替换明文\nA D F G V X\r-------------\rA | p h 0 q g 6\rD | 4 m e a 1 y\rF | l 2 n o f d\rG | x k r 3 c v\rV | s 5 z w 7 b\rX | j 9 u t i 8 网站\nADFGVX密码\n21、双密码 双密码(Bifid Cipher)结合了波利比奥斯方阵换位密码，并采用分级实现扩散，这里的“双”是指用2个密钥进行加密 密阵:\n1 2 3 4 5\r1| p h q g m\r2| e a y l n\r3| o f d x k\r4| r c v s z\r5| w b u t i/j 明文:THE QUICK BROWN FOX 经过密阵转换： 行:512 15543 54352 333 列:421 33525 21115 214 分组:\n51215 54354 35233 3\r42133 52521 11521 4 合并：\n5121542133 5435452521 3523311521 34 在经过密阵转换后密文:WETED TKZNE KYOME X\n网站\nBifid Cipher\nCryptanalysis of the Bifid cipher\n双密码\n22、三分密码 三分密码(Trifid Cipher)结合换位和替换，三分密码与双密码非常相似，差别之处就是用除了3×3×3的密阵代替5×5密阵。\n示例密阵:\n密阵顺序 = EPSDUCVWYM.ZLKXNBTFGORIJHAQ 方阵 1 方阵 2 方阵 3 1 2 3 1 2 3 1 2 3 1 E P S 1 M . Z 1 F G O 2 D U C 2 L K X 2 R I J 3 V W Y 3 N B T 3 H A Q 明文:THE QUICK BROWN FOX. 经过密阵转换：\nT H E Q U I C K B R O W N F O X .\r2 3 1 3 1 3 1 2 2 3 3 1 2 3 3 2 2\r3 3 1 3 2 2 2 2 3 2 1 3 3 1 1 2 1\r3 1 1 3 2 2 3 2 2 1 3 2 1 1 3 3 2\rT(233)表示T在第一个方阵第三行第三列的 位置 分组(分组密钥以5为例):\nTHEQU ICKBR OWNFO X.\r23131 31223 31233 22\r33132 22232 13311 21\r31132 23221 32113 32 合并：\n23131 33132 31132 31223 22232 23221 31233 13311 32113 22 21 32 在经过密阵转换后密文:\n231313313231132312232223223221312331331132113222132\rN O O N W G B X X L G H H W S K W 23、四方密码 四方密码(Four-Square Cipher)\n类似普莱菲尔密码双字母加密密码，这样使加密效果强于其他替换密码，因为频率分析变得更加困难了\n使用4个预先设置的5×5字母矩阵，每个矩阵包括25个字母，通常字母’j’被融入到’i’中(维基百科上说’q’被忽略，不过这不重要，因为’q’和’j’都是很少出现的字母)，通常左上和右下矩阵式是标准字母排序明文矩阵，右上和左下矩阵是打乱顺序的密钥矩阵。\n示例矩阵：\n明文：THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG 整理明文(分组不够时用’X’填充)：TH EQ UI CK BR OW NF OX JU MP SO VE RT HE LA ZY DO GX 加密过程：分别在明文矩阵中找到’TH’，分别找到他们在右上矩阵有左下矩阵的交点字母’ES’就是密文，以此类推。 密文：ESZWQAFHGTDKWHRKUENYQOLMQTUNWMBPTGHQ\n网站\nFour-Square Cipher\nCryptanalysis of the Foursquare Cipher\n四方密码\n24、棋盘密码 棋盘密码（Checkerboard Cipher)是使用一个波利比奥斯方阵和两个密钥作为密阵的替换密码，通常在波利比奥斯方阵中J字母往往被包含在I字母中。\n示例密阵：\nQ U I C K\r--------------\rB |K N I/J G H\rR |P Q R S T\rO |O Y Z U A\rW |M X W V B\rN |L F E D C 经过密阵替换：\n明文:T H E Q U I C K B R O W N F O X 密文:RK BK RU OC OC BI NK BQ WK RI OQ WI BU NU OQ WU\n25、跨棋盘密码 跨棋盘密码(Straddle Checkerboard Cipher)是一种替换密码，当这种密码在结合其他加密方式，加密效果会更好。\n棋盘示例(选择3和7作为变换):\n0 1 2 3 4 5 6 7 8 9\rf k m c p d y e\r3: h b i g q r o s a z\r7: l u t j n w v x 明文: T H E Q U I C K B R O W N F O X 经过加密棋盘替换得到密文:72 30 9 34 71 32 4 1 31 35 36 75 74 0 36 77\n当然我们还可以继续用其他的加密方式在对跨棋盘密码加密出的结果再进行加密: 示例变换密钥:83729\n8372983729837298372983729837\r+7230934713241313536757403677\r-----------------------------\r5502817432078501808630122404 在经过棋盘转换后：\n5502817432078501808630122404\rppfmyk n if pfkyfyd hkmmcfc 最终得到密文：ppfmyk n in pfkyfyd hkmmcfc\n网站\nStraddle Checkerboard Cipher\n26、云影密码 采用的是0作间隔，其他非0数隔开后组合起来相加表示26个字母\n脚本\n#!/usr/bin/python\r# -*- coding=utf8 -*-\r\"\"\"\r# @Author : pig\r# @CreatedTime:2019-11-2423:54:02\r# @Description : \"\"\"\rdef de_code(c):\rdic = [chr(i) for i in range(ord(\"A\"), ord(\"Z\") + 1)]\rflag = []\rc2 = [i for i in c.split(\"0\")]\rfor i in c2:\rc3 = 0\rfor j in i:\rc3 += int(j)\rflag.append(dic[c3 - 1])\rreturn flag\rdef encode(plaintext):\rdic = [chr(i) for i in range(ord(\"A\"), ord(\"Z\") + 1)]\rm = [i for i in plaintext]\rtmp = [];flag = []\rfor i in range(len(m)):\rfor j in range(len(dic)):\rif m[i] == dic[j]:\rtmp.append(j + 1)\rfor i in tmp:\rres = \"\"\rif i \u003e= 8:\rres += int(i/8)*\"8\"\rif i%8 \u003e=4:\rres += int(i%8/4)*\"4\"\rif i%4 \u003e=2:\rres += int(i%4/2)*\"2\"\rif i%2 \u003e= 1:\rres += int(i%2/1)*\"1\"\rflag.append(res + \"0\")\rprint (\"\".join(flag)[:-1])\rc = input(\"输入要解密的数字串:\")\rprint (de_code(c))\rm_code = input(\"请输入要加密的数字串:\")\rencode(m_code) 例\n27、Porta密码 Porta密码(Porta Cipher)是一个由意大利那不勒斯的医生Giovanni Battista della Porta发明的多表代换密码 Porta密码具有加密解密过程的是相同的特点\n明文：THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG 密钥(循环使用，密钥越长相对破解难度越大)：CULTURE 加密过程：明文字母’T’列与密钥字母’C’行交点就是密文字母’F’,以此类推。 密文：FRW HKQRY YMFMF UAA OLWHD ALWI JPT ZXHC NGV\n网站\nPorta Cipher\nPorta密码\n28、仿射密码 仿射密码(Affine Cipher)\n一种单表代换密码，字母表中的每个字母相应的值使用一个简单的数学函数映射到对应的数值，再把对应数值转换成字母\n这个公式意味着每个字母加密都会返回一个相同的字母，意义着这种加密方式本质上是一种标准替代密码\n因此，它具有所有替代密码的弱点\n每一个字母都是通过函数（ax + b）mod m加密，其中B是位移量，为了保证仿射密码的可逆性，a和m需要满足gcd(a , m)=1，一般m为设置为26\n以E(x) = (5x + 8) mod 26函数为例\n解密用D(x)=21(x - 8) mod 26\n网站\nAffine Cipher\n仿射密码\n29、Bazeries密码 Bazeries密码(Bazeries Cipher)是换位密码和替换密码的组合\n使用两个波利比奥斯方阵，一个明文字母方阵\n使用一个随机的数字(一般小于1000000)的生成一个密钥矩阵同时作为第一轮明文划分分组，比如2333这个数字翻译为英文便是TWO THOUSAND THREE HUNDRED THIRTY THREE,从第一个字母T开始选取不重复的字母，之后再从字母表中按序选取没有出现的字母组成密钥矩阵。\n明文:THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG 随机数字:2333 明文矩阵:\nA F L Q V\rB G M R W\rC H N S X\rD I/J O T Y\rE K P U Z 示例密钥矩阵：\nT W O H U\rS A N D R\rE I/J Y B C\rF G K L M\rP Q V X Z 明文分组：\n2 3 3 3 2 3 3 3 2 3 3 3\rTH EQU ICK BRO WN FOX JUM PSO VE RTH ELA ZYD OG 分组明文反序:\nHT UQE KCI ORB WN XOF MUJ OSP EV EHT ALE DYZ GO 使用密钥矩阵替换:\nIL XHP QEG KDS YR CKW NXG KBV PU ILD TOP FMZ AK\r(比如’H’在明文矩阵对应到密钥矩阵的位置就是’I’） 30、当铺密码 当铺密码 就是一种将中文和数字进行转化的密码，算法相当简单:当前汉字有多少笔画出头，就是转化成数字几\n例如:\n王夫 井工 夫口 由中人 井中 夫夫 由中大\r67 84 70 123 82 77 125 四、现代密码 1、RSA RSA是目前最有影响力和最常用的公钥加密算法，它能够抵抗到目前为止已知的绝大多数密码攻击，已被ISO推荐为公钥数据加密标准。\n今天只有短的RSA钥匙才可能被强力方式解破。到2008年为止，世界上还没有任何可靠的攻击RSA算法的方式。只要其钥匙的长度足够长，用RSA加密的信息实际上是不能被解破的。目前普遍认为，模式n至少应该取1024位，最好是2048位。但在分布式计算和量子计算机理论日趋成熟的今天，RSA加密安全性受到了挑战和质疑。\nRSA算法基于一个十分简单的数论事实:将两个大质数相乘十分容易，但是想要对其乘积进行因式分解却极其困难，因此可以将乘积公开作为加密密钥\n脚本\nimport libnum\rfrom Crypto.Util.number import long_to_bytes\rq = int(\"0xa6055ec186de51800ddd6fcbf0192384ff42d707a55f57af4fcfb0d1dc7bd97055e8275cd4b78ec63c5d592f567c66393a061324aa2e6a8d8fc2a910cbee1ed9\",16)\rp = int(\"0xfa0f9463ea0a93b929c099320d31c277e0b0dbc65b189ed76124f5a1218f5d91fd0102a4c8de11f28be5e4d0ae91ab319f4537e97ed74bc663e972a4a9119307\",16)\re = int(\"0x6d1fdab4ce3217b3fc32c9ed480a31d067fd57d93a9ab52b472dc393ab7852fbcb11abbebfd6aaae8032db1316dc22d3f7c3d631e24df13ef23d3b381a1c3e04abcc745d402ee3a031ac2718fae63b240837b4f657f29ca4702da9af22a3a019d68904a969ddb01bcf941df70af042f4fae5cbeb9c2151b324f387e525094c41\",16)\rc = 0x7fe1a4f743675d1987d25d38111fae0f78bbea6852cba5beda47db76d119a3efe24cb04b9449f53becd43b0b46e269826a983f832abb53b7a7e24a43ad15378344ed5c20f51e268186d24c76050c1e73647523bd5f91d9b6ad3e86bbf9126588b1dee21e6997372e36c3e74284734748891829665086e0dc523ed23c386bb520\rn = q*p\rd = libnum.invmod(e, (p - 1) * (q - 1))\rm = pow(c, d, n) # m 的十进制形式\rstring = long_to_bytes(m) # m明文\rprint(string) 网站\n在线RSA公钥加密解密\n在线RSA私钥加密解密\n2、AES 在密码学中又称Rijndael加密法，是美国联邦政府采用的一种区块加密标准。这个标准用来替代原先的DES，已经被多方分析且广为全世界所使用。经过五年的甄选流程，高级加密标准由美国国家标准与技术研究院(NIST)于2001年11月26日发布于FIPS PUB 197，并在2002年5月26日成为有效的标准。2006年，高级加密标准已然成为对称密钥加密中最流行的算法之一。\naes密文包括字母 数字 + = /等\n网站\nAES加密\n在线加密解密\n3、DES DES算法为密码体制中的对称密码体制，又被称为美国数据加密标准，是1972年美国IBM公司研制的对称密码体制加密算法。 明文按64位进行分组，密钥长64位，密钥事实上是56位参与DES运算（第8、16、24、32、40、48、56、64位是校验位， 使得每个密钥都有奇数个1）分组后的明文组和56位的密钥按位替代或交换的方法形成密文组的加密方法\n网站\nDES算法原理完整版\n在线DES加密解密\n4、ECC ECC（Elliptic Curves Cryptography，椭圆曲线密码编码学） 椭圆加密算法(ECC)是一种公钥加密体制，最初由Koblitz和Miller两人于1985年提出，其数学基础是利用椭圆曲线上的有理点构成Abel加法群上椭圆离散对数的计算困难性 公钥密码体制根据其所依据的难题一般分为三类:大整数分解问题类、离散对数问题类、椭圆曲线类 有时也把椭圆曲线类归为离散对数类\n网站\nECC(椭圆曲线密码编码学)简介\n5、RC4 RC4（来自Rivest Cipher 4的缩写）是一种流加密算法，密钥长度可变。它加解密使用相同的密钥，因此也属于对称加密算法。RC4是有线等效加密（WEP）中采用的加密算法，也曾经是TLS可采用的算法之一\n网站\nRC4算法总结\nRC4加解密\n五、代码混淆加密 1、VBScript.Encode解密 VBScript.Encode解密\n2、ppencode ppencode-Perl把Perl代码转换成只有英文字母的字符串\n网站\nppencode - JavaScript demo\nPPencode\n3、rrencode rrencode可以把ruby代码全部转换成符号\n暂时没找到网站 之前有个挂了\n4、jjencode jjencode将JS代码转换成只有符号的字符串 jjencode的解密直接在浏览器的控制台里输入密文即可执行解密\n网站\nJJencode\nMALWARE ANALYSIS\n5、aaencode/颜文字 aaencode的解密直接在浏览器的控制台里输入密文即可执行解密\n网站\naaencode demo\naadecode - Decode encoded-as-aaencode JavaScript program. AAencodehttp://ctf.ssleye.com/aaencode.html)\n6、JSfuck] JSFuck 可以让你只用 6 个字符 ! +来编写 JavaScript 程序\n网站\nJSFuck\nJSfuck\n7、jother jother是一种运用于javascript语言中利用少量字符构造精简的匿名函数方法对于字符串进行的编码方式 其中8个少量字符包括：! + ( ) [ ] { }，只用这些字符就能完成对任意字符串的编码 直接在浏览器(f12)的控制台里输入密文即可执行解密\n网站\njother\n8、brainfuck Brainfuck是一种极小化的计算机语言，按照”Turing complete（完整图灵机）”思想设计的语言 它的主要设计思路是：用最小的概念实现一种“简单”的语言 Brainfuck只有八种符号，所有的操作都由这八种符号\u003e \u003c + - . , [ ]的组合来完成\n网站\nBrainfuck/Ook! Obfuscation/Encoding\nBrainfuck\n9、Ook! Ook! 与Brainfuck类似, 但用单词“Ook！”，“Ook.” 和“Ook?”代替\n网站\nBrainfuck/Ook! Obfuscation/Encoding\n10、Bubble Babble Bubble Babble\n由Antti Huima创建的一种编码方法，可以把二进制信息表示为由交替的元音和辅音组成的伪词（pseudo-words）\n主要用于密码指纹，其编码也具有内置的纠错和冗余\n编码格式每5个字符中间以-来分隔，作者的原意就是想把难以记得的二进制数据表示为难忘的伪词\n网站\nbubblepy\nBubbleBabble\n六、其他 1、与佛论禅 与佛论禅\n2、文本加密 文本加密\n3、核心价值观密码 核心价值观密码\n4、恩尼格码密码 恩尼格玛密码机（德语：Enigma，又译哑谜机，或“谜”式密码机）是一种用于加密与解密文件的密码机。确切地说，恩尼格玛是对二战时期纳粹德国使用的一系列相似的转子机械加解密机器的统称，它包括了许多不同的型号，为密码学对称加密算法的流加密\n模拟\n5、兽音译者 给我笑死\n兽音译者\n结语 对常见的编码和密码做了个归纳\n一些好用的网站和工具\nhttps://web2hack.org/xssee/ json在线 程默的博客 CaptfEncoder python_cryptanalysis Kryptos and Cryptanalysis Information Cipher Tools 在线加密解密 原文链接：https://blog.csdn.net/weixin_44604541/article/details/109817480\n",
+  "wordCount" : "2171",
   "inLanguage": "zh",
   "datePublished": "2023-04-13T08:00:00+08:00",
   "dateModified": "2023-04-13T08:00:00+08:00",
@@ -176,7 +176,7 @@
 
   <p>
   <small>
-    2023年4月13日&nbsp;· 2084 字&nbsp;· 10 分钟</small>
+    2023年4月13日&nbsp;· 2171 字&nbsp;· 11 分钟</small>
 
   
 <p>
@@ -221,6 +221,153 @@
 <p>对常见的编码和密码做个归纳
 并记录一些可用的网站和工具
 可以当做手册使用</p>
+<p><strong>总结：</strong></p>
+<table>
+<thead>
+<tr>
+<th>ASCII码</th>
+<th>URL编码</th>
+<th>base家族编码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>摩尔斯电码（Morse Code）</td>
+<td>ShellCode</td>
+<td>XXencode编码</td>
+</tr>
+<tr>
+<td>UUencode编码</td>
+<td>AAencode编码</td>
+<td>JSfuck编码</td>
+</tr>
+<tr>
+<td>PPencode</td>
+<td>RRencode</td>
+<td>asp混淆加密</td>
+</tr>
+<tr>
+<td>php混淆加密</td>
+<td>css/js混淆加密</td>
+<td>VBScript.Encode混淆加密</td>
+</tr>
+<tr>
+<td>Quoted-printable编码</td>
+<td>Escape/Unescape编码</td>
+<td>Unicode编码</td>
+</tr>
+<tr>
+<td>jother</td>
+<td>Brainfuck</td>
+<td>Ook</td>
+</tr>
+<tr>
+<td>Bubble Babble</td>
+<td>与佛论禅</td>
+<td>新与佛论禅</td>
+</tr>
+<tr>
+<td>文本加密</td>
+<td>核心价值观密码</td>
+<td>兽音译者</td>
+</tr>
+<tr>
+<td>尊嘟假嘟语</td>
+<td>我的世界_地牢密码</td>
+<td>中文电码</td>
+</tr>
+<tr>
+<td>敲击码</td>
+<td>HTML实体编码</td>
+<td>md5</td>
+</tr>
+<tr>
+<td>凯撒密码</td>
+<td>ROT5/13/18/47</td>
+<td>QWE加密</td>
+</tr>
+<tr>
+<td>拼音九键加密</td>
+<td>埃特巴什码</td>
+<td>培根密码</td>
+</tr>
+<tr>
+<td>希尔密码</td>
+<td>猪圈密码</td>
+<td>圣堂武士密码</td>
+</tr>
+<tr>
+<td>银河字母</td>
+<td>维吉尼亚密码</td>
+<td>格罗斯费尔德密码</td>
+</tr>
+<tr>
+<td>自动密钥密码</td>
+<td>博福特密码</td>
+<td>滚动密钥密码</td>
+</tr>
+<tr>
+<td>夏多密码（曲折密码）</td>
+<td>波利比奥斯方阵密码</td>
+<td>普莱菲尔密码</td>
+</tr>
+<tr>
+<td>ADFGX密码</td>
+<td>ADFGVX密码</td>
+<td>双密码</td>
+</tr>
+<tr>
+<td>三分密码</td>
+<td>四方密码</td>
+<td>棋盘密码</td>
+</tr>
+<tr>
+<td>跨棋盘密码</td>
+<td>云影密码</td>
+<td>Porta密码</td>
+</tr>
+<tr>
+<td>仿射密码</td>
+<td>Bazezeries密码</td>
+<td>当铺密码</td>
+</tr>
+<tr>
+<td>同音替换密码</td>
+<td>分组摩尔斯替换密码</td>
+<td>Digrafid密码</td>
+</tr>
+<tr>
+<td>格朗普雷密码</td>
+<td>比尔密码</td>
+<td>恩尼格码密码</td>
+</tr>
+<tr>
+<td>Lolcode</td>
+<td>Befunge</td>
+<td>Chef</td>
+</tr>
+<tr>
+<td>Piet</td>
+<td>Shakespeare</td>
+<td>Whitespace</td>
+</tr>
+<tr>
+<td>INTERCAL</td>
+<td>Malbolge</td>
+<td>BIT</td>
+</tr>
+<tr>
+<td>ZOMBIE</td>
+<td>HQ9+</td>
+<td>Rabbit</td>
+</tr>
+<tr>
+<td>幂数加密</td>
+<td>卡尔达诺栅格码（spammimic）</td>
+<td>百家姓暗号</td>
+</tr>
+</tbody>
+</table>
 <h3 id="一常见编码">一、常见编码</h3>
 <h4 id="1ascii编码">1、ASCII编码</h4>
 <p>现今最通用的单字节编码系统，并等同于国际标准ISO/IEC 646</p>
@@ -231,9 +378,9 @@
 <p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/20201119192658523.png" alt="在这里插入图片描述"></p>
 <p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/20201119192718216.png" alt="在这里插入图片描述"></p>
 <p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/20201119192811181.png" alt="在这里插入图片描述"></p>
-<p>转换网站
-<a href="http://www.ab126.com/goju/1711.html">ASCII 在线转换器</a>
-<a href="http://ctf.ssleye.com/cencode.html">ASCII编码转换</a></p>
+<p>转换网站</p>
+<p><a href="http://www.ab126.com/goju/1711.html">ASCII 在线转换器</a></p>
+<p><a href="http://ctf.ssleye.com/cencode.html">ASCII编码转换</a></p>
 <h4 id="2base6432编码">2、base64,32编码</h4>
 <p>Base64是网络上最常见的用于传输8Bit字节码的编码方式之一</p>
 <ul>
@@ -266,9 +413,9 @@ b&#39;I love you&#39;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> decode <span style="color:#f92672">=</span> base64<span style="color:#f92672">.</span>b32decode(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;JEQGY33WMUQHS33V&#39;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> decode
 </span></span><span style="display:flex;"><span><span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;I love you&#39;</span>
-</span></span></code></pre></div><p>网站
-<a href="http://tool.chinaz.com/tools/base64.aspx">Base64加密解密</a>
-<a href="http://ctf.ssleye.com/base64.html">base编码</a></p>
+</span></span></code></pre></div><p>网站</p>
+<p><a href="http://tool.chinaz.com/tools/base64.aspx">Base64加密解密</a></p>
+<p><a href="http://ctf.ssleye.com/base64.html">base编码</a></p>
 <h4 id="3url编码">3、URL编码</h4>
 <p>url编码又叫百分号编码，是统一资源定位(URL)编码方式
 URL地址（常说网址）规定了常用地数字，字母可以直接使用，另外一批作为特殊用户字符也可以直接用（/,:@等），剩下的其它所有字符必须通过在该字节ascii码的的16进制字符前面加%编码处理</p>
@@ -281,9 +428,9 @@ URL地址（常说网址）规定了常用地数字，字母可以直接使用�
 </li>
 </ul>
 <p>url编码和双重编码是绕过时常用手段</p>
-<p>网站
-<a href="http://tool.chinaz.com/tools/urlencode.aspx">UrlEncode编码/解码</a>
-<a href="http://ctf.ssleye.com/url.html">URL编码</a></p>
+<p>网站</p>
+<p><a href="http://tool.chinaz.com/tools/urlencode.aspx">UrlEncode编码/解码</a></p>
+<p><a href="http://ctf.ssleye.com/url.html">URL编码</a></p>
 <h4 id="4unicode编码">4、Unicode编码</h4>
 <p>unicode编码</p>
 <ul>
@@ -319,19 +466,19 @@ URL地址（常说网址）规定了常用地数字，字母可以直接使用�
 <p>最后将该二进制数从右向左依次填入二进制格式的X中，如果还有X未填，则设为0</p>
 </li>
 </ul>
-<p>网站
-<a href="http://tool.chinaz.com/tools/unicode.aspx">Unicode编码转换</a></p>
+<p>网站</p>
+<p><a href="http://tool.chinaz.com/tools/unicode.aspx">Unicode编码转换</a></p>
 <h4 id="5html实体编码">5、HTML实体编码</h4>
 <p>喜闻乐见的<code>&amp;#</code>
 HTML 中的预留字符必须被替换为字符实体
 一些在键盘上找不到的字符也可以使用字符实体来替换</p>
-<p>可参考
-<a href="https://www.w3school.com.cn/html/html_entities.asp">HTML 字符实体</a>
-<a href="https://www.runoob.com/tags/html-symbols.html">HTML 符号实体参考手册</a>
-<a href="https://www.w3school.com.cn/tags/html_ref_entities.html">HTML ISO-8859-1 参考手册</a></p>
-<p>网站
-<a href="https://www.convertstring.com/zh_CN/EncodeDecode/HtmlEncode">在线HTML编码器</a>
-<a href="http://ctf.ssleye.com/html_en.html">HTML编码</a></p>
+<p>可参考</p>
+<p><a href="https://www.w3school.com.cn/html/html_entities.asp">HTML 字符实体</a></p>
+<p><a href="https://www.runoob.com/tags/html-symbols.html">HTML 符号实体参考手册</a></p>
+<p><a href="https://www.w3school.com.cn/tags/html_ref_entities.html">HTML ISO-8859-1 参考手册</a></p>
+<p>网站</p>
+<p><a href="https://www.convertstring.com/zh_CN/EncodeDecode/HtmlEncode">在线HTML编码器</a></p>
+<p><a href="http://ctf.ssleye.com/html_en.html">HTML编码</a></p>
 <h4 id="6敲击码">6、敲击码</h4>
 <p>敲击码(Tap code)</p>
 <ul>
@@ -347,8 +494,8 @@ HTML 中的预留字符必须被替换为字符实体
 </ul>
 <p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/2020111920511547.png" alt="在这里插入图片描述"></p>
 <p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/20201119205121551.png" alt="在这里插入图片描述"></p>
-<p>网站
-<a href="http://ctf.ssleye.com/tapcode.html">敲击码</a></p>
+<p>网站</p>
+<p><a href="http://ctf.ssleye.com/tapcode.html">敲击码</a></p>
 <h4 id="7摩尔斯电码摩斯密码">7、摩尔斯电码（摩斯密码）</h4>
 <ul>
 <li>大名鼎鼎的morse电码</li>
@@ -362,10 +509,10 @@ HTML 中的预留字符必须被替换为字符实体
 <p>​		- 每个词之间中等的停顿</p>
 <p>​		- 句子之间长的停顿</p>
 <p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/20201119210224286.png" alt="在这里插入图片描述"></p>
-<p>网站
-<a href="https://www.atool99.com/morse.php">中文摩斯密码 Morse莫尔斯电码加密解密</a>
-<a href="http://www.zou114.com/mesm/">摩尔斯密码在线翻译</a>
-<a href="http://ctf.ssleye.com/morse.html">Morse code</a></p>
+<p>网站</p>
+<p><a href="https://www.atool99.com/morse.php">中文摩斯密码 Morse莫尔斯电码加密解密</a></p>
+<p><a href="http://www.zou114.com/mesm/">摩尔斯密码在线翻译</a></p>
+<p><a href="http://ctf.ssleye.com/morse.html">Morse code</a></p>
 <h4 id="8quoted-printable编码">8、Quoted-printable编码</h4>
 <p>Quoted-printable编码</p>
 <ul>
@@ -381,9 +528,9 @@ HTML 中的预留字符必须被替换为字符实体
 </ul>
 <p>编码方法</p>
 <p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/20201119210615584.png" alt="在这里插入图片描述"></p>
-<p>网站
-<a href="http://www.mxcz.net/tools/QuotedPrintable.aspx">QuotedPrintable编码</a>
-<a href="http://ctf.ssleye.com/quoted.html">Quoted-printable编码</a></p>
+<p>网站</p>
+<p><a href="http://www.mxcz.net/tools/QuotedPrintable.aspx">QuotedPrintable编码</a></p>
+<p><a href="http://ctf.ssleye.com/quoted.html">Quoted-printable编码</a></p>
 <p>9、XXencode编码
 XXencode</p>
 <ul>
@@ -403,9 +550,9 @@ XXencode</p>
 <p>跟base64打印字符相比，就是UUencode多一个<code>-</code>字符，少一个<code>/</code> 字符</p>
 </li>
 </ul>
-<p>网站
-<a href="http://web.chacuo.net/charsetxxencode">在线XXencode编码</a>
-<a href="http://ctf.ssleye.com/xxencode.html">XXencode</a></p>
+<p>网站</p>
+<p><a href="http://web.chacuo.net/charsetxxencode">在线XXencode编码</a></p>
+<p><a href="http://ctf.ssleye.com/xxencode.html">XXencode</a></p>
 <h4 id="10uuencode编码">10、UUencode编码</h4>
 <p>UUencode编码</p>
 <ul>
@@ -423,9 +570,9 @@ XXencode</p>
 </li>
 </ul>
 <p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/20201120123238507.png" alt="在这里插入图片描述"></p>
-<p>网站
-<a href="http://web.chacuo.net/charsetuuencode">在线UUencode编码</a>
-<a href="http://ctf.ssleye.com/uu.html">UUencode</a></p>
+<p>网站</p>
+<p><a href="http://web.chacuo.net/charsetuuencode">在线UUencode编码</a></p>
+<p><a href="http://ctf.ssleye.com/uu.html">UUencode</a></p>
 <h4 id="11escapeunescape编码">11、Escape/Unescape编码</h4>
 <p>Escape/Unescape</p>
 <ul>
@@ -439,9 +586,9 @@ XXencode</p>
 <p>因为目前%字符，常用作URL编码，所以%u这样编码已经逐渐被废弃了</p>
 </li>
 </ul>
-<p>网站
-<a href="http://web.chacuo.net/charsetescape">在线Escape编码/加密</a>
-<a href="http://ctf.ssleye.com/escape.html">Escape编码</a></p>
+<p>网站</p>
+<p><a href="http://web.chacuo.net/charsetescape">在线Escape编码/加密</a></p>
+<p><a href="http://ctf.ssleye.com/escape.html">Escape编码</a></p>
 <h4 id="12md5">12、md5</h4>
 <p>md5</p>
 <ul>
@@ -461,9 +608,9 @@ for i in range(10000, 10000001):
     if s == &#34;5fe45&#34;:
         print(i)
         break
-</code></pre><p>网站
-<a href="https://www.cmd5.com/">CMD5</a>
-<a href="http://www.xmd5.org/">xmd5</a></p>
+</code></pre><p>网站</p>
+<p><a href="https://www.cmd5.com/">CMD5</a></p>
+<p><a href="http://www.xmd5.org/">xmd5</a></p>
 <h3 id="二换位密码">二、换位密码</h3>
 <h4 id="1栅栏密码">1、栅栏密码</h4>
 <p>把要加密的明文分成N个一组，然后把每组的第1个字连起来，形成一段无规律的话</p>
@@ -479,9 +626,9 @@ for i in range(10000, 10000001):
 </ul>
 <p>​		将下面一行字母排在上面一行的后边。</p>
 <p>​		TEOGSDYUTAENN HLNETAMSHVAED</p>
-<p>网站
-<a href="http://www.practicalcryptography.com/ciphers/classical-era/rail-fence/">Rail-fence Cipher</a>
-<a href="http://ctf.ssleye.com/railfence.html">栅栏密码</a></p>
+<p>网站</p>
+<p><a href="http://www.practicalcryptography.com/ciphers/classical-era/rail-fence/">Rail-fence Cipher</a></p>
+<p><a href="http://ctf.ssleye.com/railfence.html">栅栏密码</a></p>
 <h4 id="2简单换位密码">2、简单换位密码</h4>
 <p>密文k=“<code>3124</code>”
 明文m=“<code>flag{easy_easy_crypto}</code>”</p>
@@ -502,9 +649,9 @@ lafg     ea{s    _eya    y_sc    yprt      }o
 所以先写出a列，其次e列，以此类推写出的结果便是密文</p>
 <p><img src="https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/20201119231129922.png" alt="在这里插入图片描述"></p>
 <p>密文：<code>qoury inpho Tkool hbxva uwmtd cfseg erjez</code></p>
-<p>网站
-<a href="http://www.practicalcryptography.com/ciphers/classical-era/columnar-transposition/">Columnar Transposition Cipher</a>
-<a href="http://ctf.ssleye.com/colum.html">列移位密码</a></p>
+<p>网站</p>
+<p><a href="http://www.practicalcryptography.com/ciphers/classical-era/columnar-transposition/">Columnar Transposition Cipher</a></p>
+<p><a href="http://ctf.ssleye.com/colum.html">列移位密码</a></p>
 <h4 id="4曲路密码">4、曲路密码</h4>
 <p>事先双方约定密钥(也就是曲路路径)
 明文：<code>The quick brown fox jumps over the lazy dog</code>
@@ -516,9 +663,9 @@ lafg     ea{s    _eya    y_sc    yprt      }o
 <p>明文：<code>The quick brown fox jumps over the lazy dog</code>
 偏移量：1
 密文：<code>Uif rvjdl cspxo gpy kvnqt pwfs uif mbaz eph</code></p>
-<p>网站
-<a href="https://planetcalc.com/1434/">Caesar cipher</a>
-<a href="http://ctf.ssleye.com/caesar.html">凯撒密码</a></p>
+<p>网站</p>
+<p><a href="https://planetcalc.com/1434/">Caesar cipher</a></p>
+<p><a href="http://ctf.ssleye.com/caesar.html">凯撒密码</a></p>
 <h4 id="2rot5131847">2、ROT5/13/18/47</h4>
 <p>ROT5：只对数字进行编码，用当前数字往前数的第5个数字替换当前数字，例如当前为0，编码后变成5，当前为1，编码后变成6，以此类推顺序循环。</p>
 <p>ROT13：只对字母进行编码，用当前字母往前数的第13个字母替换当前字母，例如当前为A，编码后变成N，当前为B，编码后变成O，以此类推顺序循环。</p>
@@ -527,9 +674,9 @@ lafg     ea{s    _eya    y_sc    yprt      }o
 <p>下面以ROT13以例
 明文：<code>the quick brown fox jumps over the lazy dog</code>
 密文：<code>gur dhvpx oebja sbk whzcf bire gur ynml qbt</code></p>
-<p>网站
-<a href="https://www.qqxiuzi.cn/bianma/ROT5-13-18-47.php">ROT5/13/18/47编码转换</a>
-<a href="http://ctf.ssleye.com/rot13.html">Rot13密码</a></p>
+<p>网站</p>
+<p><a href="https://www.qqxiuzi.cn/bianma/ROT5-13-18-47.php">ROT5/13/18/47编码转换</a></p>
+<p><a href="http://ctf.ssleye.com/rot13.html">Rot13密码</a></p>
 <h4 id="3qwe加密">3、QWE加密</h4>
 <p>从电脑键盘上的字母从Q开始数，顺序是Q W E R T Y U I…
 对应的字母顺序依次是A B C D E F G H 也就是说Q=A,W=B,E=C，依次类推</p>
@@ -543,9 +690,9 @@ lafg     ea{s    _eya    y_sc    yprt      }o
 <p>以字母倒序排列作为特殊密钥的替换加密，也称也就是下面的对应关系：</p>
 <pre tabindex="0"><code>ABCDEFGHIJKLMNOPQRSTUVWXYZ
 ZYXWVUTSRQPONMLKJIHGFEDCBA
-</code></pre><p>网站
-<a href="http://www.practicalcryptography.com/ciphers/classical-era/atbash-cipher/">Atbash Cipher</a>
-<a href="http://ctf.ssleye.com/atbash.html">埃特巴什码</a></p>
+</code></pre><p>网站</p>
+<p><a href="http://www.practicalcryptography.com/ciphers/classical-era/atbash-cipher/">Atbash Cipher</a></p>
+<p><a href="http://ctf.ssleye.com/atbash.html">埃特巴什码</a></p>
 <h4 id="6培根密码">6、培根密码</h4>
 <p>每个明文字母被一个由5字符组成的序列替换，最初的加密方式就是由’A’和’B’组成序列替换明文(所以你当然也可以用别的字母)</p>
 <pre tabindex="0"><code>A = aaaaa  I/J = abaaa  R = baaaa
@@ -556,23 +703,23 @@ E = aabaa  N = abbaa    W = babaa
 F = aabab  O = abbab    X = babab
 G = aabba  P = abbba    Y = babba
 H = aabbb  Q = abbbb    Z = babbb
-</code></pre><p>网站
-<a href="http://rumkin.com/tools/cipher/baconian.php">Baconian Cipher</a>
-<a href="http://ctf.ssleye.com/baconian.html">培根密码</a></p>
+</code></pre><p>网站</p>
+<p><a href="http://rumkin.com/tools/cipher/baconian.php">Baconian Cipher</a></p>
+<p><a href="http://ctf.ssleye.com/baconian.html">培根密码</a></p>
 <h4 id="7希尔密码">7、希尔密码</h4>
 <p>每个字母转换成26进制数字：A=0, B=1, C=2…Z=25
 一串字母当成n维向量，跟一个n×n的矩阵相乘
 再将得出的结果MOD26</p>
-<p>网站
-<a href="http://www.practicalcryptography.com/ciphers/hill-cipher/">Hill Cipher</a>
-<a href="http://www.practicalcryptography.com/cryptanalysis/stochastic-searching/cryptanalysis-hill-cipher/">Cryptanalysis of the Hill Cipher</a></p>
+<p>网站</p>
+<p><a href="http://www.practicalcryptography.com/ciphers/hill-cipher/">Hill Cipher</a></p>
+<p><a href="http://www.practicalcryptography.com/cryptanalysis/stochastic-searching/cryptanalysis-hill-cipher/">Cryptanalysis of the Hill Cipher</a></p>
 <h4 id="8猪圈密码">8、猪圈密码</h4>
 <p>猪圈密码(Pigpen Cipher或称九宫格密码、朱高密码、共济会密码或共济会员密码)，是一种以格子为基础的简单替代式密码</p>
 <p><img src="https://img-blog.csdnimg.cn/20201119234953558.png#pic_center" alt="在这里插入图片描述"></p>
 <p><img src="https://img-blog.csdnimg.cn/20201119235003816.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p>网站
-<a href="http://www.simonsingh.net/The_Black_Chamber/pigpen.html">The BLACK Chamber</a>
-<a href="http://ctf.ssleye.com/pigpen.html">猪圈密码</a></p>
+<p>网站</p>
+<p><a href="http://www.simonsingh.net/The_Black_Chamber/pigpen.html">The BLACK Chamber</a></p>
+<p><a href="http://ctf.ssleye.com/pigpen.html">猪圈密码</a></p>
 <p>变种</p>
 <p><img src="https://img-blog.csdnimg.cn/20201119235124125.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
 <h4 id="9圣堂武士密码">9、圣堂武士密码</h4>
@@ -611,9 +758,9 @@ H = aabbb  Q = abbbb    Z = babbb
 &#39;VBPJOZGMVCHQEJQRUNGGWQPPKNYINUKRXFK&#39;
 &gt;&gt;&gt;Gronsfeld([2,20,11,45,20,43,4]).decipher(&#39;VBPJOZGMVCHQEJQRUNGGWQPPKNYINUKRXFK&#39;)
 &#39;THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG&#39;
-</code></pre><p>网站
-<a href="http://rumkin.com/tools/cipher/gronsfeld.php">Gronsfeld Cipher</a>
-<a href="http://ctf.ssleye.com/gronsfeld.html">Gronsfeld密码</a></p>
+</code></pre><p>网站</p>
+<p><a href="http://rumkin.com/tools/cipher/gronsfeld.php">Gronsfeld Cipher</a></p>
+<p><a href="http://ctf.ssleye.com/gronsfeld.html">Gronsfeld密码</a></p>
 <h4 id="13自动密钥密码">13、自动密钥密码</h4>
 <p>自动密钥密码(Autokey Cipher)</p>
 <ul>
@@ -630,10 +777,10 @@ H = aabbb  Q = abbbb    Z = babbb
 自动生成密钥：<code>CULTURE THE QUICK BROWN FOX JUMPS OVER THE</code>
 接下来的加密过程和维吉尼亚密码类似，从密表可得：
 密文：<code>VBP JOZGD IVEQV HYY AIICX CSNL FWW ZVDP WVK</code></p>
-<p>网站
-<a href="http://www.practicalcryptography.com/cryptanalysis/stochastic-searching/cryptanalysis-autokey-cipher/">Cryptanalysis of the Autokey Cipher</a>
-<a href="http://www.practicalcryptography.com/ciphers/classical-era/autokey/">Autokey Cipher</a>
-<a href="http://ctf.ssleye.com/autokey.html">自动密钥密码</a></p>
+<p>网站</p>
+<p><a href="http://www.practicalcryptography.com/cryptanalysis/stochastic-searching/cryptanalysis-autokey-cipher/">Cryptanalysis of the Autokey Cipher</a></p>
+<p><a href="http://www.practicalcryptography.com/ciphers/classical-era/autokey/">Autokey Cipher</a></p>
+<p><a href="http://ctf.ssleye.com/autokey.html">自动密钥密码</a></p>
 <h4 id="14博福特密码">14、博福特密码</h4>
 <p>博福特密码(Beaufort Cipher)</p>
 <ul>
@@ -651,9 +798,9 @@ H = aabbb  Q = abbbb    Z = babbb
 密钥(循环使用，密钥越长相对破解难度越大)：<code>CULTURE</code>
 加密过程：如果第一行为明文字母，第一列为密文字母，那么沿明文字母’T’列出现密钥字母’C’的行号就是密文字母’J’，以此类推。
 密文：<code>JNH DAJCS TUFYE ZOX CZICM OZHC BKA RUMV RDY</code></p>
-<p>网站
-<a href="http://www.practicalcryptography.com/ciphers/classical-era/beaufort/">Beaufort Cipher</a>
-<a href="http://ctf.ssleye.com/beaufort.html">博福特密码</a></p>
+<p>网站</p>
+<p><a href="http://www.practicalcryptography.com/ciphers/classical-era/beaufort/">Beaufort Cipher</a></p>
+<p><a href="http://ctf.ssleye.com/beaufort.html">博福特密码</a></p>
 <h4 id="15滚动密钥密码">15、滚动密钥密码</h4>
 <p>滚动密钥密码(Running Key Cipher)</p>
 <ul>
@@ -668,9 +815,9 @@ H = aabbb  Q = abbbb    Z = babbb
 密钥：选取C语言编程(1978版)第63页第1行”errors can occur in several places. A label has…”，去掉非字母部分作为密钥(实际选取的密钥很长，长度至少不小于明文长度)。
 加密过程：加密过程和维吉尼亚密码加密过程相同
 密文:<code>XYV ELAEK OFQYH WWK BYHTJ OGTC TJI DAK YESR</code></p>
-<p>网站
-<a href="http://www.practicalcryptography.com/ciphers/classical-era/running-key/">Running Key Cipher</a>
-<a href="http://ctf.ssleye.com/runkey.html">滚动密钥密码</a></p>
+<p>网站</p>
+<p><a href="http://www.practicalcryptography.com/ciphers/classical-era/running-key/">Running Key Cipher</a></p>
+<p><a href="http://ctf.ssleye.com/runkey.html">滚动密钥密码</a></p>
 <h4 id="16夏多密码曲折加密">16、夏多密码（曲折加密）</h4>
 <p>作者麦克斯韦·格兰特在中篇小说《死亡之链》塑造夏多这一英雄人物中所自创的密码</p>
 <p><img src="https://img-blog.csdnimg.cn/20201120001931805.png#pic_center" alt="在这里插入图片描述"></p>
@@ -731,9 +878,9 @@ H = aabbb  Q = abbbb    Z = babbb
 </ul>
 <p>按照上述原则，将明文TH EQ UI CK BR OW NF OX JU MP SO VE RT HE LA ZY DO GX加以转换得到KU ND LH GT LF WU ES PW LH SI/J NP CG CR AG BU VZ QA I/JV（/表示或者，不过一般用I不用J，所以分析密文时你看25个字母都有而只差一个字母没有用到可以考虑一下这种加密方式）将得到的字母改为大写并五个一组列好</p>
 <p>密文<code>KUNDL HGTLF WUESP WLHSI NPCGC RAGBU VZQAI V</code></p>
-<p>网站
-<a href="http://www.practicalcryptography.com/ciphers/classical-era/playfair/">Playfair Cipher</a>
-<a href="http://ctf.ssleye.com/playfair.html">普莱菲尔密码</a></p>
+<p>网站</p>
+<p><a href="http://www.practicalcryptography.com/ciphers/classical-era/playfair/">Playfair Cipher</a></p>
+<p><a href="http://ctf.ssleye.com/playfair.html">普莱菲尔密码</a></p>
 <h4 id="19adfgx密码">19、ADFGX密码</h4>
 <p>ADFGX密码(ADFGX Cipher)</p>
 <ul>
@@ -754,9 +901,9 @@ G | c  v  s  z   w
 X | b  u  t  i/j l
 </code></pre><p>明文：<code>THE QUICK BROWN FOX</code>
 密文：<code>XF AD DA AF XD XG GA FG XA FX DX GX DG FA DX FF</code></p>
-<p>网站
-<a href="http://www.practicalcryptography.com/ciphers/adfgx-cipher/">ADFGX Cipher</a>
-<a href="http://ctf.ssleye.com/adfgx.html">ADFGX密码</a></p>
+<p>网站</p>
+<p><a href="http://www.practicalcryptography.com/ciphers/adfgx-cipher/">ADFGX Cipher</a></p>
+<p><a href="http://ctf.ssleye.com/adfgx.html">ADFGX密码</a></p>
 <h4 id="20adfgvx密码">20、ADFGVX密码</h4>
 <p>ADFGVX密码实际上就是ADFGX密码的扩充升级版
 一样具有ADFGX密码相同的特点，加密过程也类似
@@ -769,8 +916,8 @@ F | l 2 n o f d
 G | x k r 3 c v
 V | s 5 z w 7 b
 X | j 9 u t i 8
-</code></pre><p>网站
-<a href="http://ctf.ssleye.com/adfgvx.html">ADFGVX密码</a></p>
+</code></pre><p>网站</p>
+<p><a href="http://ctf.ssleye.com/adfgvx.html">ADFGVX密码</a></p>
 <h4 id="21双密码">21、双密码</h4>
 <p>双密码(Bifid Cipher)结合了波利比奥斯方阵换位密码，并采用分级实现扩散，这里的“双”是指用2个密钥进行加密
 密阵:</p>
@@ -790,10 +937,10 @@ X | j 9 u t i 8
 </code></pre><p>合并：</p>
 <pre tabindex="0"><code>5121542133 5435452521 3523311521 34
 </code></pre><p>在经过密阵转换后密文:<code>WETED TKZNE KYOME X</code></p>
-<p>网站
-<a href="http://www.practicalcryptography.com/ciphers/classical-era/bifid/">Bifid Cipher</a>
-<a href="http://www.practicalcryptography.com/cryptanalysis/stochastic-searching/cryptanalysis-bifid-cipher/">Cryptanalysis of the Bifid cipher</a>
-<a href="http://ctf.ssleye.com/bifid.html">双密码</a></p>
+<p>网站</p>
+<p><a href="http://www.practicalcryptography.com/ciphers/classical-era/bifid/">Bifid Cipher</a></p>
+<p><a href="http://www.practicalcryptography.com/cryptanalysis/stochastic-searching/cryptanalysis-bifid-cipher/">Cryptanalysis of the Bifid cipher</a></p>
+<p><a href="http://ctf.ssleye.com/bifid.html">双密码</a></p>
 <h4 id="22三分密码">22、三分密码</h4>
 <p>三分密码(Trifid Cipher)结合换位和替换，三分密码与双密码非常相似，差别之处就是用除了3×3×3的密阵代替5×5密阵。</p>
 <p>示例密阵:</p>
@@ -838,10 +985,10 @@ N  O  O  N  W  G  B  X  X  L  G  H  H  W  S  K  W
 整理明文(分组不够时用’X’填充)：<code>TH EQ UI CK BR OW NF OX JU MP SO VE RT HE LA ZY DO GX</code>
 加密过程：分别在明文矩阵中找到’TH’，分别找到他们在右上矩阵有左下矩阵的交点字母’ES’就是密文，以此类推。
 密文：<code>ESZWQAFHGTDKWHRKUENYQOLMQTUNWMBPTGHQ</code></p>
-<p>网站
-<a href="http://www.practicalcryptography.com/ciphers/classical-era/four-square/">Four-Square Cipher</a>
-<a href="http://www.practicalcryptography.com/cryptanalysis/stochastic-searching/cryptanalysis-foursquare-cipher/">Cryptanalysis of the Foursquare Cipher</a>
-<a href="http://ctf.ssleye.com/four.html">四方密码</a></p>
+<p>网站</p>
+<p><a href="http://www.practicalcryptography.com/ciphers/classical-era/four-square/">Four-Square Cipher</a></p>
+<p><a href="http://www.practicalcryptography.com/cryptanalysis/stochastic-searching/cryptanalysis-foursquare-cipher/">Cryptanalysis of the Foursquare Cipher</a></p>
+<p><a href="http://ctf.ssleye.com/four.html">四方密码</a></p>
 <h4 id="24棋盘密码">24、棋盘密码</h4>
 <p>棋盘密码（Checkerboard Cipher)是使用一个波利比奥斯方阵和两个密钥作为密阵的替换密码，通常在波利比奥斯方阵中J字母往往被包含在I字母中。</p>
 <p>示例密阵：</p>
@@ -874,8 +1021,8 @@ N |L  F  E  D  C
 <pre tabindex="0"><code>5502817432078501808630122404
 ppfmyk n if  pfkyfyd hkmmcfc
 </code></pre><p>最终得到密文：<code>ppfmyk n in pfkyfyd hkmmcfc</code></p>
-<p>网站
-<a href="http://www.practicalcryptography.com/ciphers/classical-era/straddle-checkerboard/">Straddle Checkerboard Cipher</a></p>
+<p>网站</p>
+<p><a href="http://www.practicalcryptography.com/ciphers/classical-era/straddle-checkerboard/">Straddle Checkerboard Cipher</a></p>
 <h4 id="26云影密码">26、云影密码</h4>
 <p>采用的是0作间隔，其他非0数隔开后组合起来相加表示26个字母</p>
 <p>脚本</p>
@@ -935,9 +1082,9 @@ Porta密码具有加密解密过程的是相同的特点</p>
 密钥(循环使用，密钥越长相对破解难度越大)：<code>CULTURE</code>
 加密过程：明文字母’T’列与密钥字母’C’行交点就是密文字母’F’,以此类推。
 密文：<code>FRW HKQRY YMFMF UAA OLWHD ALWI JPT ZXHC NGV</code></p>
-<p>网站
-<a href="http://www.practicalcryptography.com/ciphers/classical-era/porta/">Porta Cipher</a>
-<a href="http://ctf.ssleye.com/porta.html">Porta密码</a></p>
+<p>网站</p>
+<p><a href="http://www.practicalcryptography.com/ciphers/classical-era/porta/">Porta Cipher</a></p>
+<p><a href="http://ctf.ssleye.com/porta.html">Porta密码</a></p>
 <p>28、仿射密码
 仿射密码(Affine Cipher)</p>
 <ul>
@@ -957,9 +1104,9 @@ Porta密码具有加密解密过程的是相同的特点</p>
 <p>以E(x) = (5x + 8) mod 26函数为例</p>
 <p><img src="https://img-blog.csdnimg.cn/20201120120133575.png#pic_center" alt="在这里插入图片描述"></p>
 <p>解密用D(x)=21(x - 8) mod 26</p>
-<p>网站
-<a href="http://www.practicalcryptography.com/ciphers/classical-era/affine/">Affine Cipher</a>
-<a href="http://ctf.ssleye.com/affine.html">仿射密码</a></p>
+<p>网站</p>
+<p><a href="http://www.practicalcryptography.com/ciphers/classical-era/affine/">Affine Cipher</a></p>
+<p><a href="http://ctf.ssleye.com/affine.html">仿射密码</a></p>
 <p>29、Bazeries密码
 Bazeries密码(Bazeries Cipher)是换位密码和替换密码的组合</p>
 <ul>
@@ -1019,41 +1166,41 @@ d = libnum.invmod(e, (p - 1) * (q - 1))
 m = pow(c, d, n)   # m 的十进制形式
 string = long_to_bytes(m)  # m明文
 print(string)
-</code></pre><p>网站
-<a href="http://tool.chacuo.net/cryptrsapubkey">在线RSA公钥加密解密</a>
-<a href="http://tool.chacuo.net/cryptrsaprikey">在线RSA私钥加密解密</a></p>
+</code></pre><p>网站</p>
+<p><a href="http://tool.chacuo.net/cryptrsapubkey">在线RSA公钥加密解密</a></p>
+<p><a href="http://tool.chacuo.net/cryptrsaprikey">在线RSA私钥加密解密</a></p>
 <h4 id="2aes">2、AES</h4>
 <p>在密码学中又称Rijndael加密法，是美国联邦政府采用的一种区块加密标准。这个标准用来替代原先的DES，已经被多方分析且广为全世界所使用。经过五年的甄选流程，高级加密标准由美国国家标准与技术研究院(NIST)于2001年11月26日发布于FIPS PUB 197，并在2002年5月26日成为有效的标准。2006年，高级加密标准已然成为对称密钥加密中最流行的算法之一。</p>
 <p>aes密文包括字母 数字 + = /等</p>
-<p>网站
-<a href="https://www.cnblogs.com/block2016/p/5596676.html">AES加密</a>
-<a href="https://tool.oschina.net/encrypt/">在线加密解密</a></p>
+<p>网站</p>
+<p><a href="https://www.cnblogs.com/block2016/p/5596676.html">AES加密</a></p>
+<p><a href="https://tool.oschina.net/encrypt/">在线加密解密</a></p>
 <h4 id="3des">3、DES</h4>
 <p>DES算法为密码体制中的对称密码体制，又被称为美国数据加密标准，是1972年美国IBM公司研制的对称密码体制加密算法。 明文按64位进行分组，密钥长64位，密钥事实上是56位参与DES运算（第8、16、24、32、40、48、56、64位是校验位， 使得每个密钥都有奇数个1）分组后的明文组和56位的密钥按位替代或交换的方法形成密文组的加密方法</p>
-<p>网站
-<a href="https://blog.csdn.net/qq_27570955/article/details/52442092">DES算法原理完整版</a>
-<a href="http://tool.chacuo.net/cryptdes">在线DES加密解密</a></p>
+<p>网站</p>
+<p><a href="https://blog.csdn.net/qq_27570955/article/details/52442092">DES算法原理完整版</a></p>
+<p><a href="http://tool.chacuo.net/cryptdes">在线DES加密解密</a></p>
 <h4 id="4ecc">4、ECC</h4>
 <p>ECC（Elliptic Curves Cryptography，椭圆曲线密码编码学）
 椭圆加密算法(ECC)是一种公钥加密体制，最初由Koblitz和Miller两人于1985年提出，其数学基础是利用椭圆曲线上的有理点构成Abel加法群上椭圆离散对数的计算困难性
 公钥密码体制根据其所依据的难题一般分为三类:大整数分解问题类、离散对数问题类、椭圆曲线类
 有时也把椭圆曲线类归为离散对数类</p>
-<p>网站
-<a href="https://blog.csdn.net/qq_35413770/article/details/103668392">ECC(椭圆曲线密码编码学)简介</a></p>
+<p>网站</p>
+<p><a href="https://blog.csdn.net/qq_35413770/article/details/103668392">ECC(椭圆曲线密码编码学)简介</a></p>
 <h4 id="5rc4">5、RC4</h4>
 <p>RC4（来自Rivest Cipher 4的缩写）是一种流加密算法，密钥长度可变。它加解密使用相同的密钥，因此也属于对称加密算法。RC4是有线等效加密（WEP）中采用的加密算法，也曾经是TLS可采用的算法之一</p>
-<p>网站
-<a href="https://wenku.baidu.com/view/404a49828762caaedd33d4c2.html">RC4算法总结</a>
-<a href="http://ctf.ssleye.com/rc4.html">RC4加解密</a></p>
+<p>网站</p>
+<p><a href="https://wenku.baidu.com/view/404a49828762caaedd33d4c2.html">RC4算法总结</a></p>
+<p><a href="http://ctf.ssleye.com/rc4.html">RC4加解密</a></p>
 <h3 id="五代码混淆加密">五、代码混淆加密</h3>
 <h4 id="1vbscriptencode解密">1、VBScript.Encode解密</h4>
 <p><a href="http://adophper.com/encode.html">VBScript.Encode解密</a></p>
 <p>2、ppencode
 ppencode-Perl把Perl代码转换成只有英文字母的字符串</p>
 <p><img src="https://img-blog.csdnimg.cn/20201120121851895.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p>网站
-<a href="http://namazu.org/~takesako/ppencode/demo.html">ppencode - JavaScript demo</a>
-<a href="http://ctf.ssleye.com/ppencode.html">PPencode</a></p>
+<p>网站</p>
+<p><a href="http://namazu.org/~takesako/ppencode/demo.html">ppencode - JavaScript demo</a></p>
+<p><a href="http://ctf.ssleye.com/ppencode.html">PPencode</a></p>
 <h4 id="3rrencode">3、rrencode</h4>
 <p>rrencode可以把ruby代码全部转换成符号</p>
 <p>暂时没找到网站
@@ -1062,42 +1209,42 @@ ppencode-Perl把Perl代码转换成只有英文字母的字符串</p>
 <p>jjencode将JS代码转换成只有符号的字符串
 jjencode的解密直接在浏览器的控制台里输入密文即可执行解密</p>
 <p><img src="https://img-blog.csdnimg.cn/20201120122322824.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p>网站
-<a href="http://ctf.ssleye.com/jjencode.html">JJencode</a>
-<a href="http://pferrie2.tripod.com/papers/jjencode.pdf">MALWARE ANALYSIS</a></p>
+<p>网站</p>
+<p><a href="http://ctf.ssleye.com/jjencode.html">JJencode</a></p>
+<p><a href="http://pferrie2.tripod.com/papers/jjencode.pdf">MALWARE ANALYSIS</a></p>
 <h4 id="5aaencode颜文字">5、aaencode/颜文字</h4>
 <p>aaencode的解密直接在浏览器的控制台里输入密文即可执行解密</p>
 <p><img src="https://img-blog.csdnimg.cn/2020112012253056.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p>网站
-<a href="https://utf-8.jp/public/aaencode.html">aaencode demo</a>
-<a href="https://cat-in-136.github.io/2010/12/aadecode-decode-encoded-as-aaencode.html">aadecode - Decode encoded-as-aaencode JavaScript program. </a>
-<a href="http://ctf.ssleye.com/aaencode.html">AAencode</a><a href="http://ctf.ssleye.com/aaencode.html">http://ctf.ssleye.com/aaencode.html</a>)</p>
+<p>网站</p>
+<p><a href="https://utf-8.jp/public/aaencode.html">aaencode demo</a></p>
+<p><a href="https://cat-in-136.github.io/2010/12/aadecode-decode-encoded-as-aaencode.html">aadecode - Decode encoded-as-aaencode JavaScript program. </a></p>
+<p><a href="http://ctf.ssleye.com/aaencode.html">AAencode</a><a href="http://ctf.ssleye.com/aaencode.html">http://ctf.ssleye.com/aaencode.html</a>)</p>
 <h4 id="6jsfuck">6、JSfuck]</h4>
 <p>JSFuck 可以让你只用 6 个字符<a href=""> </a> ! +来编写 JavaScript 程序</p>
 <p><img src="https://img-blog.csdnimg.cn/20201120122610268.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p>网站
-<a href="http://www.jsfuck.com/">JSFuck</a>
-<a href="http://ctf.ssleye.com/jsfuck.html">JSfuck</a></p>
+<p>网站</p>
+<p><a href="http://www.jsfuck.com/">JSFuck</a></p>
+<p><a href="http://ctf.ssleye.com/jsfuck.html">JSfuck</a></p>
 <h4 id="7jother">7、jother</h4>
 <p>jother是一种运用于javascript语言中利用少量字符构造精简的匿名函数方法对于字符串进行的编码方式
 其中8个少量字符包括：<code>! + ( ) [ ] { }</code>，只用这些字符就能完成对任意字符串的编码
 直接在浏览器(f12)的控制台里输入密文即可执行解密</p>
 <p><img src="https://img-blog.csdnimg.cn/20201120122904825.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p>网站
-<a href="http://tmxk.org/jother/">jother</a></p>
+<p>网站</p>
+<p><a href="http://tmxk.org/jother/">jother</a></p>
 <h4 id="8brainfuck">8、brainfuck</h4>
 <p>Brainfuck是一种极小化的计算机语言，按照”Turing complete（完整图灵机）”思想设计的语言
 它的主要设计思路是：用最小的概念实现一种“简单”的语言
 Brainfuck只有八种符号，所有的操作都由这八种符号<code>&gt; &lt; + - . , [ ]</code>的组合来完成</p>
 <p><img src="https://img-blog.csdnimg.cn/20201120123130406.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p>网站
-<a href="https://www.splitbrain.org/services/ook">Brainfuck/Ook! Obfuscation/Encoding</a>
-<a href="http://ctf.ssleye.com/brain.html">Brainfuck</a></p>
+<p>网站</p>
+<p><a href="https://www.splitbrain.org/services/ook">Brainfuck/Ook! Obfuscation/Encoding</a></p>
+<p><a href="http://ctf.ssleye.com/brain.html">Brainfuck</a></p>
 <h4 id="9ook">9、Ook!</h4>
 <p>Ook! 与Brainfuck类似, 但用单词“Ook！”，“Ook.” 和“Ook?”代替</p>
 <p><img src="https://img-blog.csdnimg.cn/20201120123546215.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p>网站
-<a href="https://www.splitbrain.org/services/ook">Brainfuck/Ook! Obfuscation/Encoding</a></p>
+<p>网站</p>
+<p><a href="https://www.splitbrain.org/services/ook">Brainfuck/Ook! Obfuscation/Encoding</a></p>
 <h4 id="10bubble-babble">10、Bubble Babble</h4>
 <p>Bubble Babble</p>
 <ul>
@@ -1112,9 +1259,9 @@ Brainfuck只有八种符号，所有的操作都由这八种符号<code>&gt; &lt
 </li>
 </ul>
 <p><img src="https://img-blog.csdnimg.cn/20201120125220286.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p>网站
-<a href="https://github.com/eur0pa/bubblepy">bubblepy</a>
-<a href="http://ctf.ssleye.com/bubble.html">BubbleBabble</a></p>
+<p>网站</p>
+<p><a href="https://github.com/eur0pa/bubblepy">bubblepy</a></p>
+<p><a href="http://ctf.ssleye.com/bubble.html">BubbleBabble</a></p>
 <h3 id="六其他">六、其他</h3>
 <h4 id="1与佛论禅">1、与佛论禅</h4>
 <p><a href="http://www.keyfc.net/bbs/tools/tudoucode.aspx">与佛论禅</a></p>
@@ -1129,8 +1276,8 @@ Brainfuck只有八种符号，所有的操作都由这八种符号<code>&gt; &lt
 <p>恩尼格玛密码机（德语：Enigma，又译哑谜机，或“谜”式密码机）是一种用于加密与解密文件的密码机。确切地说，恩尼格玛是对二战时期纳粹德国使用的一系列相似的转子机械加解密机器的统称，它包括了许多不同的型号，为密码学对称加密算法的流加密</p>
 <p><a href="http://enigmaco.de/enigma/enigma.html">模拟</a></p>
 <h4 id="5兽音译者">5、兽音译者</h4>
-<p>给我笑死
-<a href="http://hi.pcmoe.net/roar.html">兽音译者</a></p>
+<p>给我笑死</p>
+<p><a href="http://hi.pcmoe.net/roar.html">兽音译者</a></p>
 <p><img src="https://img-blog.csdnimg.cn/20210416204016321.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h3 id="结语">结语</h3>
 <p>对常见的编码和密码做了个归纳</p>
