@@ -936,10 +936,10 @@ $$
 &lt;tr&gt;
 &lt;td&gt;&lt;a href=&#34;https://p1um3r.github.io/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/#%E4%B8%80%E5%B8%B8%E8%A7%81%E7%BC%96%E7%A0%81:~:text=10%E3%80%81-,UUencode%E7%BC%96%E7%A0%81,-UUencode%E7%BC%96%E7%A0%81&#34;&gt;UUencode编码&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;&lt;a href=&#34;https://p1um3r.github.io/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/#%E4%B8%80%E5%B8%B8%E8%A7%81%E7%BC%96%E7%A0%81:~:text=5%E3%80%81-,aaencode/%E9%A2%9C%E6%96%87%E5%AD%97,-aaencode%E7%9A%84%E8%A7%A3&#34;&gt;AAencode编码&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;https://p1um3r.github.io/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/#%E4%B8%80%E5%B8%B8%E8%A7%81%E7%BC%96%E7%A0%81:~:text=6%E3%80%81-,JSfuck,-%5D&#34;&gt;JSfuck编码&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://p1um3r.github.io/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/#%E4%B8%80%E5%B8%B8%E8%A7%81%E7%BC%96%E7%A0%81:~:text=6%E3%80%81-,JSfuck,-JSFuck%20%E5%8F%AF%E4%BB%A5%E8%AE%A9&#34;&gt;JSfuck编码&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;PPencode&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;&#34;&gt;PPencode&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;RRencode&lt;/td&gt;
 &lt;td&gt;asp混淆加密&lt;/td&gt;
 &lt;/tr&gt;
@@ -1892,8 +1892,8 @@ print(string)
 &lt;h3 id=&#34;五代码混淆加密&#34;&gt;五、代码混淆加密&lt;/h3&gt;
 &lt;h4 id=&#34;1vbscriptencode解密&#34;&gt;1、VBScript.Encode解密&lt;/h4&gt;
 &lt;p&gt;&lt;a href=&#34;http://adophper.com/encode.html&#34;&gt;VBScript.Encode解密&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;2、ppencode
-ppencode-Perl把Perl代码转换成只有英文字母的字符串&lt;/p&gt;
+&lt;h4 id=&#34;2ppencode&#34;&gt;2、ppencode&lt;/h4&gt;
+&lt;p&gt;ppencode-Perl把Perl代码转换成只有英文字母的字符串&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20201120121851895.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
 &lt;p&gt;网站&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://namazu.org/~takesako/ppencode/demo.html&#34;&gt;ppencode - JavaScript demo&lt;/a&gt;&lt;/p&gt;
