@@ -67,8 +67,8 @@ e_rd_r =&amp;amp; 1 + k_r\lambda(N)
 $$
 其中 $k_i&amp;lt;d_i$恒成立。由于每个私有指数$e$都很小，所以我们假设每个公共指数都是足够大的。&lt;/p&gt;
 &lt;p&gt;共模数攻击是基于维纳攻击&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;RSA%E8%A7%A3%E9%A2%98%E6%80%BB%E7%BB%93/image-20230806165716546.png&#34; alt=&#34;image-20230806165716546&#34;&gt;
-$$
+&lt;p&gt;&lt;img src=&#34;https://p1um3r.github.io/images/RSA%E8%A7%A3%E9%A2%98%E6%80%BB%E7%BB%93/image-20230806165716546.png&#34; alt=&#34;image-20230806165716546&#34;&gt;&lt;/p&gt;
+&lt;p&gt;$$
 e_id_i=1+k_i\lambda(N)=1+\frac{k_i}{g}\phi(N)=1+\frac{k_i}{g}(N-s)
 $$
 我们用$W_i$来表示$g$乘以第$i$个密钥方程。写作：
