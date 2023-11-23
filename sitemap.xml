@@ -46,6 +46,9 @@
   </url><url>
     <loc>https://p1um3r.github.io/categories/</loc>
   </url><url>
+    <loc>https://p1um3r.github.io/search/</loc>
+    <priority>0.1</priority>
+  </url><url>
     <loc>https://p1um3r.github.io/blog/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95gcd/</loc>
   </url>
 </urlset>
