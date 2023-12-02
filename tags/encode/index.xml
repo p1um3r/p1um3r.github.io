@@ -79,6 +79,16 @@
 &lt;td&gt;&lt;a href=&#34;https://p1um3r.github.io/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/#%E4%BA%8C%E6%8D%A2%E4%BD%8D%E5%AF%86%E7%A0%81:~:text=12%E3%80%81-,md5,-md5&#34;&gt;md5&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
+&lt;td&gt;栅栏密码&lt;/td&gt;
+&lt;td&gt;简单换位密码&lt;/td&gt;
+&lt;td&gt;列移位密码&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;曲路密码&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
 &lt;td&gt;&lt;a href=&#34;https://p1um3r.github.io/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/#%E4%BA%8C%E6%8D%A2%E4%BD%8D%E5%AF%86%E7%A0%81:~:text=1%E3%80%81-,%E5%87%AF%E6%92%92%E5%AF%86%E7%A0%81,-%E6%98%8E%E6%96%87%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89&#34;&gt;凯撒密码&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;&lt;a href=&#34;https://p1um3r.github.io/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/#%E4%BA%8C%E6%8D%A2%E4%BD%8D%E5%AF%86%E7%A0%81:~:text=2%E3%80%81-,ROT5/13/18/47,-ROT5%EF%BC%9A%E5%8F%AA%E5%AF%B9&#34;&gt;ROT5/13/18/47&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;&lt;a href=&#34;https://p1um3r.github.io/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/#%E4%BA%8C%E6%8D%A2%E4%BD%8D%E5%AF%86%E7%A0%81:~:text=3%E3%80%81-,QWE%E5%8A%A0%E5%AF%86,-%E4%BB%8E%E7%94%B5%E8%84%91%E9%94%AE%E7%9B%98&#34;&gt;QWE加密&lt;/a&gt;&lt;/td&gt;
@@ -124,8 +134,8 @@
 &lt;td&gt;&lt;a href=&#34;https://p1um3r.github.io/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/#%E4%BA%8C%E6%8D%A2%E4%BD%8D%E5%AF%86%E7%A0%81:~:text=27%E3%80%81-,Porta%E5%AF%86%E7%A0%81,-Porta%E5%AF%86%E7%A0%81%28Porta&#34;&gt;Porta密码&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;[仿射密码]&lt;/td&gt;
-&lt;td&gt;Bazezeries密码&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://p1um3r.github.io/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/#%E5%9B%9B%E7%8E%B0%E4%BB%A3%E5%AF%86%E7%A0%81:~:text=28%E3%80%81-,%E4%BB%BF%E5%B0%84%E5%AF%86%E7%A0%81,-%E4%BB%BF%E5%B0%84%E5%AF%86%E7%A0%81&#34;&gt;仿射密码&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://p1um3r.github.io/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/#%E5%9B%9B%E7%8E%B0%E4%BB%A3%E5%AF%86%E7%A0%81:~:text=29%E3%80%81-,Bazeries%E5%AF%86%E7%A0%81,-Bazeries%E5%AF%86%E7%A0%81B%28azeries&#34;&gt;Bazezeries密码&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;&lt;a href=&#34;https://p1um3r.github.io/blog/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/#%E4%BA%8C%E6%8D%A2%E4%BD%8D%E5%AF%86%E7%A0%81:~:text=30%E3%80%81-,%E5%BD%93%E9%93%BA%E5%AF%86%E7%A0%81,-%E5%BD%93%E9%93%BA%E5%AF%86%E7%A0%81&#34;&gt;当铺密码&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -179,7 +189,7 @@
 &lt;p&gt;&lt;a href=&#34;http://www.ab126.com/goju/1711.html&#34;&gt;ASCII 在线转换器&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://ctf.ssleye.com/cencode.html&#34;&gt;ASCII编码转换&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id=&#34;2base6432编码&#34;&gt;2、base64,32编码&lt;/h4&gt;
-&lt;p&gt;Base64是网络上最常见的用于传输8Bit字节码的编码方式之一&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Base64&lt;/strong&gt;是网络上最常见的用于传输8Bit字节码的编码方式之一&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;基于64个可打印字符来表示二进制数据的方法&lt;/li&gt;
 &lt;li&gt;3个字节可表示4个可打印字符&lt;/li&gt;
@@ -196,7 +206,7 @@ b&amp;#39;SSBsb3ZlIHlvdQ==&amp;#39;
 &amp;gt;&amp;gt;&amp;gt; decode = base64.b64decode(b&amp;#39;SSBsb3ZlIHlvdQ==&amp;#39;)
 &amp;gt;&amp;gt;&amp;gt; decode
 b&amp;#39;I love you&amp;#39;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;base32
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;base32&lt;/strong&gt;
 只有大写字母（A-Z）和数字234567&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/2020111920155139.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
 &lt;p&gt;跟base64相似就是将base64.b 64encode变成base64.b 32encode
@@ -328,8 +338,8 @@ HTML 中的预留字符必须被替换为字符实体
 &lt;p&gt;网站&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://www.mxcz.net/tools/QuotedPrintable.aspx&#34;&gt;QuotedPrintable编码&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://ctf.ssleye.com/quoted.html&#34;&gt;Quoted-printable编码&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;9、XXencode编码
-XXencode&lt;/p&gt;
+&lt;h4 id=&#34;9xxencode编码&#34;&gt;9、XXencode编码&lt;/h4&gt;
+&lt;p&gt;XXencode&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;将输入文本以每三个字节为单位进行编码&lt;/p&gt;
@@ -1076,6 +1086,8 @@ Brainfuck只有八种符号，所有的操作都由这八种符号&lt;code&gt;&a
 &lt;p&gt;给我笑死&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://hi.pcmoe.net/roar.html&#34;&gt;兽音译者&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20210416204016321.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYwNDU0MQ==,size_16,color_FFFFFF,t_70&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;6原神特瓦特语言&#34;&gt;6、原神特瓦特语言&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://p1um3r.github.io/images/%E5%B8%B8%E8%A7%81%E5%AF%86%E7%A0%81%E5%92%8C%E7%BC%96%E7%A0%81%E6%80%BB%E7%BB%93/1701521208407.jpg&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;结语&#34;&gt;结语&lt;/h3&gt;
 &lt;p&gt;对常见的编码和密码做了个归纳&lt;/p&gt;
 &lt;p&gt;一些好用的网站和工具&lt;/p&gt;
