@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>deep learning on p1um&#39;s blog</title>
+    <link>https://p1um3r.github.io/series/deep-learning/</link>
+    <description>Recent content in deep learning on p1um&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 17 Dec 2023 18:06:00 +0800</lastBuildDate><atom:link href="https://p1um3r.github.io/series/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>深度学习学习笔记——数据操作</title>
+      <link>https://p1um3r.github.io/blog/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Sun, 17 Dec 2023 18:06:00 +0800</pubDate>
+      
+      <guid>https://p1um3r.github.io/blog/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C/</guid>
+      <description>&lt;p&gt;主要学习网站：https://zh.d2l.ai/&lt;/p&gt;
+&lt;p&gt;b站课程视频链接：https://space.bilibili.com/1567748478/channel/seriesdetail?sid=358497&lt;/p&gt;
+&lt;p&gt;视频和网站配合学习，一开始没看到有b站课程，只看网站学看不懂函数是干什么的，还不会问gpt，只是自己硬啃，确实有点吃力。。。&lt;/p&gt;
+&lt;p&gt;这里我学习的是tensorflow框架，并在jupyter中进行编写&lt;/p&gt;
+&lt;p&gt;前言什么的略过，主要记录代码方面学习到的内容。&lt;/p&gt;
+&lt;h3 id=&#34;1导入tensorflow&#34;&gt;1、导入tensorflow&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; tensorflow &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; tf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2创建向量&#34;&gt;2、创建向量&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;x &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;range(&lt;span style=&#34;color:#ae81ff&#34;&gt;12&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;x
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;tf.Tensor: shape=(12,), dtype=int32, numpy=array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11], dtype=int32)&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;3判断形状&#34;&gt;3、判断形状&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;x&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;shape
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;TensorShape([12])
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;4判断元素数量&#34;&gt;4、判断元素数量&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;size(x)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Tensor: shape&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(), dtype&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;int32, numpy&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;12&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;5改变张量形状&#34;&gt;5、改变张量形状&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;X &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;reshape(x, (&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;X
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Tensor: shape&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;), dtype&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;int32, numpy&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;array([[ &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,  &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,  &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;,  &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;],
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       [ &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;,  &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;,  &lt;span style=&#34;color:#ae81ff&#34;&gt;6&lt;/span&gt;,  &lt;span style=&#34;color:#ae81ff&#34;&gt;7&lt;/span&gt;],
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       [ &lt;span style=&#34;color:#ae81ff&#34;&gt;8&lt;/span&gt;,  &lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;11&lt;/span&gt;]], dtype&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;int32)&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;6生成符合正态分布的随机取样均值为0标准差为1&#34;&gt;6、生成符合正态分布的随机取样(均值为0、标准差为1)&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;random&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;normal(shape&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;[&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;])
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-pyhton&#34; data-lang=&#34;pyhton&#34;&gt;&amp;lt;tf.Tensor: shape=(3, 4), dtype=float32, numpy=
+array([[-1.9437447 ,  1.7360141 ,  0.03836465, -0.23741092],
+       [-0.7939557 , -0.89138025,  0.17875476, -1.8298926 ],
+       [ 1.0334245 , -0.06715401, -1.0667316 , -1.1286876 ]],
+      dtype=float32)&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;7生成定值张量&#34;&gt;7、生成定值张量&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;constant([[&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;], [&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;], [&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]])
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;tf.Tensor: shape=(3, 4), dtype=int32, numpy=
+array([[2, 1, 4, 3],
+       [1, 2, 3, 4],
+       [4, 3, 2, 1]], dtype=int32)&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;8基本运算&#34;&gt;8、基本运算&lt;/h3&gt;
+&lt;p&gt;对于任意具有相同形状的张量， 常见的标准算术运算符（&lt;code&gt;+&lt;/code&gt;、&lt;code&gt;-&lt;/code&gt;、&lt;code&gt;*&lt;/code&gt;、&lt;code&gt;/&lt;/code&gt;和&lt;code&gt;**&lt;/code&gt;）都可以被升级为按元素运算。&lt;/p&gt;
+&lt;p&gt;还有&lt;code&gt;tf.exp(x)&lt;/code&gt;也是按元素计算&lt;/p&gt;
+&lt;h3 id=&#34;9张量连结concatenate&#34;&gt;9、张量连结(concatenate)&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;X &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;reshape(tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;range(&lt;span style=&#34;color:#ae81ff&#34;&gt;12&lt;/span&gt;, dtype&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;float32), (&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Y &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;constant([[&lt;span style=&#34;color:#ae81ff&#34;&gt;2.0&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;], [&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;], [&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]])
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;concat([X, Y], axis&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;), tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;concat([X, Y], axis&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;(&amp;lt;tf.Tensor: shape=(6, 4), dtype=float32, numpy=
+ array([[ 0.,  1.,  2.,  3.],
+        [ 4.,  5.,  6.,  7.],
+        [ 8.,  9., 10., 11.],
+        [ 2.,  1.,  4.,  3.],
+        [ 1.,  2.,  3.,  4.],
+        [ 4.,  3.,  2.,  1.]], dtype=float32)&amp;gt;,
+ &amp;lt;tf.Tensor: shape=(3, 8), dtype=float32, numpy=
+ array([[ 0.,  1.,  2.,  3.,  2.,  1.,  4.,  3.],
+        [ 4.,  5.,  6.,  7.,  1.,  2.,  3.,  4.],
+        [ 8.,  9., 10., 11.,  4.,  3.,  2.,  1.]], dtype=float32)&amp;gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;使用$tf.concat()$函数来实现，其中$[X,Y]$分别表示需要连结的两个张量，$X$在前，$Y$在后，参数$axis$代表的是在某个指定方向上进行连接，$0$为行，$1$为列&lt;/p&gt;
+&lt;p&gt;由于例子中使用的是二维张量，故只有$0$和$1$两个方向。若为三维张量，则还可能沿着$2$方向进行连结。&lt;/p&gt;
+&lt;h3 id=&#34;10求和&#34;&gt;10、求和&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;reduce_sum(X)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Tensor: shape&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(), dtype&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;float32, numpy&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;66.0&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;机制&#34;&gt;机制&lt;/h2&gt;
+&lt;h3 id=&#34;1广播机制&#34;&gt;1、广播机制&lt;/h3&gt;
+&lt;p&gt;主要用于两个形状不同的张量进行按元素操作。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;形状可以不同，但维度必须相同，维度不同的两个张量不可以通过广播机制来进行按元素操作&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;工作方式：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;通过适当复制元素来扩展一个或两个数组，以便在转换之后，两个张量具有相同的形状；&lt;/li&gt;
+&lt;li&gt;对生成的数组执行按元素操作。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在大多数情况下，我们将沿着数组中长度为1的轴进行广播，如下例子：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;MXNET
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;PYTORCH
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;TENSORFLOW
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;PADDLE
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;reshape(tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;range(&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;), (&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;reshape(tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;range(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;), (&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a, b
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;(&amp;lt;tf.Tensor: shape=(3, 1), dtype=int32, numpy=
+ array([[0],
+        [1],
+        [2]], dtype=int32)&amp;gt;,
+ &amp;lt;tf.Tensor: shape=(1, 2), dtype=int32, numpy=array([[0, 1]], dtype=int32)&amp;gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这里$a$和$b$分别是$3×1$和$1×2$的矩阵，为了让二者相加，我们将两个矩阵广播为形状为$3×2$的矩阵，方法为：将矩阵$a$复制列，矩阵$b$复制行，然后再按元素相加。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;a + b
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;tf.Tensor: shape=(3, 2), dtype=int32, numpy=
+array([[0, 1],
+       [1, 2],
+       [2, 3]], dtype=int32)&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;我们可以使用来查看广播后的结果：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;broadcast_to(a, [&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;]), tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;broadcast_to(b, [&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;])
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;(&amp;lt;tf.Tensor: shape=(3, 2), dtype=int32, numpy=
+ array([[0, 0],
+        [1, 1],
+        [2, 2]], dtype=int32)&amp;gt;,
+ &amp;lt;tf.Tensor: shape=(3, 2), dtype=int32, numpy=
+ array([[0, 1],
+        [0, 1],
+        [0, 1]], dtype=int32)&amp;gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;2索引和切片&#34;&gt;2、索引和切片&lt;/h3&gt;
+&lt;p&gt;与python索引和切片机制相同，0为第一个元素，-1为最后一个元素。&lt;/p&gt;
+&lt;p&gt;由于TensorFlow中的Tensors是不可变的，也不能被赋值，我们可以使用&lt;strong&gt;Variables&lt;/strong&gt;来生成一个可以赋值的可变容器。==请记住，TensorFlow中的梯度不会通过Variable反向传播（？看不懂）==。&lt;/p&gt;
+&lt;p&gt;方法如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;X_var &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Variable(X)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;X_var[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;assign(&lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;X_var
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;tf.Variable &amp;#39;Variable:0&amp;#39; shape=(3, 4) dtype=float32, numpy=
+array([[ 0.,  1.,  2.,  3.],
+       [ 4.,  5.,  9.,  7.],
+       [ 8.,  9., 10., 11.]], dtype=float32)&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这里首先，生成了一个与X形状、元素相同$(3×4)$的&lt;strong&gt;可变容器&lt;/strong&gt; X_var ， 然后将 X_var 中第2行，第3列的元素赋值为9，然后进行输出。&lt;/p&gt;
+&lt;p&gt;同时，我们也可以索引多个元素来为他们同时赋值，如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;X_var &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Variable(X)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;X_var[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, :]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;assign(tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ones(X_var[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;,:]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;shape, dtype &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;float32) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;12&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;X_var
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;3节省内存&#34;&gt;3、节省内存&lt;/h3&gt;
+&lt;p&gt;在tensorfflow中，若我们使用Y = X + Y，我们就会发现python自动为新生成的Y分配了一个新的内存，因为计算过程如下：&lt;/p&gt;
+&lt;p&gt;Python首先计算Y + X，为结果分配新的内存，然后使Y指向内存中这个新的位置&lt;/p&gt;
+&lt;p&gt;我们可以用如下代码来进行验证：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;before &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; id(Y)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Y &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Y &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; X
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;id(Y) &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; before
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;输出为：False&lt;/p&gt;
+&lt;p&gt;这样是不可取的，因为这会总是不必要的分配内存，而在机器学习中，我们可能有数百兆的参数，且在一秒内多次更新所有参数，这会极大的占用内存空间，产生浪费，且降低运行效率&lt;/p&gt;
+&lt;p&gt;同时，如果我们不能在同一位置进行更新，有些代码的数据引用仍会指向旧的地址，使得它在无意中引用旧的参数。&lt;/p&gt;
+&lt;p&gt;因此，我们可以使用Variable来永久保存一个状态&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Z &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Variable(tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;zeros_like(Y))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;id(Z):&amp;#39;&lt;/span&gt;, id(Z))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Z&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;assign(X &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; Y)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;id(Z):&amp;#39;&lt;/span&gt;, id(Z))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;id(Z): 140172812493920
+id(Z): 140172812493920
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;TensorFlow提供了&lt;strong&gt;tf.function&lt;/strong&gt;修饰符， 将计算封装在TensorFlow图中，该图在运行前经过编译和优化。 这允许TensorFlow删除未使用的值，并复用先前分配的且不再需要的值。 这样可以最大限度地减少TensorFlow计算的内存开销。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;@tf.function&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;computation&lt;/span&gt;(X, Y):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Z &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;zeros_like(Y)  &lt;span style=&#34;color:#75715e&#34;&gt;# 这个未使用的值将被删除&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    A &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; X &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; Y  &lt;span style=&#34;color:#75715e&#34;&gt;# 当不再需要时，分配将被复用&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    B &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; A &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; Y
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    C &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; B &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; Y
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; C &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; Y
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;computation(X, Y)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;@tf.function&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;computation&lt;/span&gt;(X, Y):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Z &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;zeros_like(Y)  &lt;span style=&#34;color:#75715e&#34;&gt;# 这个未使用的值将被删除&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    A &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; X &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; Y  &lt;span style=&#34;color:#75715e&#34;&gt;# 当不再需要时，分配将被复用&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    B &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; A &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; Y
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    C &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; B &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; Y
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; C &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; Y
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;computation(X, Y)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;4转换为其他python对象&#34;&gt;4、转换为其他python对象&lt;/h3&gt;
+&lt;p&gt;将深度学习框架定义的张量转换为NumPy张量**（ndarray）**很容易，反之也同样容易。 转换后的结果不共享内存。 这个小的不便实际上是非常重要的：当在CPU或GPU上执行操作的时候， 如果Python的NumPy包也希望使用相同的内存块执行其他操作，人们不希望停下计算来等它。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;A &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; X&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;numpy()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;B &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;constant(A)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;type(A), type(B)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;(numpy.ndarray, tensorflow.python.framework.ops.EagerTensor)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;要将大小为1的张量转换为Python标量，我们可以调用item函数或Python的内置函数。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;a = tf.constant([3.5]).numpy()
+a, a.item(), float(a), int(a)
+&lt;/code&gt;&lt;/pre&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(array([&lt;span style=&#34;color:#ae81ff&#34;&gt;3.5&lt;/span&gt;], dtype&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;float32), &lt;span style=&#34;color:#ae81ff&#34;&gt;3.5&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3.5&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
